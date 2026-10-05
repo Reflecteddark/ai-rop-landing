@@ -42,22 +42,9 @@
         })();
     </script>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LHRE6Z6TBG"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-LHRE6Z6TBG');
-    </script>
-
-    <!-- Yandex.Metrika counter -->
+    <!-- Yandex.Metrika counter (152-ФЗ РФ Compliant) -->
     <script type="text/javascript">
-        // ==========================================
-        // ID СЧЁТЧИКА ЯНДЕКС.МЕТРИКИ (Укажите номер вместо 0)
         const YM_ID = 113329268; 
-        // ==========================================
 
         (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
         m[i].l=1*new Date();
@@ -71,31 +58,24 @@
                 trackLinks: true,
                 trackHash: true,
                 accurateTrackBounce: true,
-                webvisor: true
+                webvisor: true,
+                params: { ip_anonymization: true }
             });
         }
 
         // Автоматическая отправка целей (lead_submit, calc_use, pilot_click, chat_lead, audio_play)
-        // Единая отправка конверсий в Яндекс.Метрику и Google Analytics 4
         window.reachMetrikaGoal = function(goalName, params) {
             if (YM_ID && YM_ID !== 0 && typeof ym === 'function') {
                 ym(YM_ID, 'reachGoal', goalName, params || {});
-                // ym goal sent
-            }
-            if (typeof gtag === 'function') {
-                gtag('event', goalName, params || {});
-                // ga goal sent
             }
         };
     </script>
     <noscript><div><img src="https://mc.yandex.ru/watch/113329268" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
     
-    <!-- Fonts & Icons -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Fonts & Icons (100% Self-Hosted / 152-ФЗ РФ Compliant) -->
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/fontawesome.min.css">
     <link rel="stylesheet" href="css/tailwind.min.css">
 
     <script type="application/ld+json">
@@ -3890,7 +3870,7 @@
                         </div>
 
                         <div class="flex items-start gap-2.5 pt-1 text-left">
-                            <input type="checkbox" id="formConsent" required checked class="mt-1 rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-emerald-500 cursor-pointer">
+                            <input type="checkbox" id="formConsent" required class="mt-1 rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-emerald-500 cursor-pointer">
                             <label for="formConsent" class="text-xs text-slate-400 leading-tight">
                                 Я даю согласие на обработку персональных данных в соответствии с 
                                 <a href="privacy.html" id="openPolicyBtn" target="_blank" class="text-emerald-400 underline hover:text-emerald-300 font-medium">152-ФЗ РФ</a>. 
@@ -4204,14 +4184,15 @@
                 </div>
             </div>
 
-            <!-- Bottom Bar (Legal / Compliance) -->
+            <!-- Bottom Bar (Legal / Compliance: 152-ФЗ и 168-ФЗ) -->
             <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-mono text-center md:text-left">
                 <div>
                     <p class="text-slate-400 font-sans font-medium text-sm mb-1">© 2026 RevOps OS Pro (ai-rop.ru). Все права защищены.</p>
                     <p class="text-[11px] text-slate-500">Автоматический речевой аудит и контроль звонков в amoCRM и Битрикс24.</p>
+                    <p class="text-[10px] text-slate-600 mt-1 max-w-md">Наименования «RevOps OS» (Ревопс ОС — операционная система управления выручкой отдела продаж), «Pro», «Dashboard» используются как коммерческие обозначения ПО в соответствии с Федеральным законом № 168-ФЗ.</p>
                 </div>
                 <div class="max-w-xl text-[11px] text-slate-500 leading-relaxed md:text-right">
-                    Самозанятый (НПД: Федотов Д. В.) • Официальный электронный чек ФНС «Мой Налог» • Безналичный расчёт для организаций (0% НДС) • Договор-оферта • Соответствие Федеральному закону №152-ФЗ РФ «О персональных данных» • Серверы на территории РФ
+                    Оператор / Исполнитель: Самозанятый Федотов Дмитрий Валерьевич (ИНН: 731303201073) • Официальный электронный чек ФНС РФ («Мой Налог») • Безналичный расчёт для юридических лиц и ИП (0% НДС) • Договор-оферта • Строгое соблюдение 152-ФЗ РФ «О персональных данных» • 100% локализация данных и серверов на территории Российской Федерации
                 </div>
             </div>
         </div>
@@ -4394,6 +4375,9 @@
                         <i class="fas fa-paper-plane text-xs"></i>
                     </button>
                 </form>
+                <div class="text-[10px] text-slate-500 mt-1 text-center sm:text-left">
+                    Нажимая «Отправить», вы соглашаетесь на обработку данных по <a href="privacy.html" target="_blank" class="text-emerald-400 underline hover:text-emerald-300">152-ФЗ РФ</a>
+                </div>
             </div>
         </div>
     </div>
