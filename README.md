@@ -53,9 +53,9 @@ web/
   - Автоматический CI/CD деплой при каждом коммите/пуше в ветку `main` репозитория `Reflecteddark/ai-rop-landing`.
   - Поддержка HTTP/2, HTTP/3 (QUIC), автоматическая компрессия и глобальное кэширование (<50 мс отклик).
 - **DNS-маршрутизация**: **Cloudflare DNS** (`ace.ns.cloudflare.com`, `cass.ns.cloudflare.com`).
-  - `ai-rop.ru` (CNAME) ➔ `a322aea84790e1bf.vercel-dns-017.com` (Статус: `DNS only` / Grey Cloud).
-  - `www.ai-rop.ru` (CNAME) ➔ `a322aea84790e1bf.vercel-dns-017.com` (Статус: `DNS only` / Grey Cloud).
-  - Обеспечивает 100% доступность в РФ у всех провайдеров (МТС, Билайн, Мегафон, Ростелеком и др.) без сбоев ТСПУ.
+  - `ai-rop.ru` (A) ➔ `64.29.17.65`, `216.198.79.65` (Статус: `DNS only` / Grey Cloud, TTL: 60s).
+  - `www.ai-rop.ru` (A) ➔ `64.29.17.65`, `216.198.79.65` (Статус: `DNS only` / Grey Cloud, TTL: 60s).
+  - Прямая адресация на проверенные европейские Anycast IP Vercel исключает случайную маршрутизацию на блокируемые пулы ТСПУ (`.1`) и гарантирует стабильный отклик 100% времени.
 - **SSL / Безопасность**:
   - Автоматический доверенный SSL-сертификат Vercel (Let's Encrypt / DigiCert) с автопродлением.
   - HSTS, автоматический редирект с HTTP на HTTPS.
