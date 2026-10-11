@@ -168,10 +168,11 @@
             <nav class="hidden lg:flex items-center gap-6 text-xs font-medium text-slate-300">
                 <a href="#demo" class="hover:text-emerald-400 transition">Как работает</a>
                 <a href="#alerts" class="hover:text-emerald-400 transition">Алерт РОПа</a>
-                <a href="#niches" class="hover:text-emerald-400 transition">Ниши бизнеса</a>
+                <a href="#niches" class="hover:text-emerald-400 transition">Ниши</a>
                 <a href="#criteria" class="hover:text-emerald-400 transition">13 критериев</a>
-                <a href="#cases" class="hover:text-emerald-400 transition">Кейсы & Калькулятор</a>
+                <a href="#cases" class="hover:text-emerald-400 transition">Калькулятор</a>
                 <a href="#integration" class="hover:text-emerald-400 transition">Интеграция</a>
+                <a href="#comparison" class="hover:text-emerald-400 transition">Отстройка</a>
                 <a href="#pricing" class="hover:text-emerald-400 transition">Тарифы</a>
             </nav>
 
@@ -845,11 +846,14 @@
                         <h3 class="font-display font-bold text-xl sm:text-2xl text-white mt-1">
                             Сколько денег ваш отдел продаж теряет прямо сейчас?
                         </h3>
+                        <p class="text-xs text-slate-400 mt-2">
+                            Оценка упущенной выручки по формуле: 85% звонков вне контроля РОПа × 5% потенциала роста конверсии
+                        </p>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                         <!-- Sliders Controls -->
-                        <div class="space-y-6">
+                        <div class="space-y-5">
                             <!-- Slider 1 -->
                             <div>
                                 <div class="flex justify-between text-xs font-medium text-slate-300 mb-2">
@@ -862,43 +866,75 @@
                             <!-- Slider 2 -->
                             <div>
                                 <div class="flex justify-between text-xs font-medium text-slate-300 mb-2">
-                                    <span>Средний чек сделки (₽):</span>
-                                    <span id="calcCheckVal" class="text-emerald-400 font-mono font-bold text-sm">250 000 ₽</span>
+                                    <span>Звонков в день на менеджера:</span>
+                                    <span id="calcCallsVal" class="text-emerald-400 font-mono font-bold text-sm">25 зв./день</span>
                                 </div>
-                                <input type="range" id="calcCheck" min="50000" max="2000000" step="50000" value="250000" oninput="recalcROI()">
+                                <input type="range" id="calcCalls" min="5" max="80" step="5" value="25" oninput="recalcROI()">
                             </div>
 
                             <!-- Slider 3 -->
                             <div>
                                 <div class="flex justify-between text-xs font-medium text-slate-300 mb-2">
-                                    <span>Звонков в день на менеджера:</span>
-                                    <span id="calcCallsVal" class="text-emerald-400 font-mono font-bold text-sm">25 зв.</span>
+                                    <span>Средний чек сделки (₽):</span>
+                                    <span id="calcCheckVal" class="text-emerald-400 font-mono font-bold text-sm">250 000 ₽</span>
                                 </div>
-                                <input type="range" id="calcCalls" min="10" max="80" step="5" value="25" oninput="recalcROI()">
+                                <input type="range" id="calcCheck" min="50000" max="3000000" step="25000" value="250000" oninput="recalcROI()">
+                            </div>
+
+                            <!-- Slider 4: Conversion Rate -->
+                            <div>
+                                <div class="flex justify-between text-xs font-medium text-slate-300 mb-2">
+                                    <span>Текущая конверсия в оплату / встречу:</span>
+                                    <span id="calcConversionVal" class="text-cyan-400 font-mono font-bold text-sm">5.0%</span>
+                                </div>
+                                <input type="range" id="calcConversion" min="1.0" max="25.0" step="0.5" value="5.0" oninput="recalcROI()">
+                            </div>
+
+                            <div class="pt-2 flex items-center justify-between text-[11px] font-mono text-slate-400 border-t border-slate-800">
+                                <span>Всего звонков команды:</span>
+                                <span id="calcTotalCalls" class="text-slate-200 font-bold">2 750 зв./мес</span>
                             </div>
                         </div>
 
                         <!-- Results Box -->
-                        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 text-center space-y-4">
+                        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
                             <div>
-                                <div class="text-xs text-slate-400">Скрытые потери выручки в месяц:</div>
+                                <div class="flex items-center justify-between text-xs text-slate-400">
+                                    <span>Сумма упущенной выручки в месяц:</span>
+                                    <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30">Сливы</span>
+                                </div>
                                 <div id="calcLossResult" class="text-2xl sm:text-3xl font-extrabold text-rose-400 font-mono mt-1">
-                                    ~1 875 000 ₽
+                                    ~1 460 938 ₽
                                 </div>
+                                <p class="text-[11px] text-slate-400 mt-1">
+                                    85% звонков (<span id="calcUncontrolledCalls" class="text-slate-200 font-mono font-semibold">2 338 зв.</span>) — слепая зона без контроля РОПа
+                                </p>
                             </div>
 
-                            <div class="pt-4 border-t border-slate-800">
-                                <div class="text-xs text-slate-400">Потенциал возврата с ИИ-РОП:</div>
+                            <div class="pt-3 border-t border-slate-800">
+                                <div class="text-xs text-slate-400">Потенциал возврата с RevOps OS:</div>
                                 <div id="calcRecoverResult" class="text-xl sm:text-2xl font-extrabold text-emerald-400 font-mono mt-1">
-                                    +562 500 ₽ / мес
+                                    +1 460 938 ₽ / мес
                                 </div>
                             </div>
 
-                            <div class="text-[11px] text-slate-400 font-mono">
-                                Срок окупаемости системы: <strong class="text-white">с 1-й спасённой сделки</strong>
+                            <!-- Per-minute competitor trap callout -->
+                            <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800/80 text-[11px] space-y-1">
+                                <div class="flex justify-between text-slate-400">
+                                    <span>У обычных сервисов (5 ₽/мин):</span>
+                                    <span id="calcCompetitorCost" class="text-rose-400 font-mono font-bold">~137 500 ₽/мес</span>
+                                </div>
+                                <div class="flex justify-between text-emerald-400 font-medium">
+                                    <span>В RevOps Enterprise OS:</span>
+                                    <span>Фиксированный тариф</span>
+                                </div>
                             </div>
 
-                            <a href="#cta" class="w-full inline-block py-3 px-6 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 text-slate-950 font-bold text-xs uppercase tracking-wider shadow-lg hover:shadow-emerald-500/30 transition">
+                            <div class="text-[11px] text-slate-400 font-mono text-center">
+                                Срок окупаемости: <strong class="text-white">с 1-й спасённой сделки</strong>
+                            </div>
+
+                            <a href="#cta" class="w-full inline-block py-3 px-6 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 text-slate-950 font-bold text-xs uppercase tracking-wider shadow-lg hover:shadow-emerald-500/30 transition text-center">
                                 Остановить потери выручки 0 ₽
                             </a>
                         </div>
@@ -959,6 +995,39 @@
 
                 </div>
 
+                <!-- ZERO-FRICTION PILOT CALLOUT: AUDIT WITHOUT CRM INTEGRATION -->
+                <div class="mb-12 rounded-3xl p-6 sm:p-8 bg-gradient-to-r from-emerald-950/40 via-slate-900 to-cyan-950/40 border border-emerald-500/30 shadow-2xl relative overflow-hidden">
+                    <div class="absolute -right-12 -bottom-12 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                    <div class="flex flex-col lg:flex-row items-center justify-between gap-8 relative z-10">
+                        <div class="space-y-3 max-w-2xl text-left">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-mono font-bold border border-emerald-500/30">
+                                <i class="fas fa-bolt"></i> НУЛЕВОЙ БАРЬЕР ВХОДА // СТАРТ БЕЗ IT
+                            </div>
+                            <h3 class="font-display font-bold text-xl sm:text-2xl text-white">
+                                «Пришлите 50 записей звонков — мы покажем разбор без подключения телефонии»
+                            </h3>
+                            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                                Не хотите прямо сейчас подключать вебхуки или согласовывать доступ с IT и службой безопасности? 
+                                Просто выгрузите 50 записей звонков (MP3 / WAV или ссылка на облачный диск) — через 24 часа мы предоставим интерактивный отчет в Google Таблицах V18.0 с полной картой сливов выручки по 13 критериям.
+                            </p>
+                            <div class="flex flex-wrap items-center gap-4 text-xs font-mono text-slate-400 pt-1">
+                                <span class="flex items-center gap-1.5"><i class="fas fa-check text-emerald-400"></i> Без API-ключей</span>
+                                <span class="flex items-center gap-1.5"><i class="fas fa-check text-emerald-400"></i> Без доступа к телефонии</span>
+                                <span class="flex items-center gap-1.5"><i class="fas fa-check text-emerald-400"></i> Снимает 90% возражений команды</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row lg:flex-col gap-3 w-full lg:w-auto shrink-0">
+                            <a href="#cta" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 text-slate-950 font-bold text-xs uppercase tracking-wider shadow-lg hover:shadow-emerald-500/30 transition text-center">
+                                <span>Передать 50 звонков на разбор</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                            <a href="https://t.me/RevOps_Super_Audit_Bot" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-sky-400 border border-slate-700 text-xs font-semibold transition text-center">
+                                <i class="fab fa-telegram"></i> Загрузить файлы в Telegram-бот
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Supported Platforms Bar -->
                 <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 text-center">
                     <div class="text-xs text-slate-400 mb-4 font-mono">Совместимо со всеми популярными CRM и провайдерами телефонии:</div>
@@ -978,13 +1047,209 @@
         </section>
 
         <!-- ======================================================== -->
-        <!-- SCREEN 7: LEGAL SHIELD & 152-FZ COMPLIANCE -->
+        <!-- SCREEN 7: COMPETITIVE POSITIONING & MARKET COMPARISON -->
+        <!-- ======================================================== -->
+        <section id="comparison" class="py-20 relative bg-slate-950/40">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-xs font-mono font-semibold text-emerald-400 uppercase tracking-wider">Экран 7 // Честная отстройка от рынка</span>
+                    <h2 class="font-display font-bold text-2xl sm:text-4xl text-white mt-2 mb-4">
+                        Почему не модуль в телефонии, не тяжелый Enterprise и не обычные транскрибаторы?
+                    </h2>
+                    <p class="text-slate-400 text-sm sm:text-base">
+                        Большинство сервисов на рынке либо требуют месяцев сложной разработки, либо берут поминутную дань за простой перевод аудио в текст «в вакууме». 
+                        Узнайте, в чём принципиальная разница в архитектуре и окупаемости.
+                    </p>
+                </div>
+
+                <!-- 4 Columns Comparison Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-12 items-stretch">
+                    
+                    <!-- Column 1: Telephony Modules -->
+                    <div class="rounded-3xl glass-card p-6 flex flex-col justify-between border border-slate-800">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 font-mono text-[11px] font-semibold">Телефония</span>
+                                <i class="fas fa-phone-volume text-slate-400"></i>
+                            </div>
+                            <h3 class="font-display font-bold text-white text-base mb-1">Модули речевой аналитики</h3>
+                            <p class="text-[11px] text-slate-400 mb-6 font-mono">Mango Office, UIS, CoMagic, Билайн</p>
+
+                            <ul class="space-y-3.5 text-xs text-slate-300 mb-6">
+                                <li>
+                                    <div class="text-[10px] uppercase font-mono text-slate-400">Срок запуска</div>
+                                    <div class="font-semibold text-slate-200">2 – 5 недель настройки</div>
+                                </li>
+                                <li>
+                                    <div class="text-[10px] uppercase font-mono text-slate-400">Стоимость внедрения</div>
+                                    <div class="font-semibold text-rose-300">от 80 000 до 150 000 ₽</div>
+                                </li>
+                                <li>
+                                    <div class="text-[10px] uppercase font-mono text-slate-400">Сгорают ли минуты?</div>
+                                    <div class="font-semibold text-rose-400"><i class="fas fa-times-circle text-rose-400 mr-1"></i> Да, сгорают каждый месяц</div>
+                                </li>
+                                <li>
+                                    <div class="text-[10px] uppercase font-mono text-slate-400">Связка со сделками в CRM</div>
+                                    <div class="text-slate-400">Формальная: не меняет поля сделки, не двигает этапы</div>
+                                </li>
+                                <li>
+                                    <div class="text-[10px] uppercase font-mono text-slate-400">Глубина анализа</div>
+                                    <div class="text-slate-400">Примитивный поиск ключевых слов и стоп-фраз, ложные срабатывания</div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-[11px] text-slate-400">
+                            <strong>Итог:</strong> Звонки заперты внутри ЛК оператора. РОП всё равно вынужден слушать записи руками.
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Heavy Enterprise -->
+                    <div class="rounded-3xl glass-card p-6 flex flex-col justify-between border border-slate-800">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 font-mono text-[11px] font-semibold">Heavy Enterprise</span>
+                                <i class="fas fa-building text-slate-400"></i>
+                            </div>
+                            <h3 class="font-display font-bold text-white text-base mb-1">Корпоративные системы</h3>
+                            <p class="text-[11px] text-slate-400 mb-6 font-mono">Speech Analytics, Naumen, Bimeister</p>
+
+                            <ul class="space-y-3.5 text-xs text-slate-300 mb-6">
+                                <li>
+                                    <div class="text-[10px] uppercase font-mono text-slate-400">Срок запуска</div>
+                                    <div class="font-semibold text-slate-200">3 – 8 месяцев ТЗ и разработки</div>
+                                </li>
+                                <li>
+                                    <div class="text-[10px] uppercase font-mono text-slate-400">Стоимость внедрения</div>
+                                    <div class="font-semibold text-rose-300">от 800 000 до 3 000 000+ ₽</div>
+                                </li>
+                                <li>
+                                    <div class="text-[10px] uppercase font-mono text-slate-400">Сгорают ли минуты?</div>
+                                    <div class="font-semibold text-slate-300">Пакетные корпоративные лицензии</div>
+                                </li>
+                                <li>
+                                    <div class="text-[10px] uppercase font-mono text-slate-400">Связка со сделками в CRM</div>
+                                    <div class="text-slate-400">Только через отдельный контракт на заказную интеграцию</div>
+                                </li>
+                                <li>
+                                    <div class="text-[10px] uppercase font-mono text-slate-400">Глубина анализа</div>
+                                    <div class="text-slate-400">Сложная статистика для колл-центров от 100 операторов</div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-[11px] text-slate-400">
+                            <strong>Итог:</strong> Недоступно и нерентабельно для малого и среднего B2B с отделами до 30 человек.
+                        </div>
+                    </div>
+
+                    <!-- Column 3: Per-minute Transcribers -->
+                    <div class="rounded-3xl glass-card p-6 flex flex-col justify-between border border-slate-800">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-2.5 py-1 rounded-lg bg-amber-500/20 text-amber-300 font-mono text-[11px] font-semibold">Обычные SaaS</span>
+                                <i class="fas fa-receipt text-amber-400"></i>
+                            </div>
+                            <h3 class="font-display font-bold text-white text-base mb-1">Сервисы транскрибации</h3>
+                            <p class="text-[11px] text-slate-400 mb-6 font-mono">IQ MENTOR и типичные AI-боты</p>
+
+                            <ul class="space-y-3.5 text-xs text-slate-300 mb-6">
+                                <li>
+                                    <div class="text-[10px] uppercase font-mono text-slate-400">Срок запуска</div>
+                                    <div class="font-semibold text-slate-200">1 – 3 дня</div>
+                                </li>
+                                <li>
+                                    <div class="text-[10px] uppercase font-mono text-slate-400">Стоимость владения</div>
+                                    <div class="font-semibold text-rose-400">5 – 10 ₽ / мин (до 165 000 ₽/мес)</div>
+                                </li>
+                                <li>
+                                    <div class="text-[10px] uppercase font-mono text-slate-400">Сгорают ли минуты?</div>
+                                    <div class="font-semibold text-slate-300">Не сгорают, но наценка ×25–50 к себестоимости</div>
+                                </li>
+                                <li>
+                                    <div class="text-[10px] uppercase font-mono text-slate-400">Связка со сделками в CRM</div>
+                                    <div class="text-rose-400"><i class="fas fa-times-circle text-rose-400 mr-1"></i> «CRM не нужна» — звонки в вакууме</div>
+                                </li>
+                                <li>
+                                    <div class="text-[10px] uppercase font-mono text-slate-400">Глубина анализа</div>
+                                    <div class="text-slate-400">Текстовый транскрипт + общие советы тренера («будьте увереннее»)</div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-[11px] text-slate-400">
+                            <strong>Итог:</strong> Перепродажа API за бешеные деньги. Нет связи с воронкой, выручкой и дисциплиной CRM.
+                        </div>
+                    </div>
+
+                    <!-- Column 4: RevOps Enterprise OS (Featured Winner) -->
+                    <div class="rounded-3xl glass-card p-6 flex flex-col justify-between border-2 border-emerald-500 glow-emerald relative bg-gradient-to-b from-emerald-950/20 to-slate-900">
+                        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-emerald-500 text-slate-950 font-bold text-[10px] uppercase tracking-wider whitespace-nowrap">
+                            ВЫБОР РОПОВ И СОБСТВЕННИКОВ
+                        </div>
+
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 font-mono text-[11px] font-bold border border-emerald-500/30">RevOps OS</span>
+                                <i class="fas fa-radar text-emerald-400"></i>
+                            </div>
+                            <h3 class="font-display font-bold text-white text-base mb-1">RevOps Enterprise OS</h3>
+                            <p class="text-[11px] text-emerald-300 mb-6 font-mono">Сквозной B2B-аудит & CRM-пайплайн</p>
+
+                            <ul class="space-y-3.5 text-xs text-slate-200 mb-6">
+                                <li>
+                                    <div class="text-[10px] uppercase font-mono text-emerald-400">Срок запуска</div>
+                                    <div class="font-bold text-white"><i class="fas fa-bolt text-emerald-400 mr-1"></i> От 20 мин (пилот 50 звонков) / 1 день в CRM</div>
+                                </li>
+                                <li>
+                                    <div class="text-[10px] uppercase font-mono text-emerald-400">Стоимость владения</div>
+                                    <div class="font-bold text-emerald-300">Фиксированный тариф (0 ₽ за скрытые минуты)</div>
+                                </li>
+                                <li>
+                                    <div class="text-[10px] uppercase font-mono text-emerald-400">Сгорают ли минуты?</div>
+                                    <div class="font-bold text-white"><i class="fas fa-check-circle text-emerald-400 mr-1"></i> Контроль 100% звонков без поминутной дани</div>
+                                </li>
+                                <li>
+                                    <div class="text-[10px] uppercase font-mono text-emerald-400">Связка со сделками в CRM</div>
+                                    <div class="font-bold text-emerald-300"><i class="fas fa-check-circle text-emerald-400 mr-1"></i> 100% двусторонняя amoCRM v4 & Битрикс24</div>
+                                    <div class="text-[11px] text-slate-400 mt-0.5">Автозаполнение саммари, фиксация Zoom, смена этапов</div>
+                                </li>
+                                <li>
+                                    <div class="text-[10px] uppercase font-mono text-emerald-400">Глубина анализа</div>
+                                    <div class="font-bold text-white">13 жестких B2B-критериев (cr1..cr13)</div>
+                                    <div class="text-[11px] text-slate-400 mt-0.5">Бинарный скоринг (0/1), алерты РОПу в Telegram/MAX за 30 сек</div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="p-3 rounded-xl bg-emerald-950/40 border border-emerald-500/30 text-[11px] text-emerald-200">
+                            <strong>Итог:</strong> Управляемый пайплайн выручки, окупаемость с 1-й спасенной сделки, данные в вашей собственности (152-ФЗ РФ).
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Strategic Summary Callout -->
+                <div class="max-w-4xl mx-auto p-6 rounded-2xl glass-panel border border-slate-800 text-center">
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        <strong class="text-white">Главный вывод для собственника и РОПа:</strong> Обычные сервисы продают вам расшифровку аудио в текст с наценкой в 20 раз и оставляют вас один на один со страницами диалогов. 
+                        <strong class="text-emerald-400">RevOps Enterprise OS</strong> — это готовый боевой контур управления коммерческим блоком: 
+                        мы внедряем дисциплину в CRM, пресекаем сливы сделок в первые 30 секунд и защищаем каждый рубль в вашей воронке продаж.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ======================================================== -->
+        <!-- SCREEN 8: LEGAL SHIELD & 152-FZ COMPLIANCE -->
         <!-- ======================================================== -->
         <section id="security" class="py-20 relative">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div class="text-center max-w-3xl mx-auto mb-16">
-                    <span class="text-xs font-mono font-semibold text-emerald-400 uppercase tracking-wider">Экран 7 // Безопасность и Закон</span>
+                    <span class="text-xs font-mono font-semibold text-emerald-400 uppercase tracking-wider">Экран 8 // Безопасность и Закон</span>
                     <h2 class="font-display font-bold text-2xl sm:text-4xl text-white mt-2 mb-4">
                         100% юридическая чистота и защита данных по 152-ФЗ РФ
                     </h2>
@@ -1051,12 +1316,12 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div class="text-center max-w-3xl mx-auto mb-16">
-                    <span class="text-xs font-mono font-semibold text-emerald-400 uppercase tracking-wider">Экран 8 // Прозрачные условия</span>
+                    <span class="text-xs font-mono font-semibold text-emerald-400 uppercase tracking-wider">Экран 9 // Прозрачные условия</span>
                     <h2 class="font-display font-bold text-2xl sm:text-4xl text-white mt-2 mb-4">
                         Инвестиции, которые окупаются с 1-й спасённой сделки
                     </h2>
                     <p class="text-slate-400 text-sm sm:text-base">
-                        Начните с бесплатного экспресс-аудита 3 звонков за 20 минут. Покажем реальные точки сливов до того, как вы заплатите хоть один рубль.
+                        Начните с бесплатного экспресс-аудита 3 звонков за 20 минут или передайте 50 звонков на пилот без подключения телефонии. Покажем реальные точки сливов до того, как вы заплатите хоть один рубль.
                     </p>
                 </div>
 
@@ -1072,7 +1337,7 @@
                                 0 ₽ <span class="text-xs font-normal text-slate-400">/ 3 звонка</span>
                             </div>
                             <p class="text-xs text-slate-400 mb-6">
-                                Быстрая проверка вашего отдела продаж на реальных звонках за 20 минут.
+                                Быстрая проверка вашего отдела продаж на реальных звонках за 20 минут. Без подключения к телефонии.
                             </p>
 
                             <ul class="space-y-3 text-xs text-slate-300 mb-8">
@@ -1080,6 +1345,7 @@
                                 <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> Оценка по 13 B2B-критериям</li>
                                 <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> Экспресс-отчет со сливами</li>
                                 <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> Разбор с экспертом (Zoom 20 мин)</li>
+                                <li class="flex items-center gap-2 font-mono text-[11px] text-emerald-300"><i class="fas fa-bolt text-emerald-400"></i> Можно скинуть файлами в ТГ</li>
                             </ul>
                         </div>
 
@@ -1090,7 +1356,7 @@
 
                     <!-- Tier 2 (Featured) -->
                     <div class="rounded-3xl glass-card p-6 sm:p-8 flex flex-col justify-between border-2 border-emerald-500 glow-emerald relative">
-                        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-emerald-500 text-slate-950 font-bold text-[11px] uppercase tracking-wider">
+                        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-emerald-500 text-slate-950 font-bold text-[11px] uppercase tracking-wider whitespace-nowrap">
                             ХИТ // ГАРАНТИЯ ОКУПАЕМОСТИ
                         </div>
 
@@ -1101,14 +1367,14 @@
                                 29 900 ₽ <span class="text-xs font-normal text-slate-400">/ 7 дней под ключ</span>
                             </div>
                             <p class="text-xs text-slate-400 mb-6">
-                                Полный контроль 100% звонков команды за неделю с гарантией нахождения сливов.
+                                Полный контроль 100% звонков команды за неделю. Доступен как через CRM, так и по выгрузке 50 записей.
                             </p>
 
                             <ul class="space-y-3 text-xs text-slate-200 mb-8">
                                 <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> 100% звонков всей команды за 7 дней</li>
                                 <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> Персональная Google Таблица V18.0</li>
                                 <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> Подключение Telegram / MAX алертов РОПа</li>
-                                <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> Калибровка под специфику вашей ниши</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> Опция: пилот по 50 файлам без IT-доступа</li>
                                 <li class="flex items-center gap-2 font-bold text-emerald-300"><i class="fas fa-shield text-emerald-400"></i> Гарантия: находим сливы минимум на 150k ₽</li>
                             </ul>
                         </div>
@@ -1127,7 +1393,7 @@
                                 49 900 ₽ <span class="text-xs font-normal text-slate-400">/ месяц</span>
                             </div>
                             <p class="text-xs text-slate-400 mb-6">
-                                Непрерывный контроль отделов продаж от 3 до 30 менеджеров.
+                                Непрерывный контроль отделов продаж от 3 до 30 менеджеров. Фиксированная плата без поминутной дани.
                             </p>
 
                             <ul class="space-y-3 text-xs text-slate-300 mb-8">
@@ -1153,6 +1419,13 @@
 
                     <div class="space-y-4">
                         <div class="rounded-2xl p-5 bg-slate-900/80 border border-slate-800">
+                            <h4 class="font-bold text-white text-sm mb-2">У нас сложная телефония или строгая СБ: можно протестировать без интеграции?</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed">
+                                <strong class="text-emerald-400">Да, 100%!</strong> Вы можете просто выгрузить архив с 50 записями звонков (или предоставить ссылку на Яндекс.Диск / Google Диск) и прислать нам. Через 24 часа вы получите готовый интерактивный отчёт в Google Таблицах по 13 критериям со всеми утечками выручки. Никаких доступов к CRM и телефонии на первом этапе не требуется.
+                            </p>
+                        </div>
+
+                        <div class="rounded-2xl p-5 bg-slate-900/80 border border-slate-800">
                             <h4 class="font-bold text-white text-sm mb-2">Не взбунтуются ли менеджеры против контроля ИИ?</h4>
                             <p class="text-xs text-slate-400 leading-relaxed">
                                 Напротив, ИИ защищает сильных менеджеров от несправедливых претензий РОПа, доказывая, что они вели диалог по стандарту. Для новичков система выступает наставником, подсказывая конкретные фразы для спасения сделок и роста личных бонусов.
@@ -1174,9 +1447,9 @@
                         </div>
 
                         <div class="rounded-2xl p-5 bg-slate-900/80 border border-slate-800">
-                            <h4 class="font-bold text-white text-sm mb-2">Что нужно для бесплатного аудита 3 звонков?</h4>
+                            <h4 class="font-bold text-white text-sm mb-2">Что нужно для бесплатного экспресс-аудита?</h4>
                             <p class="text-xs text-slate-400 leading-relaxed">
-                                Достаточно оставить заявку ниже или отправить 3 аудиозаписи (mp3/m4a) в наш Telegram-бот. В течение 20 минут вы получите подробный отчет по 13 критериям с указанием упущенных денег.
+                                Достаточно оставить заявку ниже или отправить аудиозаписи (3 звонка для экспресс-разбора или 50 звонков для пилота) в наш Telegram-бот. В течение 20 минут (для 3 звонков) или 24 часов (для 50 звонков) вы получите подробный отчет по 13 критериям с указанием упущенных денег.
                             </p>
                         </div>
                     </div>
@@ -1186,10 +1459,10 @@
                 <div id="cta" class="max-w-3xl mx-auto rounded-3xl glass-panel p-6 sm:p-12 shadow-2xl border border-slate-800 glow-emerald text-center">
                     <span class="text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider">Бесплатный экспресс-старт</span>
                     <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-white mt-1 mb-4">
-                        Получите разбор 3 звонков вашего отдела продаж за 20 минут
+                        Получите разбор звонков вашего отдела продаж
                     </h3>
                     <p class="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto mb-8">
-                        Укажите контакты — мы свяжемся с вами, бесплатно проведем аудит 3 звонков и покажем, где именно ваши менеджеры теряют деньги.
+                        Укажите контакты — мы свяжемся с вами, проведем аудит 3 звонков за 20 минут или примем 50 записей на полный пилот без подключения телефонии.
                     </p>
 
                     <form id="mainLeadForm" onsubmit="handleLeadSubmit(event)" class="max-w-md mx-auto space-y-4 text-left">
@@ -1558,23 +1831,37 @@
         // ----------------------------------------------------
         // 4. SCREEN 5: ROI LOSS CALCULATOR
         // ----------------------------------------------------
+        // 4. SCREEN 5: ROI LOSS CALCULATOR (Exact Formula)
+        // ----------------------------------------------------
         function recalcROI() {
-            const managers = parseInt(document.getElementById('calcManagers').value);
-            const check = parseInt(document.getElementById('calcCheck').value);
-            const calls = parseInt(document.getElementById('calcCalls').value);
+            const managers = parseInt(document.getElementById('calcManagers').value, 10) || 5;
+            const calls = parseInt(document.getElementById('calcCalls').value, 10) || 25;
+            const check = parseInt(document.getElementById('calcCheck').value, 10) || 250000;
+            const conversion = parseFloat(document.getElementById('calcConversion').value) || 5.0;
 
             document.getElementById('calcManagersVal').textContent = managers + ' чел.';
+            document.getElementById('calcCallsVal').textContent = calls + ' зв./день';
             document.getElementById('calcCheckVal').textContent = check.toLocaleString('ru-RU') + ' ₽';
-            document.getElementById('calcCallsVal').textContent = calls + ' зв.';
+            document.getElementById('calcConversionVal').textContent = conversion.toFixed(1) + '%';
 
-            // Formula: managers * (calls * 22 working days) * leak rate (15%) * deal close chance (5%) * check
+            // Формула: Менеджеры × Звонки × 22 дня × Чек × Конверсия (%) × 85% (без контроля) × 5% (потенциал роста)
             const totalMonthlyCalls = managers * calls * 22;
-            const leakedDeals = Math.max(1, Math.round(totalMonthlyCalls * 0.015));
-            const totalLoss = leakedDeals * check;
-            const recoverable = Math.round(totalLoss * 0.35);
+            const uncontrolledCalls = Math.round(totalMonthlyCalls * 0.85);
+            const expectedRevenue = totalMonthlyCalls * check * (conversion / 100);
+            const totalLoss = Math.round(expectedRevenue * 0.85 * 0.05);
+            const recoverable = totalLoss;
 
+            // Стоимость анализа у классических сервисов с поминутной тарификацией 5 ₽/мин (при 10 мин на звонок)
+            const competitorCost = Math.round(totalMonthlyCalls * 10 * 5);
+
+            document.getElementById('calcTotalCalls').textContent = totalMonthlyCalls.toLocaleString('ru-RU') + ' зв./мес';
+            document.getElementById('calcUncontrolledCalls').textContent = uncontrolledCalls.toLocaleString('ru-RU') + ' зв.';
             document.getElementById('calcLossResult').textContent = '~' + totalLoss.toLocaleString('ru-RU') + ' ₽';
             document.getElementById('calcRecoverResult').textContent = '+' + recoverable.toLocaleString('ru-RU') + ' ₽ / мес';
+            const compCostEl = document.getElementById('calcCompetitorCost');
+            if (compCostEl) {
+                compCostEl.textContent = '~' + competitorCost.toLocaleString('ru-RU') + ' ₽/мес';
+            }
         }
 
         // ----------------------------------------------------
@@ -1630,6 +1917,14 @@
                 alert('Заявка принята! Мы свяжемся с вами в течение 10 минут.');
             }
         }
+
+        // Initialize calculator on load
+        if (typeof recalcROI === 'function') {
+            recalcROI();
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof recalcROI === 'function') recalcROI();
+        });
     </script>
 
 </body>
