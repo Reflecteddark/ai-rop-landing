@@ -146,43 +146,52 @@
     <!-- HEADER & NAVIGATION -->
     <!-- ======================================================== -->
     <header class="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-slate-800/80 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-4">
             
             <!-- Logo -->
-            <a href="/" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-cyan-500 p-0.5 shadow-lg shadow-emerald-500/20 group-hover:shadow-emerald-500/40 transition">
+            <a href="/" class="flex items-center gap-3 group shrink-0">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-cyan-500 p-0.5 shadow-lg shadow-emerald-500/20 group-hover:shadow-emerald-500/40 transition shrink-0">
                     <div class="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
-                        <i class="fas fa-radar text-emerald-400 text-lg"></i>
+                        <!-- High-contrast crisp SVG Radar Icon -->
+                        <svg class="w-5 h-5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2a10 10 0 1 0 10 10" />
+                            <path d="M12 6a6 6 0 1 0 6 6" />
+                            <circle cx="12" cy="12" r="2.2" fill="currentColor" />
+                            <line x1="12" y1="12" x2="19" y2="5" />
+                        </svg>
                     </div>
                 </div>
                 <div>
                     <div class="flex items-center gap-2">
-                        <span class="font-display font-extrabold text-white text-base sm:text-lg tracking-tight">RevOps OS</span>
+                        <span class="font-display font-extrabold text-white text-base sm:text-lg tracking-tight whitespace-nowrap">RevOps OS</span>
                         <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">V18.0</span>
                     </div>
-                    <p class="text-[10px] text-slate-400 font-mono tracking-tight hidden sm:block">ИИ-Супервайзер звонков amoCRM & Битрикс24</p>
+                    <p class="text-[10px] text-slate-400 font-mono tracking-tight hidden sm:block whitespace-nowrap">ИИ-Супервайзер звонков amoCRM & Битрикс24</p>
                 </div>
             </a>
 
-            <!-- Desktop Nav Menu -->
-            <nav class="hidden lg:flex items-center gap-6 text-xs font-medium text-slate-300">
-                <a href="#demo" class="hover:text-emerald-400 transition">Как работает</a>
-                <a href="#alerts" class="hover:text-emerald-400 transition">Алерт РОПа</a>
-                <a href="#niches" class="hover:text-emerald-400 transition">Ниши</a>
-                <a href="#criteria" class="hover:text-emerald-400 transition">13 критериев</a>
-                <a href="#cases" class="hover:text-emerald-400 transition">Калькулятор</a>
-                <a href="#integration" class="hover:text-emerald-400 transition">Интеграция</a>
-                <a href="#comparison" class="hover:text-emerald-400 transition">Отстройка</a>
-                <a href="#pricing" class="hover:text-emerald-400 transition">Тарифы</a>
+            <!-- Desktop Nav Menu (No wrapping, sleek spacing) -->
+            <nav class="hidden lg:flex items-center gap-3 xl:gap-5 text-xs font-medium text-slate-300 shrink-0">
+                <a href="#demo" class="hover:text-emerald-400 transition whitespace-nowrap">Как работает</a>
+                <a href="#alerts" class="hover:text-emerald-400 transition whitespace-nowrap">Алерт РОПа</a>
+                <a href="#criteria" class="hover:text-emerald-400 transition whitespace-nowrap">13 критериев</a>
+                <a href="#cases" class="hover:text-emerald-400 transition whitespace-nowrap">Калькулятор</a>
+                <a href="#comparison" class="hover:text-emerald-400 transition whitespace-nowrap">Отстройка</a>
+                <a href="#pricing" class="hover:text-emerald-400 transition whitespace-nowrap">Тарифы</a>
+                <a href="#faq" class="hover:text-emerald-400 transition whitespace-nowrap">FAQ</a>
             </nav>
 
-            <!-- Actions -->
-            <div class="flex items-center gap-3">
-                <a href="https://t.me/RevOps_Super_Audit_Bot" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-sky-500/10 hover:bg-sky-500/20 text-sky-400 border border-sky-500/30 text-xs font-semibold transition" title="Telegram Бот аудита">
-                    <i class="fab fa-telegram"></i>
+            <!-- Actions (Both TG-Bot & MAX Bot + CTA) -->
+            <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+                <a href="https://t.me/RevOps_Super_Audit_Bot" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-sky-500/10 hover:bg-sky-500/20 text-sky-400 border border-sky-500/30 text-xs font-semibold transition whitespace-nowrap" title="Telegram Бот аудита">
+                    <i class="fab fa-telegram text-sm"></i>
                     <span>ТГ-Бот</span>
                 </a>
-                <a href="#cta" class="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 text-slate-950 font-bold text-xs sm:text-sm shadow-lg shadow-emerald-500/25 hover:from-emerald-400 hover:to-cyan-400 hover:shadow-emerald-500/40 transition transform active:scale-95">
+                <a href="https://max.ru/se14526668_bot" target="_blank" rel="noopener noreferrer" class="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-purple-500/10 hover:bg-purple-500/20 text-purple-300 border border-purple-500/30 text-xs font-semibold transition whitespace-nowrap" title="MAX Бот аудита">
+                    <i class="fas fa-comment-dots text-sm"></i>
+                    <span>MAX Бот</span>
+                </a>
+                <a href="#cta" class="inline-flex items-center gap-2 px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 text-slate-950 font-bold text-xs sm:text-sm shadow-lg shadow-emerald-500/25 hover:from-emerald-400 hover:to-cyan-400 hover:shadow-emerald-500/40 transition transform active:scale-95 whitespace-nowrap">
                     <span>Аудит 3 звонков 0 ₽</span>
                     <i class="fas fa-arrow-right text-xs"></i>
                 </a>
@@ -1192,7 +1201,12 @@
                         <div>
                             <div class="flex items-center justify-between mb-4">
                                 <span class="px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 font-mono text-[11px] font-bold border border-emerald-500/30">RevOps OS</span>
-                                <i class="fas fa-radar text-emerald-400"></i>
+                                <svg class="w-5 h-5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 2a10 10 0 1 0 10 10" />
+                                    <path d="M12 6a6 6 0 1 0 6 6" />
+                                    <circle cx="12" cy="12" r="2.2" fill="currentColor" />
+                                    <line x1="12" y1="12" x2="19" y2="5" />
+                                </svg>
                             </div>
                             <h3 class="font-display font-bold text-white text-base mb-1">RevOps Enterprise OS</h3>
                             <p class="text-[11px] text-emerald-300 mb-6 font-mono">Сквозной B2B-аудит & CRM-пайплайн</p>
@@ -1410,109 +1424,230 @@
                     </div>
 
                 </div>
+            </div>
+        </section>
 
-                <!-- FAQ Accordion -->
-                <div class="max-w-3xl mx-auto mb-20">
-                    <h3 class="font-display font-bold text-xl sm:text-2xl text-white text-center mb-8">
-                        Часто задаваемые вопросы
-                    </h3>
-
-                    <div class="space-y-4">
-                        <div class="rounded-2xl p-5 bg-slate-900/80 border border-slate-800">
-                            <h4 class="font-bold text-white text-sm mb-2">У нас сложная телефония или строгая СБ: можно протестировать без интеграции?</h4>
-                            <p class="text-xs text-slate-400 leading-relaxed">
-                                <strong class="text-emerald-400">Да, 100%!</strong> Вы можете просто выгрузить архив с 50 записями звонков (или предоставить ссылку на Яндекс.Диск / Google Диск) и прислать нам. Через 24 часа вы получите готовый интерактивный отчёт в Google Таблицах по 13 критериям со всеми утечками выручки. Никаких доступов к CRM и телефонии на первом этапе не требуется.
+        <!-- ======================================================== -->
+        <!-- SCREEN 10: FAQ & DIRECT MESSENGER CONCIERGE -->
+        <!-- ======================================================== -->
+        <section id="faq" class="py-20 relative bg-slate-950/40 border-t border-slate-900">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-14">
+                    
+                    <!-- Left Column: Sticky Title & Quick Contact Card -->
+                    <div class="lg:col-span-4 space-y-6 lg:sticky lg:top-28 self-start">
+                        <div class="space-y-3">
+                            <span class="text-xs font-mono font-semibold text-emerald-400 uppercase tracking-wider">FAQ // Поддержка & Ответы</span>
+                            <h2 class="font-display font-bold text-2xl sm:text-3xl text-white">
+                                Часто задаваемые вопросы
+                            </h2>
+                            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                                Разобрали ключевые сомнения собственников и РОПов о безопасности, запуске и отдаче от системы.
                             </p>
                         </div>
 
-                        <div class="rounded-2xl p-5 bg-slate-900/80 border border-slate-800">
-                            <h4 class="font-bold text-white text-sm mb-2">Не взбунтуются ли менеджеры против контроля ИИ?</h4>
-                            <p class="text-xs text-slate-400 leading-relaxed">
-                                Напротив, ИИ защищает сильных менеджеров от несправедливых претензий РОПа, доказывая, что они вели диалог по стандарту. Для новичков система выступает наставником, подсказывая конкретные фразы для спасения сделок и роста личных бонусов.
-                            </p>
-                        </div>
+                        <!-- Direct Help Card -->
+                        <div class="p-6 rounded-3xl glass-card border border-slate-800 space-y-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-lg border border-emerald-500/20">
+                                    <i class="fas fa-headset"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-white">Остались вопросы?</h4>
+                                    <p class="text-[11px] text-slate-400">Ответим в мессенджере за 5 минут</p>
+                                </div>
+                            </div>
 
-                        <div class="rounded-2xl p-5 bg-slate-900/80 border border-slate-800">
-                            <h4 class="font-bold text-white text-sm mb-2">Насколько точно ИИ распознает сложные термины нашей ниши?</h4>
-                            <p class="text-xs text-slate-400 leading-relaxed">
+                            <p class="text-xs text-slate-300 leading-relaxed">
+                                Напишите нам напрямую — проконсультируем по вашей CRM, телефонии и бесплатно разберем первые 3 звонка.
+                            </p>
+
+                            <div class="flex flex-col sm:flex-row lg:flex-col gap-2.5 pt-1">
+                                <a href="https://t.me/RevOps_Super_Audit_Bot" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-sky-500/15 hover:bg-sky-500/25 text-sky-300 border border-sky-500/30 text-xs font-semibold transition">
+                                    <i class="fab fa-telegram"></i> Написать в Telegram-бот
+                                </a>
+                                <a href="https://max.ru/se14526668_bot" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-purple-500/15 hover:bg-purple-500/25 text-purple-300 border border-purple-500/30 text-xs font-semibold transition">
+                                    <i class="fas fa-comment-dots"></i> Написать в MAX-бот
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Interactive Clean Accordion -->
+                    <div class="lg:col-span-8 space-y-4">
+                        
+                        <details class="group rounded-2xl glass-card p-5 border border-slate-800/80 hover:border-slate-700 transition" open>
+                            <summary class="flex items-center justify-between font-bold text-white text-sm sm:text-base cursor-pointer list-none select-none gap-4">
+                                <span>У нас сложная телефония или строгая СБ: можно протестировать без интеграции?</span>
+                                <span class="w-7 h-7 rounded-lg bg-slate-900 flex items-center justify-center text-slate-400 group-open:rotate-45 group-open:text-emerald-400 transition-all shrink-0">
+                                    <i class="fas fa-plus text-xs"></i>
+                                </span>
+                            </summary>
+                            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed pt-3 border-t border-slate-800/60 mt-3">
+                                <strong class="text-emerald-400 font-semibold">Да, 100%!</strong> Вы можете просто выгрузить архив с 50 записями звонков (или предоставить ссылку на Яндекс.Диск / Google Диск) и прислать нам. Через 24 часа вы получите готовый интерактивный отчёт в Google Таблицах по 13 критериям со всеми утечками выручки. Никаких доступов к CRM и телефонии на первом этапе не требуется.
+                            </p>
+                        </details>
+
+                        <details class="group rounded-2xl glass-card p-5 border border-slate-800/80 hover:border-slate-700 transition">
+                            <summary class="flex items-center justify-between font-bold text-white text-sm sm:text-base cursor-pointer list-none select-none gap-4">
+                                <span>Не взбунтуются ли менеджеры против контроля ИИ?</span>
+                                <span class="w-7 h-7 rounded-lg bg-slate-900 flex items-center justify-center text-slate-400 group-open:rotate-45 group-open:text-emerald-400 transition-all shrink-0">
+                                    <i class="fas fa-plus text-xs"></i>
+                                </span>
+                            </summary>
+                            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed pt-3 border-t border-slate-800/60 mt-3">
+                                Напротив, ИИ защищает сильных менеджеров от субъективных претензий РОПа, доказывая, что они вели диалог строго по регламенту. Для новичков система выступает объективным наставником, подсказывая конкретные фразы для спасения сделок и роста личных бонусов.
+                            </p>
+                        </details>
+
+                        <details class="group rounded-2xl glass-card p-5 border border-slate-800/80 hover:border-slate-700 transition">
+                            <summary class="flex items-center justify-between font-bold text-white text-sm sm:text-base cursor-pointer list-none select-none gap-4">
+                                <span>Насколько точно ИИ распознает сложные термины нашей ниши?</span>
+                                <span class="w-7 h-7 rounded-lg bg-slate-900 flex items-center justify-center text-slate-400 group-open:rotate-45 group-open:text-emerald-400 transition-all shrink-0">
+                                    <i class="fas fa-plus text-xs"></i>
+                                </span>
+                            </summary>
+                            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed pt-3 border-t border-slate-800/60 mt-3">
                                 Точность распознавания превышает 97%. Встроенный отраслевой движок Niche Engine калибруется под номенклатуру, ГОСТы и специфический сленг вашей сферы бизнеса перед запуском аудита.
                             </p>
-                        </div>
+                        </details>
 
-                        <div class="rounded-2xl p-5 bg-slate-900/80 border border-slate-800">
-                            <h4 class="font-bold text-white text-sm mb-2">Сколько времени это отнимет у РОПа?</h4>
-                            <p class="text-xs text-slate-400 leading-relaxed">
-                                Система экономит РОПу до 15 часов рутины в неделю. Больше не нужно часами слушать десятки записей — руководитель видит только 30-секундные алерты по срывам и готовый сводный рейтинг в Google Таблице.
+                        <details class="group rounded-2xl glass-card p-5 border border-slate-800/80 hover:border-slate-700 transition">
+                            <summary class="flex items-center justify-between font-bold text-white text-sm sm:text-base cursor-pointer list-none select-none gap-4">
+                                <span>Сколько времени это отнимет у РОПа?</span>
+                                <span class="w-7 h-7 rounded-lg bg-slate-900 flex items-center justify-center text-slate-400 group-open:rotate-45 group-open:text-emerald-400 transition-all shrink-0">
+                                    <i class="fas fa-plus text-xs"></i>
+                                </span>
+                            </summary>
+                            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed pt-3 border-t border-slate-800/60 mt-3">
+                                Система экономит РОПу до 15 часов рутины в неделю. Руководитель больше не слушает звонки часами наугад — он получает 30-секундные сигналы по реальным срывам в Telegram/MAX и сводный рейтинг команды в Google Таблице.
                             </p>
-                        </div>
+                        </details>
 
-                        <div class="rounded-2xl p-5 bg-slate-900/80 border border-slate-800">
-                            <h4 class="font-bold text-white text-sm mb-2">Что нужно для бесплатного экспресс-аудита?</h4>
-                            <p class="text-xs text-slate-400 leading-relaxed">
-                                Достаточно оставить заявку ниже или отправить аудиозаписи (3 звонка для экспресс-разбора или 50 звонков для пилота) в наш Telegram-бот. В течение 20 минут (для 3 звонков) или 24 часов (для 50 звонков) вы получите подробный отчет по 13 критериям с указанием упущенных денег.
+                        <details class="group rounded-2xl glass-card p-5 border border-slate-800/80 hover:border-slate-700 transition">
+                            <summary class="flex items-center justify-between font-bold text-white text-sm sm:text-base cursor-pointer list-none select-none gap-4">
+                                <span>Что нужно для бесплатного экспресс-аудита?</span>
+                                <span class="w-7 h-7 rounded-lg bg-slate-900 flex items-center justify-center text-slate-400 group-open:rotate-45 group-open:text-emerald-400 transition-all shrink-0">
+                                    <i class="fas fa-plus text-xs"></i>
+                                </span>
+                            </summary>
+                            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed pt-3 border-t border-slate-800/60 mt-3">
+                                Достаточно оставить заявку в форме ниже или отправить аудиозаписи в наш Telegram или MAX бот. В течение 20 минут (для 3 звонков) или 24 часов (для 50 звонков) вы получите наглядный аудит по 13 критериям со всеми утечками выручки.
                             </p>
-                        </div>
+                        </details>
+
                     </div>
+
                 </div>
 
-                <!-- FINAL CTA & LEAD CAPTURE FORM -->
-                <div id="cta" class="max-w-3xl mx-auto rounded-3xl glass-panel p-6 sm:p-12 shadow-2xl border border-slate-800 glow-emerald text-center">
-                    <span class="text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider">Бесплатный экспресс-старт</span>
-                    <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-white mt-1 mb-4">
-                        Получите разбор звонков вашего отдела продаж
-                    </h3>
-                    <p class="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto mb-8">
-                        Укажите контакты — мы свяжемся с вами, проведем аудит 3 звонков за 20 минут или примем 50 записей на полный пилот без подключения телефонии.
-                    </p>
+            </div>
+        </section>
 
-                    <form id="mainLeadForm" onsubmit="handleLeadSubmit(event)" class="max-w-md mx-auto space-y-4 text-left">
-                        <div>
-                            <label class="block text-xs font-medium text-slate-300 mb-1">Ваше имя</label>
-                            <input type="text" id="leadName" required placeholder="Дмитрий (РОП или Собственник)" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs placeholder:text-slate-500 focus:outline-none focus:border-emerald-400">
+        <!-- ======================================================== -->
+        <!-- SCREEN 11: FINAL HIGH-CONVERTING CTA SPLIT BANNER -->
+        <!-- ======================================================== -->
+        <section id="cta" class="py-20 sm:py-28 relative overflow-hidden bg-gradient-to-b from-slate-950 to-[#070a13] border-t border-slate-800/80">
+            <!-- Glow Accent Blob -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-emerald-500/10 blur-[130px] rounded-full pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="rounded-3xl glass-panel p-8 sm:p-12 lg:p-16 border border-emerald-500/20 shadow-2xl glow-emerald">
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+                        
+                        <!-- Left Column: Value Offer & Instant Messengers -->
+                        <div class="lg:col-span-7 space-y-6 text-left">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-mono font-bold border border-emerald-500/30">
+                                <i class="fas fa-bolt"></i> БЕСПЛАТНЫЙ ЭКСПРЕСС-СТАРТ // 0 ₽
+                            </div>
+
+                            <h2 class="font-display font-extrabold text-2xl sm:text-4xl lg:text-5xl text-white tracking-tight leading-[1.15]">
+                                Запустите разбор звонков вашего отдела продаж
+                            </h2>
+
+                            <p class="text-sm sm:text-base text-slate-300 leading-relaxed max-w-xl">
+                                Оставьте контакты — мы свяжемся с вами, бесплатно проведём аудит 3 звонков за 20 минут или примем 50 записей на полный пилот без подключения телефонии.
+                            </p>
+
+                            <!-- 3 Value Bullets -->
+                            <div class="space-y-3 pt-2 text-xs sm:text-sm text-slate-200">
+                                <div class="flex items-center gap-2.5">
+                                    <i class="fas fa-check-circle text-emerald-400 text-base"></i>
+                                    <span>Без установки ПО и нагрузки на ваших IT-специалистов</span>
+                                </div>
+                                <div class="flex items-center gap-2.5">
+                                    <i class="fas fa-check-circle text-emerald-400 text-base"></i>
+                                    <span>Персональная Google Таблица V18.0 со срезом сливов выручки</span>
+                                </div>
+                                <div class="flex items-center gap-2.5">
+                                    <i class="fas fa-check-circle text-emerald-400 text-base"></i>
+                                    <span>100% защита данных по 152-ФЗ РФ и серверы в России</span>
+                                </div>
+                            </div>
+
+                            <!-- Fast Messenger Entry -->
+                            <div class="pt-4 border-t border-slate-800/80">
+                                <div class="text-xs text-slate-400 mb-3 font-mono">Или отправьте звонки напрямую в мессенджер:</div>
+                                <div class="flex flex-wrap items-center gap-3">
+                                    <a href="https://t.me/RevOps_Super_Audit_Bot" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-sky-500/20 hover:bg-sky-500/30 text-sky-300 border border-sky-500/30 text-xs font-bold transition flex items-center gap-2">
+                                        <i class="fab fa-telegram text-sm"></i> Telegram Бот
+                                    </a>
+                                    <a href="https://max.ru/se14526668_bot" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-purple-500/20 hover:bg-purple-500/30 text-purple-300 border border-purple-500/30 text-xs font-bold transition flex items-center gap-2">
+                                        <i class="fas fa-comment-dots text-sm"></i> MAX Бот
+                                    </a>
+                                </div>
+                            </div>
                         </div>
 
-                        <div>
-                            <label class="block text-xs font-medium text-slate-300 mb-1">Телефон (WhatsApp или Telegram)</label>
-                            <input type="tel" id="leadPhone" required placeholder="+7 (999) 000-00-00" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs placeholder:text-slate-500 focus:outline-none focus:border-emerald-400">
+                        <!-- Right Column: Clean Lead Form Card -->
+                        <div class="lg:col-span-5">
+                            <div class="p-6 sm:p-8 rounded-2xl bg-slate-900/90 border border-slate-800 shadow-xl">
+                                <h3 class="font-display font-bold text-lg text-white mb-2">
+                                    Заявка на аудит
+                                </h3>
+                                <p class="text-xs text-slate-400 mb-6">
+                                    Свяжемся в течение 10 минут в рабочее время
+                                </p>
+
+                                <form id="mainLeadForm" onsubmit="handleLeadSubmit(event)" class="space-y-4">
+                                    <div>
+                                        <label class="block text-xs font-medium text-slate-300 mb-1">Ваше имя</label>
+                                        <input type="text" id="leadName" required placeholder="Дмитрий (РОП или Собственник)" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-700 text-white text-xs placeholder:text-slate-500 focus:outline-none focus:border-emerald-400 transition">
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-xs font-medium text-slate-300 mb-1">Телефон (WhatsApp или Telegram)</label>
+                                        <input type="tel" id="leadPhone" required placeholder="+7 (999) 000-00-00" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-700 text-white text-xs placeholder:text-slate-500 focus:outline-none focus:border-emerald-400 transition">
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-xs font-medium text-slate-300 mb-1">Ниша бизнеса / CRM</label>
+                                        <input type="text" id="leadCompany" placeholder="Оптовые поставки / amoCRM" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-700 text-white text-xs placeholder:text-slate-500 focus:outline-none focus:border-emerald-400 transition">
+                                    </div>
+
+                                    <!-- 152-FZ Consent Checkbox -->
+                                    <div class="pt-1">
+                                        <label class="flex items-start gap-2.5 text-[11px] text-slate-400 cursor-pointer">
+                                            <input type="checkbox" id="leadConsent" required class="mt-0.5 rounded bg-slate-950 border-slate-700 text-emerald-500 focus:ring-0">
+                                            <span>Согласен(на) на обработку персональных данных (<a href="privacy.html" target="_blank" class="text-emerald-400 underline hover:text-emerald-300">152-ФЗ РФ</a>)</span>
+                                        </label>
+                                    </div>
+
+                                    <button type="submit" id="submitBtn" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 text-slate-950 font-bold text-xs uppercase tracking-wider shadow-lg hover:shadow-emerald-500/40 transition transform active:scale-95">
+                                        Получить разбор звонков (0 ₽)
+                                    </button>
+                                </form>
+
+                                <!-- Submission Success Modal Alert -->
+                                <div id="formSuccessAlert" class="hidden mt-4 p-4 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-semibold">
+                                    ✅ Заявка принята! Мы свяжемся с вами в течение 10 минут для проведения экспресс-аудита.
+                                </div>
+                            </div>
                         </div>
 
-                        <div>
-                            <label class="block text-xs font-medium text-slate-300 mb-1">Ниша бизнеса / CRM</label>
-                            <input type="text" id="leadCompany" placeholder="Оптовые поставки / amoCRM" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs placeholder:text-slate-500 focus:outline-none focus:border-emerald-400">
-                        </div>
-
-                        <!-- 152-FZ Consent Checkbox (Strict: Unchecked by default) -->
-                        <div class="pt-2">
-                            <label class="flex items-start gap-2.5 text-[11px] text-slate-400 cursor-pointer">
-                                <input type="checkbox" id="leadConsent" required class="mt-0.5 rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-0">
-                                <span>Согласен(на) на обработку персональных данных в соответствии с <a href="privacy.html" target="_blank" class="text-emerald-400 underline hover:text-emerald-300">Политикой конфиденциальности</a> (152-ФЗ РФ)</span>
-                            </label>
-                        </div>
-
-                        <button type="submit" id="submitBtn" class="w-full py-4 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 text-slate-950 font-bold text-sm shadow-xl hover:shadow-emerald-500/30 transition transform hover:-translate-y-0.5">
-                            Получить аудит 3 звонков (0 ₽)
-                        </button>
-                    </form>
-
-                    <!-- Fast Alternate Messenger Entry -->
-                    <div class="mt-8 pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-center gap-4 text-xs text-slate-400">
-                        <span>Или отправьте звонки напрямую в бота:</span>
-                        <div class="flex items-center gap-3">
-                            <a href="https://t.me/RevOps_Super_Audit_Bot" target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 rounded-lg bg-sky-500/20 text-sky-300 border border-sky-500/30 hover:bg-sky-500/30 font-semibold transition flex items-center gap-1.5">
-                                <i class="fab fa-telegram"></i> Telegram Бот
-                            </a>
-                            <a href="https://max.ru/se14526668_bot" target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 rounded-lg bg-purple-500/20 text-purple-300 border border-purple-500/30 hover:bg-purple-500/30 font-semibold transition flex items-center gap-1.5">
-                                <i class="fas fa-comment-dots"></i> MAX Бот
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Submission Success Modal Alert -->
-                    <div id="formSuccessAlert" class="hidden mt-6 p-4 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-semibold">
-                        ✅ Заявка принята! Мы свяжемся с вами в течение 10 минут для проведения экспресс-аудита 3 звонков.
                     </div>
                 </div>
-
             </div>
         </section>
 
