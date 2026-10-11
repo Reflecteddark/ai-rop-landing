@@ -138,6 +138,14 @@
         ::-webkit-scrollbar-track { background: #070a13; }
         ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #334155; }
+
+        /* Responsive Grid Spans and Accordion Overrides */
+        @media (min-width: 1024px) {
+            .lg\:col-span-4 { grid-column: span 4 / span 4 !important; }
+            .lg\:col-span-5 { grid-column: span 5 / span 5 !important; }
+            .lg\:col-span-7 { grid-column: span 7 / span 7 !important; }
+            .lg\:col-span-8 { grid-column: span 8 / span 8 !important; }
+        }
     </style>
 </head>
 <body class="selection:bg-emerald-500 selection:text-slate-950">
@@ -146,18 +154,22 @@
     <!-- HEADER & NAVIGATION -->
     <!-- ======================================================== -->
     <header class="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-slate-800/80 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-3 sm:gap-4">
             
-            <!-- Logo -->
+            <!-- Logo with High-Contrast Radar Emblem -->
             <a href="/" class="flex items-center gap-3 group shrink-0">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-cyan-500 p-0.5 shadow-lg shadow-emerald-500/20 group-hover:shadow-emerald-500/40 transition shrink-0">
-                    <div class="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
-                        <!-- High-contrast crisp SVG Radar Icon -->
-                        <svg class="w-5 h-5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2a10 10 0 1 0 10 10" />
-                            <path d="M12 6a6 6 0 1 0 6 6" />
-                            <circle cx="12" cy="12" r="2.2" fill="currentColor" />
-                            <line x1="12" y1="12" x2="19" y2="5" />
+                <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-tr from-emerald-500 via-teal-400 to-cyan-500 p-0.5 shadow-lg shadow-emerald-500/25 group-hover:shadow-emerald-500/50 transition duration-300 shrink-0">
+                    <div class="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center relative overflow-hidden">
+                        <!-- Background glow pulse -->
+                        <div class="absolute inset-0 bg-emerald-500/10 animate-pulse"></div>
+                        <!-- High-contrast crisp SVG Radar Emblem -->
+                        <svg class="w-6 h-6 relative z-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="9" stroke="#10b981" stroke-width="1.6" stroke-dasharray="2 3" stroke-opacity="0.7"/>
+                            <circle cx="12" cy="12" r="5.5" stroke="#34d399" stroke-width="1.8"/>
+                            <path d="M12 12L18.5 5.5" stroke="#06b6d4" stroke-width="2.2" stroke-linecap="round"/>
+                            <path d="M12 4A8 8 0 0 1 18.5 10.5" stroke="#38bdf8" stroke-width="2.2" stroke-linecap="round"/>
+                            <circle cx="12" cy="12" r="2.2" fill="#10b981"/>
+                            <circle cx="12" cy="12" r="0.9" fill="#ffffff"/>
                         </svg>
                     </div>
                 </div>
@@ -170,10 +182,9 @@
                 </div>
             </a>
 
-            <!-- Desktop Nav Menu (No wrapping, sleek spacing) -->
-            <nav class="hidden lg:flex items-center gap-3 xl:gap-5 text-xs font-medium text-slate-300 shrink-0">
+            <!-- Desktop Nav Menu (Refined 6 high-value links, no wrapping) -->
+            <nav class="hidden lg:flex items-center gap-3.5 xl:gap-5 text-xs font-medium text-slate-300 shrink-0">
                 <a href="#demo" class="hover:text-emerald-400 transition whitespace-nowrap">Как работает</a>
-                <a href="#alerts" class="hover:text-emerald-400 transition whitespace-nowrap">Алерт РОПа</a>
                 <a href="#criteria" class="hover:text-emerald-400 transition whitespace-nowrap">13 критериев</a>
                 <a href="#cases" class="hover:text-emerald-400 transition whitespace-nowrap">Калькулятор</a>
                 <a href="#comparison" class="hover:text-emerald-400 transition whitespace-nowrap">Отстройка</a>
@@ -181,16 +192,19 @@
                 <a href="#faq" class="hover:text-emerald-400 transition whitespace-nowrap">FAQ</a>
             </nav>
 
-            <!-- Actions (Both TG-Bot & MAX Bot + CTA) -->
-            <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+            <!-- Actions (Synchronized TG-Bot & MAX Bot + Direct CTA) -->
+            <div class="flex items-center gap-2 sm:gap-2.5 shrink-0">
+                <!-- Telegram Bot Badge -->
                 <a href="https://t.me/RevOps_Super_Audit_Bot" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-sky-500/10 hover:bg-sky-500/20 text-sky-400 border border-sky-500/30 text-xs font-semibold transition whitespace-nowrap" title="Telegram Бот аудита">
-                    <i class="fab fa-telegram text-sm"></i>
+                    <i class="fab fa-telegram text-sky-400 text-sm"></i>
                     <span>ТГ-Бот</span>
                 </a>
-                <a href="https://max.ru/se14526668_bot" target="_blank" rel="noopener noreferrer" class="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-purple-500/10 hover:bg-purple-500/20 text-purple-300 border border-purple-500/30 text-xs font-semibold transition whitespace-nowrap" title="MAX Бот аудита">
-                    <i class="fas fa-comment-dots text-sm"></i>
-                    <span>MAX Бот</span>
+                <!-- MAX Bot Badge (Matching sm:inline-flex so MAX is never hidden while TG is shown!) -->
+                <a href="https://max.ru/se14526668_bot" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-purple-500/10 hover:bg-purple-500/20 text-purple-300 border border-purple-500/30 text-xs font-semibold transition whitespace-nowrap" title="MAX Бот аудита">
+                    <i class="fas fa-robot text-purple-400 text-xs"></i>
+                    <span>MAX-бот</span>
                 </a>
+                <!-- Primary Action Button -->
                 <a href="#cta" class="inline-flex items-center gap-2 px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 text-slate-950 font-bold text-xs sm:text-sm shadow-lg shadow-emerald-500/25 hover:from-emerald-400 hover:to-cyan-400 hover:shadow-emerald-500/40 transition transform active:scale-95 whitespace-nowrap">
                     <span>Аудит 3 звонков 0 ₽</span>
                     <i class="fas fa-arrow-right text-xs"></i>
@@ -1324,9 +1338,9 @@
         </section>
 
         <!-- ======================================================== -->
-        <!-- SCREEN 8: PRICING, FAQ & FREE EXPRESS AUDIT CTA -->
+        <!-- SCREEN 9: PRICING & GUARANTEED ROI -->
         <!-- ======================================================== -->
-        <section id="pricing" class="py-20 bg-slate-950/60 border-t border-slate-900 relative">
+        <section id="pricing" class="py-20 sm:py-24 bg-slate-950/60 border-t border-slate-900 relative">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div class="text-center max-w-3xl mx-auto mb-16">
@@ -1340,9 +1354,9 @@
                 </div>
 
                 <!-- 3 Pricing Cards -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20 items-stretch">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 items-stretch">
                     
-                    <!-- Tier 1 -->
+                    <!-- Tier 1: Express Audit -->
                     <div class="rounded-3xl glass-card p-6 sm:p-8 flex flex-col justify-between">
                         <div>
                             <span class="text-xs font-mono font-bold text-slate-400 uppercase">Тест-Драйв</span>
@@ -1359,16 +1373,16 @@
                                 <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> Оценка по 13 B2B-критериям</li>
                                 <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> Экспресс-отчет со сливами</li>
                                 <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> Разбор с экспертом (Zoom 20 мин)</li>
-                                <li class="flex items-center gap-2 font-mono text-[11px] text-emerald-300"><i class="fas fa-bolt text-emerald-400"></i> Можно скинуть файлами в ТГ</li>
+                                <li class="flex items-center gap-2 font-mono text-[11px] text-emerald-300"><i class="fas fa-bolt text-emerald-400"></i> Можно скинуть файлами в ТГ или MAX</li>
                             </ul>
                         </div>
 
-                        <a href="#cta" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs uppercase tracking-wider transition text-center">
+                        <button type="button" onclick="selectLeadTariff('audit_free'); scrollToSection('cta');" class="w-full py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs uppercase tracking-wider transition text-center cursor-pointer">
                             Получить аудит 3 звонков 0 ₽
-                        </a>
+                        </button>
                     </div>
 
-                    <!-- Tier 2 (Featured) -->
+                    <!-- Tier 2: Pilot 7 Days (Featured) -->
                     <div class="rounded-3xl glass-card p-6 sm:p-8 flex flex-col justify-between border-2 border-emerald-500 glow-emerald relative">
                         <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-emerald-500 text-slate-950 font-bold text-[11px] uppercase tracking-wider whitespace-nowrap">
                             ХИТ // ГАРАНТИЯ ОКУПАЕМОСТИ
@@ -1393,12 +1407,12 @@
                             </ul>
                         </div>
 
-                        <a href="#cta" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 text-slate-950 font-bold text-xs uppercase tracking-wider shadow-lg hover:shadow-emerald-500/40 transition text-center">
+                        <button type="button" onclick="selectLeadTariff('pilot_7days'); scrollToSection('cta');" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 text-slate-950 font-bold text-xs uppercase tracking-wider shadow-lg hover:shadow-emerald-500/40 transition text-center cursor-pointer">
                             Запустить пилот на 7 дней
-                        </a>
+                        </button>
                     </div>
 
-                    <!-- Tier 3 -->
+                    <!-- Tier 3: RevOps Pro -->
                     <div class="rounded-3xl glass-card p-6 sm:p-8 flex flex-col justify-between">
                         <div>
                             <span class="text-xs font-mono font-bold text-slate-400 uppercase">Регулярный супервайзинг</span>
@@ -1418,127 +1432,112 @@
                             </ul>
                         </div>
 
-                        <a href="#cta" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs uppercase tracking-wider transition text-center">
+                        <button type="button" onclick="selectLeadTariff('pro_monthly'); scrollToSection('cta');" class="w-full py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs uppercase tracking-wider transition text-center cursor-pointer">
                             Выбрать Pro-тариф
-                        </a>
+                        </button>
                     </div>
 
                 </div>
+
+                <!-- Trust Reassurance Bar -->
+                <div class="pt-8 border-t border-slate-800/60 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-mono text-slate-400">
+                    <span class="flex items-center gap-2"><i class="fas fa-shield text-emerald-400"></i> 100% защита по 152-ФЗ РФ</span>
+                    <span class="flex items-center gap-2"><i class="fas fa-bolt text-amber-400"></i> Старт за 15 минут</span>
+                    <span class="flex items-center gap-2"><i class="fas fa-file-contract text-cyan-400"></i> Договор поручения и чеки ФНС</span>
+                    <span class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-400"></i> Без привязки карты</span>
+                </div>
+
             </div>
         </section>
 
         <!-- ======================================================== -->
-        <!-- SCREEN 10: FAQ & DIRECT MESSENGER CONCIERGE -->
+        <!-- SCREEN 10: FAQ (CENTERED & SPACIOUS - NO LAYOUT COLLAPSE) -->
         <!-- ======================================================== -->
-        <section id="faq" class="py-20 relative bg-slate-950/40 border-t border-slate-900">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="faq" class="py-20 sm:py-24 relative bg-slate-950/40 border-t border-slate-900">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-14">
+                <div class="text-center mb-12 sm:mb-16">
+                    <span class="text-xs font-mono font-semibold text-emerald-400 uppercase tracking-wider">FAQ // Поддержка & Ответы</span>
+                    <h2 class="font-display font-bold text-2xl sm:text-4xl text-white mt-2 mb-4">
+                        Часто задаваемые вопросы
+                    </h2>
+                    <p class="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-2xl mx-auto">
+                        Разобрали ключевые сомнения собственников и РОПов о безопасности, запуске и отдаче от системы.
+                    </p>
+                </div>
+
+                <!-- Robust Full-Width Accordion List -->
+                <div class="space-y-4">
                     
-                    <!-- Left Column: Sticky Title & Quick Contact Card -->
-                    <div class="lg:col-span-4 space-y-6 lg:sticky lg:top-28 self-start">
-                        <div class="space-y-3">
-                            <span class="text-xs font-mono font-semibold text-emerald-400 uppercase tracking-wider">FAQ // Поддержка & Ответы</span>
-                            <h2 class="font-display font-bold text-2xl sm:text-3xl text-white">
-                                Часто задаваемые вопросы
-                            </h2>
-                            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                                Разобрали ключевые сомнения собственников и РОПов о безопасности, запуске и отдаче от системы.
-                            </p>
-                        </div>
+                    <details class="group rounded-2xl glass-card p-5 sm:p-6 border border-slate-800/80 hover:border-slate-700 transition" open>
+                        <summary class="flex items-center justify-between font-bold text-white text-sm sm:text-base cursor-pointer list-none select-none gap-4">
+                            <span>У нас сложная телефония или строгая СБ: можно протестировать без интеграции?</span>
+                            <span class="w-8 h-8 rounded-xl bg-slate-900 flex items-center justify-center text-slate-400 group-open:rotate-45 group-open:text-emerald-400 transition-all shrink-0">
+                                <i class="fas fa-plus text-xs"></i>
+                            </span>
+                        </summary>
+                        <p class="text-xs sm:text-sm text-slate-400 leading-relaxed pt-4 border-t border-slate-800/60 mt-4">
+                            <strong class="text-emerald-400 font-semibold">Да, 100%!</strong> Вы можете просто выгрузить архив с 50 записями звонков (или предоставить ссылку на Яндекс.Диск / Google Диск) и прислать нам. Через 24 часа вы получите готовый интерактивный отчёт в персональной Google Таблице по 13 критериям со всеми утечками выручки. Никаких доступов к CRM и телефонии на первом этапе не требуется.
+                        </p>
+                    </details>
 
-                        <!-- Direct Help Card -->
-                        <div class="p-6 rounded-3xl glass-card border border-slate-800 space-y-4">
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-lg border border-emerald-500/20">
-                                    <i class="fas fa-headset"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-xs font-bold text-white">Остались вопросы?</h4>
-                                    <p class="text-[11px] text-slate-400">Ответим в мессенджере за 5 минут</p>
-                                </div>
-                            </div>
+                    <details class="group rounded-2xl glass-card p-5 sm:p-6 border border-slate-800/80 hover:border-slate-700 transition">
+                        <summary class="flex items-center justify-between font-bold text-white text-sm sm:text-base cursor-pointer list-none select-none gap-4">
+                            <span>Не взбунтуются ли менеджеры против контроля ИИ?</span>
+                            <span class="w-8 h-8 rounded-xl bg-slate-900 flex items-center justify-center text-slate-400 group-open:rotate-45 group-open:text-emerald-400 transition-all shrink-0">
+                                <i class="fas fa-plus text-xs"></i>
+                            </span>
+                        </summary>
+                        <p class="text-xs sm:text-sm text-slate-400 leading-relaxed pt-4 border-t border-slate-800/60 mt-4">
+                            Напротив, ИИ защищает сильных менеджеров от субъективных претензий РОПа, объективно доказывая, что они вели диалог строго по регламенту. Для новичков система выступает виртуальным наставником, подсказывая конкретные фразы для спасения сделок и роста личных бонусов.
+                        </p>
+                    </details>
 
-                            <p class="text-xs text-slate-300 leading-relaxed">
-                                Напишите нам напрямую — проконсультируем по вашей CRM, телефонии и бесплатно разберем первые 3 звонка.
-                            </p>
+                    <details class="group rounded-2xl glass-card p-5 sm:p-6 border border-slate-800/80 hover:border-slate-700 transition">
+                        <summary class="flex items-center justify-between font-bold text-white text-sm sm:text-base cursor-pointer list-none select-none gap-4">
+                            <span>Насколько точно ИИ распознает сложные термины нашей ниши?</span>
+                            <span class="w-8 h-8 rounded-xl bg-slate-900 flex items-center justify-center text-slate-400 group-open:rotate-45 group-open:text-emerald-400 transition-all shrink-0">
+                                <i class="fas fa-plus text-xs"></i>
+                            </span>
+                        </summary>
+                        <p class="text-xs sm:text-sm text-slate-400 leading-relaxed pt-4 border-t border-slate-800/60 mt-4">
+                            Точность распознавания превышает 97%. Встроенный отраслевой движок Niche Engine калибруется под номенклатуру, ГОСТы, артикулы и специфический сленг вашей сферы бизнеса перед запуском аудита.
+                        </p>
+                    </details>
 
-                            <div class="flex flex-col sm:flex-row lg:flex-col gap-2.5 pt-1">
-                                <a href="https://t.me/RevOps_Super_Audit_Bot" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-sky-500/15 hover:bg-sky-500/25 text-sky-300 border border-sky-500/30 text-xs font-semibold transition">
-                                    <i class="fab fa-telegram"></i> Написать в Telegram-бот
-                                </a>
-                                <a href="https://max.ru/se14526668_bot" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-purple-500/15 hover:bg-purple-500/25 text-purple-300 border border-purple-500/30 text-xs font-semibold transition">
-                                    <i class="fas fa-comment-dots"></i> Написать в MAX-бот
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    <details class="group rounded-2xl glass-card p-5 sm:p-6 border border-slate-800/80 hover:border-slate-700 transition">
+                        <summary class="flex items-center justify-between font-bold text-white text-sm sm:text-base cursor-pointer list-none select-none gap-4">
+                            <span>Сколько времени это отнимет у РОПа?</span>
+                            <span class="w-8 h-8 rounded-xl bg-slate-900 flex items-center justify-center text-slate-400 group-open:rotate-45 group-open:text-emerald-400 transition-all shrink-0">
+                                <i class="fas fa-plus text-xs"></i>
+                            </span>
+                        </summary>
+                        <p class="text-xs sm:text-sm text-slate-400 leading-relaxed pt-4 border-t border-slate-800/60 mt-4">
+                            Система экономит РОПу до 15 часов рутины в неделю. Руководитель больше не слушает звонки часами наугад — он получает 30-секундные сигналы по реальным срывам в Telegram/MAX и сводный рейтинг команды в Google Таблице.
+                        </p>
+                    </details>
 
-                    <!-- Right Column: Interactive Clean Accordion -->
-                    <div class="lg:col-span-8 space-y-4">
-                        
-                        <details class="group rounded-2xl glass-card p-5 border border-slate-800/80 hover:border-slate-700 transition" open>
-                            <summary class="flex items-center justify-between font-bold text-white text-sm sm:text-base cursor-pointer list-none select-none gap-4">
-                                <span>У нас сложная телефония или строгая СБ: можно протестировать без интеграции?</span>
-                                <span class="w-7 h-7 rounded-lg bg-slate-900 flex items-center justify-center text-slate-400 group-open:rotate-45 group-open:text-emerald-400 transition-all shrink-0">
-                                    <i class="fas fa-plus text-xs"></i>
-                                </span>
-                            </summary>
-                            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed pt-3 border-t border-slate-800/60 mt-3">
-                                <strong class="text-emerald-400 font-semibold">Да, 100%!</strong> Вы можете просто выгрузить архив с 50 записями звонков (или предоставить ссылку на Яндекс.Диск / Google Диск) и прислать нам. Через 24 часа вы получите готовый интерактивный отчёт в Google Таблицах по 13 критериям со всеми утечками выручки. Никаких доступов к CRM и телефонии на первом этапе не требуется.
-                            </p>
-                        </details>
+                    <details class="group rounded-2xl glass-card p-5 sm:p-6 border border-slate-800/80 hover:border-slate-700 transition">
+                        <summary class="flex items-center justify-between font-bold text-white text-sm sm:text-base cursor-pointer list-none select-none gap-4">
+                            <span>Что нужно для бесплатного экспресс-аудита?</span>
+                            <span class="w-8 h-8 rounded-xl bg-slate-900 flex items-center justify-center text-slate-400 group-open:rotate-45 group-open:text-emerald-400 transition-all shrink-0">
+                                <i class="fas fa-plus text-xs"></i>
+                            </span>
+                        </summary>
+                        <p class="text-xs sm:text-sm text-slate-400 leading-relaxed pt-4 border-t border-slate-800/60 mt-4">
+                            Достаточно заполнить форму ниже или отправить 3 аудиозаписи напрямую в наш Telegram или MAX бот. В течение 20 минут вы получите наглядный аудит по 13 критериям со всеми утечками выручки.
+                        </p>
+                    </details>
 
-                        <details class="group rounded-2xl glass-card p-5 border border-slate-800/80 hover:border-slate-700 transition">
-                            <summary class="flex items-center justify-between font-bold text-white text-sm sm:text-base cursor-pointer list-none select-none gap-4">
-                                <span>Не взбунтуются ли менеджеры против контроля ИИ?</span>
-                                <span class="w-7 h-7 rounded-lg bg-slate-900 flex items-center justify-center text-slate-400 group-open:rotate-45 group-open:text-emerald-400 transition-all shrink-0">
-                                    <i class="fas fa-plus text-xs"></i>
-                                </span>
-                            </summary>
-                            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed pt-3 border-t border-slate-800/60 mt-3">
-                                Напротив, ИИ защищает сильных менеджеров от субъективных претензий РОПа, доказывая, что они вели диалог строго по регламенту. Для новичков система выступает объективным наставником, подсказывая конкретные фразы для спасения сделок и роста личных бонусов.
-                            </p>
-                        </details>
+                </div>
 
-                        <details class="group rounded-2xl glass-card p-5 border border-slate-800/80 hover:border-slate-700 transition">
-                            <summary class="flex items-center justify-between font-bold text-white text-sm sm:text-base cursor-pointer list-none select-none gap-4">
-                                <span>Насколько точно ИИ распознает сложные термины нашей ниши?</span>
-                                <span class="w-7 h-7 rounded-lg bg-slate-900 flex items-center justify-center text-slate-400 group-open:rotate-45 group-open:text-emerald-400 transition-all shrink-0">
-                                    <i class="fas fa-plus text-xs"></i>
-                                </span>
-                            </summary>
-                            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed pt-3 border-t border-slate-800/60 mt-3">
-                                Точность распознавания превышает 97%. Встроенный отраслевой движок Niche Engine калибруется под номенклатуру, ГОСТы и специфический сленг вашей сферы бизнеса перед запуском аудита.
-                            </p>
-                        </details>
-
-                        <details class="group rounded-2xl glass-card p-5 border border-slate-800/80 hover:border-slate-700 transition">
-                            <summary class="flex items-center justify-between font-bold text-white text-sm sm:text-base cursor-pointer list-none select-none gap-4">
-                                <span>Сколько времени это отнимет у РОПа?</span>
-                                <span class="w-7 h-7 rounded-lg bg-slate-900 flex items-center justify-center text-slate-400 group-open:rotate-45 group-open:text-emerald-400 transition-all shrink-0">
-                                    <i class="fas fa-plus text-xs"></i>
-                                </span>
-                            </summary>
-                            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed pt-3 border-t border-slate-800/60 mt-3">
-                                Система экономит РОПу до 15 часов рутины в неделю. Руководитель больше не слушает звонки часами наугад — он получает 30-секундные сигналы по реальным срывам в Telegram/MAX и сводный рейтинг команды в Google Таблице.
-                            </p>
-                        </details>
-
-                        <details class="group rounded-2xl glass-card p-5 border border-slate-800/80 hover:border-slate-700 transition">
-                            <summary class="flex items-center justify-between font-bold text-white text-sm sm:text-base cursor-pointer list-none select-none gap-4">
-                                <span>Что нужно для бесплатного экспресс-аудита?</span>
-                                <span class="w-7 h-7 rounded-lg bg-slate-900 flex items-center justify-center text-slate-400 group-open:rotate-45 group-open:text-emerald-400 transition-all shrink-0">
-                                    <i class="fas fa-plus text-xs"></i>
-                                </span>
-                            </summary>
-                            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed pt-3 border-t border-slate-800/60 mt-3">
-                                Достаточно оставить заявку в форме ниже или отправить аудиозаписи в наш Telegram или MAX бот. В течение 20 минут (для 3 звонков) или 24 часов (для 50 звонков) вы получите наглядный аудит по 13 критериям со всеми утечками выручки.
-                            </p>
-                        </details>
-
-                    </div>
-
+                <!-- Reassurance Prompt -->
+                <div class="text-center mt-10">
+                    <p class="text-xs text-slate-400">
+                        Остались индивидуальные вопросы по вашей телефонии или CRM? Задайте их напрямую в 
+                        <a href="https://t.me/RevOps_Super_Audit_Bot" target="_blank" rel="noopener noreferrer" class="text-sky-400 font-semibold hover:underline">Telegram-бот</a> или 
+                        <a href="https://max.ru/se14526668_bot" target="_blank" rel="noopener noreferrer" class="text-purple-400 font-semibold hover:underline">MAX-бот</a>
+                    </p>
                 </div>
 
             </div>
@@ -1594,13 +1593,13 @@
                                         <i class="fab fa-telegram text-sm"></i> Telegram Бот
                                     </a>
                                     <a href="https://max.ru/se14526668_bot" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-purple-500/20 hover:bg-purple-500/30 text-purple-300 border border-purple-500/30 text-xs font-bold transition flex items-center gap-2">
-                                        <i class="fas fa-comment-dots text-sm"></i> MAX Бот
+                                        <i class="fas fa-robot text-sm"></i> MAX Бот
                                     </a>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Right Column: Clean Lead Form Card -->
+                        <!-- Right Column: Interactive Lead Form Card with Tariff Selector -->
                         <div class="lg:col-span-5">
                             <div class="p-6 sm:p-8 rounded-2xl bg-slate-900/90 border border-slate-800 shadow-xl">
                                 <h3 class="font-display font-bold text-lg text-white mb-2">
@@ -1611,6 +1610,24 @@
                                 </p>
 
                                 <form id="mainLeadForm" onsubmit="handleLeadSubmit(event)" class="space-y-4">
+                                    
+                                    <!-- Interactive Tariff Selector -->
+                                    <div>
+                                        <label class="block text-xs font-medium text-slate-300 mb-2">Выберите формат аудита:</label>
+                                        <div class="grid grid-cols-3 gap-2">
+                                            <button type="button" onclick="selectLeadTariff('audit_free')" id="tariffBtn_audit_free" class="px-2 py-2 rounded-xl text-center text-[11px] font-bold border border-emerald-500 bg-emerald-500/20 text-emerald-300 transition cursor-pointer">
+                                                3 звонка (0 ₽)
+                                            </button>
+                                            <button type="button" onclick="selectLeadTariff('pilot_7days')" id="tariffBtn_pilot_7days" class="px-2 py-2 rounded-xl text-center text-[11px] font-bold border border-slate-700 bg-slate-900 text-slate-400 hover:text-white transition cursor-pointer">
+                                                Пилот 7 дней
+                                            </button>
+                                            <button type="button" onclick="selectLeadTariff('pro_monthly')" id="tariffBtn_pro_monthly" class="px-2 py-2 rounded-xl text-center text-[11px] font-bold border border-slate-700 bg-slate-900 text-slate-400 hover:text-white transition cursor-pointer">
+                                                RevOps Pro
+                                            </button>
+                                        </div>
+                                        <input type="hidden" id="leadSelectedTariff" value="audit_free">
+                                    </div>
+
                                     <div>
                                         <label class="block text-xs font-medium text-slate-300 mb-1">Ваше имя</label>
                                         <input type="text" id="leadName" required placeholder="Дмитрий (РОП или Собственник)" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-700 text-white text-xs placeholder:text-slate-500 focus:outline-none focus:border-emerald-400 transition">
@@ -1634,14 +1651,14 @@
                                         </label>
                                     </div>
 
-                                    <button type="submit" id="submitBtn" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 text-slate-950 font-bold text-xs uppercase tracking-wider shadow-lg hover:shadow-emerald-500/40 transition transform active:scale-95">
-                                        Получить разбор звонков (0 ₽)
+                                    <button type="submit" id="submitBtn" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 text-slate-950 font-bold text-xs uppercase tracking-wider shadow-lg hover:shadow-emerald-500/40 transition transform active:scale-95 cursor-pointer">
+                                        Получить разбор 3 звонков (0 ₽)
                                     </button>
                                 </form>
 
                                 <!-- Submission Success Modal Alert -->
                                 <div id="formSuccessAlert" class="hidden mt-4 p-4 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-semibold">
-                                    ✅ Заявка принята! Мы свяжемся с вами в течение 10 минут для проведения экспресс-аудита.
+                                    ✅ Заявка принята! Мы свяжемся с вами в течение 10 минут для проведения аудита.
                                 </div>
                             </div>
                         </div>
@@ -2000,7 +2017,56 @@
         }
 
         // ----------------------------------------------------
-        // 5. LEAD SUBMISSION WITH 152-FZ COMPLIANCE
+        // 5. TARIFF SELECTION & SCROLL HELPERS
+        // ----------------------------------------------------
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        const tariffConfig = {
+            audit_free: {
+                label: '3 звонка (0 ₽)',
+                btnText: 'Получить разбор 3 звонков (0 ₽)',
+                subject: '🔥 Экспресс-Аудит 3 звонков (0 ₽)'
+            },
+            pilot_7days: {
+                label: 'Пилот 7 дней (29 900 ₽)',
+                btnText: 'Запустить пилот на 7 дней (29 900 ₽)',
+                subject: '🚀 Заявка на Пилот 7 дней (29 900 ₽)'
+            },
+            pro_monthly: {
+                label: 'RevOps Pro (49 900 ₽/мес)',
+                btnText: 'Подключить RevOps Pro (49 900 ₽)',
+                subject: '💎 Заявка на тариф RevOps Pro (49 900 ₽)'
+            }
+        };
+
+        function selectLeadTariff(tariffKey) {
+            if (!tariffConfig[tariffKey]) tariffKey = 'audit_free';
+            const hiddenInput = document.getElementById('leadSelectedTariff');
+            if (hiddenInput) hiddenInput.value = tariffKey;
+
+            ['audit_free', 'pilot_7days', 'pro_monthly'].forEach(key => {
+                const btn = document.getElementById('tariffBtn_' + key);
+                if (!btn) return;
+                if (key === tariffKey) {
+                    btn.className = 'px-2 py-2 rounded-xl text-center text-[11px] font-bold border border-emerald-500 bg-emerald-500/20 text-emerald-300 transition cursor-pointer shadow-sm';
+                } else {
+                    btn.className = 'px-2 py-2 rounded-xl text-center text-[11px] font-bold border border-slate-700 bg-slate-900 text-slate-400 hover:text-white transition cursor-pointer';
+                }
+            });
+
+            const submitBtn = document.getElementById('submitBtn');
+            if (submitBtn && !submitBtn.disabled) {
+                submitBtn.textContent = tariffConfig[tariffKey].btnText;
+            }
+        }
+
+        // ----------------------------------------------------
+        // 6. LEAD SUBMISSION WITH 152-FZ COMPLIANCE
         // ----------------------------------------------------
         async function handleLeadSubmit(e) {
             e.preventDefault();
@@ -2013,6 +2079,8 @@
             const name = document.getElementById('leadName').value.trim();
             const phone = document.getElementById('leadPhone').value.trim();
             const company = document.getElementById('leadCompany').value.trim();
+            const selectedTariff = (document.getElementById('leadSelectedTariff') || {}).value || 'audit_free';
+            const tariffInfo = tariffConfig[selectedTariff] || tariffConfig.audit_free;
             const submitBtn = document.getElementById('submitBtn');
 
             submitBtn.disabled = true;
@@ -2027,12 +2095,13 @@
                         'Accept': 'application/json'
                     },
                     body: JSON.stringify({
-                        '_subject': `🔥 Новая заявка на Экспресс-Аудит [ai-rop.ru]: ${name} (${phone})`,
+                        '_subject': `${tariffInfo.subject} [ai-rop.ru]: ${name} (${phone})`,
+                        'Выбранный формат': tariffInfo.label,
                         'Имя': name,
                         'Телефон': phone,
                         'Компания / Ниша': company,
                         'Дата': new Date().toLocaleString('ru-RU'),
-                        'Источник': 'ai-rop.ru (8-screen main)'
+                        'Источник': 'ai-rop.ru (main landing)'
                     })
                 });
 
@@ -2041,7 +2110,7 @@
                 submitBtn.className = 'w-full py-4 rounded-xl bg-emerald-600 text-white font-bold text-sm shadow-xl transition';
 
                 if (typeof window.reachMetrikaGoal === 'function') {
-                    window.reachMetrikaGoal('lead_submit', { name, phone, company });
+                    window.reachMetrikaGoal('lead_submit', { name, phone, company, tariff: selectedTariff });
                 }
 
                 // Smooth scroll to confirmation
