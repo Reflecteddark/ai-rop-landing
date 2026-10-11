@@ -260,24 +260,24 @@
                         
                         <!-- Track Selector -->
                         <div class="flex flex-wrap items-center gap-2" id="trackTabs">
-                            <button onclick="switchTrack('variant_1')" data-track="variant_1" class="track-btn active px-3 py-1.5 rounded-lg text-xs font-medium bg-emerald-500 text-slate-950 font-bold transition">
-                                Оборудование (420k ₽)
+                            <button onclick="switchTrack('variant_bitrix24')" data-track="variant_bitrix24" class="track-btn active px-3 py-1.5 rounded-lg text-xs font-medium bg-emerald-500 text-slate-950 font-bold transition">
+                                🔥 Холодный звонок: CRM Битрикс24 (240k ₽)
                             </button>
-                            <button onclick="switchTrack('variant_2')" data-track="variant_2" class="track-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:text-white transition">
-                                Опт (650k ₽)
+                            <button onclick="switchTrack('variant_cable')" data-track="variant_cable" class="track-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:text-white transition">
+                                ⚡ B2B Опт: Силовой кабель (650k ₽)
                             </button>
-                            <button onclick="switchTrack('variant_3')" data-track="variant_3" class="track-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:text-white transition">
-                                Запчасти (310k ₽)
+                            <button onclick="switchTrack('variant_equip')" data-track="variant_equip" class="track-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:text-white transition">
+                                ПромОборудование (420k ₽)
                             </button>
-                            <button onclick="switchTrack('variant_4')" data-track="variant_4" class="track-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:text-white transition">
-                                B2B Услуги (180k ₽)
+                            <button onclick="switchTrack('variant_parts')" data-track="variant_parts" class="track-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:text-white transition">
+                                Спецтехника (310k ₽)
                             </button>
                         </div>
                     </div>
 
                     <!-- Player Controller -->
                     <div class="py-6 flex flex-col sm:flex-row items-center gap-6">
-                        <audio id="demoAudio" src="audio/demo-variant-1.mp3" preload="metadata"></audio>
+                        <audio id="demoAudio" src="audio/cold-call-bitrix24.mp3" preload="metadata"></audio>
                         
                         <button id="playBtn" onclick="togglePlay()" class="w-16 h-16 rounded-2xl bg-gradient-to-r from-emerald-500 to-cyan-500 text-slate-950 flex items-center justify-center shrink-0 shadow-lg shadow-emerald-500/30 hover:scale-105 active:scale-95 transition">
                             <i id="playIcon" class="fas fa-play text-xl ml-1"></i>
@@ -286,8 +286,8 @@
                         <div class="w-full">
                             <div class="flex items-center justify-between text-xs text-slate-400 font-mono mb-2">
                                 <span id="currentTime">00:00</span>
-                                <span class="text-slate-300 font-medium" id="trackTitle">Оборудование • Сделка на 420 000 ₽</span>
-                                <span id="totalDuration">00:24</span>
+                                <span class="text-slate-300 font-medium" id="trackTitle">Холодный звонок: Продажа CRM Битрикс24 • Сделка на 240 000 ₽</span>
+                                <span id="totalDuration">00:00</span>
                             </div>
 
                             <!-- Progress Track -->
@@ -305,7 +305,7 @@
                                 <div class="wave-bar w-1.5 bg-emerald-500/70 rounded-full h-3"></div>
                                 <div class="wave-bar w-1.5 bg-emerald-500/50 rounded-full h-4"></div>
                                 <div class="wave-bar w-1.5 bg-emerald-500/40 rounded-full h-2"></div>
-                                <span class="text-[11px] text-slate-400 ml-2 font-mono">Нажмите Play для воспроизведения диалога</span>
+                                <span class="text-[11px] text-slate-400 ml-2 font-mono">Нажмите Play для воспроизведения реального звонка</span>
                             </div>
                         </div>
                     </div>
@@ -317,22 +317,22 @@
                                 <span class="px-2.5 py-1 rounded bg-rose-500/20 text-rose-300 font-mono font-bold text-xs border border-rose-500/30">
                                     🔴 КРИТИЧЕСКИЙ СЛИВ СДЕЛКИ
                                 </span>
-                                <span class="text-xs text-slate-400">Оценка ИИ: <strong class="text-rose-400">31/100 (Провалено)</strong></span>
+                                <span class="text-xs text-slate-400">Оценка ИИ: <strong id="verdictScore" class="text-rose-400">38/100 (Провалено)</strong></span>
                             </div>
                             <div class="text-xs text-rose-300 font-mono font-bold">
-                                Потерянная выручка: <span id="verdictLoss" class="text-base text-rose-400">420 000 ₽</span>
+                                Потерянная выручка: <span id="verdictLoss" class="text-base text-rose-400">240 000 ₽</span>
                             </div>
                         </div>
 
                         <!-- Live Transcript Lines -->
                         <div class="space-y-2 text-xs sm:text-sm font-sans mb-4">
                             <p class="text-slate-300 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800">
-                                <span class="text-cyan-400 font-semibold font-mono">Клиент:</span> 
-                                <span id="clientText">«Мы выбираем поставщика на промышленный станок, какая у вас стоимость и сроки поставки?»</span>
+                                <span class="text-cyan-400 font-semibold font-mono">Клиент (секретарь):</span> 
+                                <span id="clientText">«Слушайте, отправьте ваше коммерческое предложение на общую почту info@... Руководство посмотрит, если будет интересно — свяжемся».</span>
                             </p>
                             <p class="text-slate-300 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800">
                                 <span class="text-rose-400 font-semibold font-mono">Менеджер:</span> 
-                                <span id="managerText">«Стоимость от 420 тысяч. Давайте я вам на почту коммерческое скину, посмотрите, если что — звоните».</span>
+                                <span id="managerText">«Ну понимаете, Битрикс24 система комплексная, там и CRM, и задачи... Ну ладно, давайте я вам на почту скину базовый тариф, а вы почитайте».</span>
                             </p>
                         </div>
 
@@ -340,12 +340,12 @@
                         <div class="pt-3 border-t border-slate-800 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-xs">
                             <div class="space-y-1">
                                 <div class="text-slate-400">
-                                    <strong class="text-slate-200">Нарушены 3 критерия B2B:</strong> 
-                                    <span class="text-rose-400 font-mono font-semibold">cr3 (ЛПР не выявлен) • cr6 (Цена без ценности) • cr10 (Слит следующий шаг)</span>
+                                    <strong class="text-slate-200">Нарушены критерии B2B (cr1..cr13):</strong> 
+                                    <span id="brokenCriteria" class="text-rose-400 font-mono font-semibold">cr3 (ЛПР не выявлен) • cr6 (Цена без ценности) • cr10 (Слив на КП) • cr11 (Нет фиксации шага)</span>
                                 </div>
                                 <div class="text-slate-400">
                                     <strong class="text-emerald-300">Рекомендация РОПу:</strong> 
-                                    <span id="aiAdvice" class="text-slate-300">«Перезвонить в течение 15 минут, задать вопросы по ТЗ и согласовать онлайн-демонстрацию с инженером».</span>
+                                    <span id="aiAdvice" class="text-slate-300">«Срочно перезвонить в течение 15 минут, обойти секретаря вопросом об интеграции с 1С и зафиксировать 20-минутный онлайн-показ 3 отраслевых воронок на конкретную дату».</span>
                                 </div>
                             </div>
                             <a href="#cta" class="px-4 py-2 rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-500/30 font-semibold text-xs transition whitespace-nowrap">
@@ -1314,41 +1314,49 @@
         // 1. AUDIO PLAYER & LIVE DEMO STATE
         // ----------------------------------------------------
         const audioTracks = {
-            variant_1: {
+            variant_bitrix24: {
+                src: 'audio/cold-call-bitrix24.mp3',
+                title: 'Холодный звонок: Продажа CRM Битрикс24 • Сделка на 240 000 ₽',
+                score: '38/100 (Провалено)',
+                loss: '240 000 ₽',
+                criteria: 'cr3 (ЛПР не выявлен) • cr6 (Цена без ценности) • cr10 (Слив на КП) • cr11 (Нет фиксации шага)',
+                clientText: '«Слушайте, отправьте ваше коммерческое предложение на общую почту info@... Руководство посмотрит, если будет интересно — свяжемся».',
+                managerText: '«Ну понимаете, Битрикс24 система комплексная, там и CRM, и задачи... Ну ладно, давайте я вам на почту скину базовый тариф, а вы почитайте».',
+                advice: '«Срочно перезвонить в течение 15 минут, обойти секретаря вопросом об интеграции с 1С и зафиксировать 20-минутный онлайн-показ 3 отраслевых воронок на конкретную дату».'
+            },
+            variant_cable: {
+                src: 'audio/cold-call-cable.mp3',
+                title: 'B2B Опт: Поставка силового кабеля • Сделка на 650 000 ₽',
+                score: '42/100 (Провалено)',
+                loss: '650 000 ₽',
+                criteria: 'cr4 (Объем не выяснен) • cr7 (Инициатива отдана) • cr10 (Слив на КП)',
+                clientText: '«Добрый день, нужен прайс на партию кабельной продукции, есть в наличии объем?»',
+                managerText: '«Прайс на сайте висит, можете там глянуть. По наличию склад перегружен, скиньте реквизиты, выставим счет если успеем».',
+                advice: '«Мгновенно связаться с клиентом, забронировать объем на 24 часа и согласовать график поставок с предоплатой 50%».'
+            },
+            variant_equip: {
                 src: 'audio/demo-variant-1.mp3',
-                title: 'Оборудование • Сделка на 420 000 ₽',
+                title: 'ПромОборудование • Сделка на 420 000 ₽',
+                score: '31/100 (Провалено)',
                 loss: '420 000 ₽',
+                criteria: 'cr3 (ЛПР не выявлен) • cr6 (Цена без ценности) • cr10 (Слит следующий шаг)',
                 clientText: '«Мы выбираем поставщика на промышленный станок, какая у вас стоимость и сроки поставки?»',
                 managerText: '«Стоимость от 420 тысяч. Давайте я вам на почту коммерческое скину, посмотрите, если что — звоните».',
                 advice: '«Перезвонить в течение 15 минут, задать вопросы по ТЗ и согласовать онлайн-демонстрацию с инженером».'
             },
-            variant_2: {
-                src: 'audio/demo-variant-2.mp3',
-                title: 'Оптовые поставки • Сделка на 650 000 ₽',
-                loss: '650 000 ₽',
-                clientText: '«Добрый день, нужен прайс на партию кабельной продукции, есть в наличии объем?»',
-                managerText: '«Прайс на сайте висит, можете там глянуть. По наличию склад перегружен, скиньте реквизиты, выставим счет если успеем».',
-                advice: '«Связаться с клиентом, забронировать объем на 24 часа и назначить созвон по графику отгрузок».'
-            },
-            variant_3: {
+            variant_parts: {
                 src: 'audio/demo-variant-3.mp3',
                 title: 'Спецтехника & Запчасти • Сделка на 310 000 ₽',
+                score: '29/100 (Провалено)',
                 loss: '310 000 ₽',
+                criteria: 'cr2 (Приветствие без скрипта) • cr5 (Срочность упущена) • cr10 (Слив клиента)',
                 clientText: '«Срочно нужен гидронасос для экскаватора Komatsu, машина стоит на объекте!»',
                 managerText: '«Ой, надо по базе смотреть артикулы, перезвоните после обеда или напишите в почту менеджеру по закупкам».',
                 advice: '«Мгновенно проверить кросс-номера в CRM, перехватить клиента и оформить экспресс-доставку со склада».'
-            },
-            variant_4: {
-                src: 'audio/demo-variant-4.mp3',
-                title: 'B2B Услуги & IT • Сделка на 180 000 ₽',
-                loss: '180 000 ₽',
-                clientText: '«Мы планируем внедрение CRM в отдел из 12 человек, сколько это стоит под ключ?»',
-                managerText: '«Ну тут смотреть надо, от 180 тысяч и выше, у нас все на сайте расписано. Почитайте кейсы, если надумаете — пишите».',
-                advice: '«Не отпускать клиента! Назначить 20-минутный Zoom-аудит текущей воронки на четверг в 11:00».'
             }
         };
 
-        let currentTrackKey = 'variant_1';
+        let currentTrackKey = 'variant_bitrix24';
         const audioEl = document.getElementById('demoAudio');
         const playBtn = document.getElementById('playBtn');
         const playIcon = document.getElementById('playIcon');
@@ -1369,6 +1377,8 @@
             
             document.getElementById('trackTitle').textContent = t.title;
             document.getElementById('verdictLoss').textContent = t.loss;
+            if (document.getElementById('verdictScore')) document.getElementById('verdictScore').textContent = t.score;
+            if (document.getElementById('brokenCriteria')) document.getElementById('brokenCriteria').textContent = t.criteria;
             document.getElementById('clientText').textContent = t.clientText;
             document.getElementById('managerText').textContent = t.managerText;
             document.getElementById('aiAdvice').textContent = t.advice;
