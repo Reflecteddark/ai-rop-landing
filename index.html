@@ -69,7 +69,26 @@
         .font-display { font-family: 'Plus Jakarta Sans', sans-serif; }
         .font-mono { font-family: 'JetBrains Mono', monospace; }
 
-        /* Light Glass Cards & Panels */
+        /* Light Theme Background Pattern */
+        .bg-dot-pattern {
+            background-image: radial-gradient(rgba(148, 163, 184, 0.22) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        /* Modern Bento Cards & Panels (Attio / Clay style) */
+        .bento-card {
+            background: #ffffff;
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            border-radius: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 8px 24px -4px rgba(15, 23, 42, 0.04);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .bento-card:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 16px 32px -6px rgba(15, 23, 42, 0.07);
+            transform: translateY(-2px);
+        }
+
         .glass-panel {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(16px);
@@ -89,35 +108,14 @@
             box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
         }
 
-        /* Dark Glass Cards & Panels for Drama Sections */
-        .glass-panel-dark {
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
-        }
-        .glass-card-dark {
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(51, 65, 85, 0.6);
-            transition: all 0.25s ease;
-        }
-        .glass-card-dark:hover {
-            border-color: rgba(16, 185, 129, 0.5);
-            transform: translateY(-2px);
-            box-shadow: 0 12px 30px -10px rgba(16, 185, 129, 0.2);
-        }
-
         .glow-emerald {
-            box-shadow: 0 0 40px -10px rgba(16, 185, 129, 0.25);
+            box-shadow: 0 0 35px -5px rgba(16, 185, 129, 0.3);
         }
         .glow-cyan {
-            box-shadow: 0 0 40px -10px rgba(6, 182, 212, 0.25);
+            box-shadow: 0 0 35px -5px rgba(6, 182, 212, 0.3);
         }
         .glow-rose {
-            box-shadow: 0 0 40px -10px rgba(244, 63, 94, 0.25);
+            box-shadow: 0 0 35px -5px rgba(244, 63, 94, 0.3);
         }
 
         /* Custom Slider Styling with emerald track accent */
@@ -286,7 +284,7 @@
         <!-- ======================================================== -->
         <!-- SCREEN 1: HERO & ENLARGED BROWSER DASHBOARD MOCKUP -->
         <!-- ======================================================== -->
-        <section id="demo" class="relative pt-12 pb-20 sm:pt-20 sm:pb-28 bg-white">
+        <section id="demo" class="relative pt-12 pb-20 sm:pt-20 sm:pb-28 bg-white bg-dot-pattern">
             <!-- Background Glow Blobs -->
             <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-tr from-emerald-500/10 to-teal-500/10 blur-[130px] pointer-events-none rounded-full"></div>
             
@@ -494,77 +492,87 @@
         </section>
 
         <!-- ======================================================== -->
-        <!-- SCREEN 2: DARK DRAMA LOSS BLOCK (СКОЛЬКО ДЕНЕГ ТЕРЯЕТ ОТДЕЛ) -->
+        <!-- SCREEN 2: EXECUTIVE RISK AUDIT (REVENUE LEAKS ON LIGHT CANVAS) -->
         <!-- ======================================================== -->
-        <section id="pain-points" class="py-24 sm:py-28 lg:py-32 bg-slate-900 text-white relative">
+        <section id="pain-points" class="py-24 sm:py-28 lg:py-32 bg-slate-50/80 border-y border-slate-200 relative">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-16">
-                    <span class="inline-block px-4 py-1.5 rounded-full bg-red-500/10 text-red-400 font-mono text-xs font-bold mb-4 border border-red-500/30">// REVENUE_LEAK_RADAR</span>
-                    <h2 class="font-display font-black text-3xl sm:text-5xl lg:text-6xl text-white mb-4 tracking-tight">
+                    <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 text-red-700 font-mono text-xs font-bold border border-red-200 mb-4 shadow-2xs">
+                        <i class="fas fa-triangle-exclamation"></i> АУДИТ УТЕЧЕК ВЫРУЧКИ B2B
+                    </span>
+                    <h2 class="font-display font-black text-3xl sm:text-5xl lg:text-6xl text-slate-900 mb-4 tracking-tight">
                         Сколько денег ваш отдел теряет прямо сейчас
                     </h2>
-                    <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
+                    <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
                         Руководитель видит аккуратные отчеты в CRM, но 85% звонков остаются без контроля. Реальные потери происходят в диалогах, которые никто не слушает.
                     </p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
                     <!-- Leak Card 1 -->
-                    <div class="rounded-2xl p-6 sm:p-7 bg-red-500/10 border border-red-500/30 flex flex-col justify-between hover:border-red-500/50 transition">
+                    <div class="bento-card p-6 sm:p-8 flex flex-col justify-between text-left">
                         <div>
-                            <div class="text-xs font-mono font-bold text-red-400 uppercase tracking-wider mb-2">Слив на cr11 (Next Step)</div>
-                            <div class="text-3xl sm:text-4xl font-black text-red-400 font-mono mb-3">−240 000 ₽</div>
-                            <h3 class="font-display text-base sm:text-lg font-bold text-white mb-2">Не назван следующий шаг</h3>
-                            <p class="text-slate-300 text-sm leading-relaxed">
+                            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-red-50 text-red-700 border border-red-200 font-mono font-bold text-xs mb-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span> cr11 (Next Step)
+                            </div>
+                            <div class="text-3xl sm:text-4xl font-black text-red-600 font-mono mb-2">−240 000 ₽</div>
+                            <h3 class="font-display text-lg font-bold text-slate-900 mb-2">Не назван следующий шаг</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
                                 Менеджер заканчивает разговор фразой «подумайте, если что — звоните». Клиент остывает, уходит к конкурентам, а сделка сгорает.
                             </p>
                         </div>
-                        <div class="mt-4 pt-3 border-t border-red-500/20 text-xs font-mono text-red-300">
+                        <div class="mt-5 pt-3 border-t border-slate-100 text-xs font-mono font-bold text-red-600">
                             • Потеря теплого клиента
                         </div>
                     </div>
 
                     <!-- Leak Card 2 -->
-                    <div class="rounded-2xl p-6 sm:p-7 bg-red-500/10 border border-red-500/30 flex flex-col justify-between hover:border-red-500/50 transition">
+                    <div class="bento-card p-6 sm:p-8 flex flex-col justify-between text-left">
                         <div>
-                            <div class="text-xs font-mono font-bold text-red-400 uppercase tracking-wider mb-2">Слив на cr3 (ЛПР)</div>
-                            <div class="text-3xl sm:text-4xl font-black text-red-400 font-mono mb-3">−450 000 ₽</div>
-                            <h3 class="font-display text-base sm:text-lg font-bold text-white mb-2">Нет квалификации ЛПР</h3>
-                            <p class="text-slate-300 text-sm leading-relaxed">
+                            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-red-50 text-red-700 border border-red-200 font-mono font-bold text-xs mb-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span> cr3 (ЛПР)
+                            </div>
+                            <div class="text-3xl sm:text-4xl font-black text-red-600 font-mono mb-2">−450 000 ₽</div>
+                            <h3 class="font-display text-lg font-bold text-slate-900 mb-2">Нет квалификации ЛПР</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
                                 Продавец часами презентует продукт секретарям и линейным сотрудникам без бюджета и полномочий, не выясняя лицо, принимающее решение.
                             </p>
                         </div>
-                        <div class="mt-4 pt-3 border-t border-red-500/20 text-xs font-mono text-red-300">
+                        <div class="mt-5 pt-3 border-t border-slate-100 text-xs font-mono font-bold text-red-600">
                             • Впустую сожженное время
                         </div>
                     </div>
 
                     <!-- Leak Card 3 -->
-                    <div class="rounded-2xl p-6 sm:p-7 bg-red-500/10 border border-red-500/30 flex flex-col justify-between hover:border-red-500/50 transition">
+                    <div class="bento-card p-6 sm:p-8 flex flex-col justify-between text-left">
                         <div>
-                            <div class="text-xs font-mono font-bold text-red-400 uppercase tracking-wider mb-2">Слив на cr10 (Слив на КП)</div>
-                            <div class="text-3xl sm:text-4xl font-black text-red-400 font-mono mb-3">−780 000 ₽</div>
-                            <h3 class="font-display text-base sm:text-lg font-bold text-white mb-2">Отправка КП «в пустоту»</h3>
-                            <p class="text-slate-300 text-sm leading-relaxed">
+                            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-red-50 text-red-700 border border-red-200 font-mono font-bold text-xs mb-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span> cr10 (Слив на КП)
+                            </div>
+                            <div class="text-3xl sm:text-4xl font-black text-red-600 font-mono mb-2">−780 000 ₽</div>
+                            <h3 class="font-display text-lg font-bold text-slate-900 mb-2">Отправка КП «в пустоту»</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
                                 Прайс высылается без фиксации даты и времени созвона для разбора спецификации. Клиент берёт прайс для торга со старыми поставщиками.
                             </p>
                         </div>
-                        <div class="mt-4 pt-3 border-t border-red-500/20 text-xs font-mono text-red-300">
+                        <div class="mt-5 pt-3 border-t border-slate-100 text-xs font-mono font-bold text-red-600">
                             • Слитый рекламный лид
                         </div>
                     </div>
 
                     <!-- Leak Card 4 -->
-                    <div class="rounded-2xl p-6 sm:p-7 bg-red-500/10 border border-red-500/30 flex flex-col justify-between hover:border-red-500/50 transition">
+                    <div class="bento-card p-6 sm:p-8 flex flex-col justify-between text-left">
                         <div>
-                            <div class="text-xs font-mono font-bold text-red-400 uppercase tracking-wider mb-2">Слив на cr6 (Защита цены)</div>
-                            <div class="text-3xl sm:text-4xl font-black text-red-400 font-mono mb-3">−1 250 000 ₽</div>
-                            <h3 class="font-display text-base sm:text-lg font-bold text-white mb-2">Спор вместо отработки цены</h3>
-                            <p class="text-slate-300 text-sm leading-relaxed">
+                            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-red-50 text-red-700 border border-red-200 font-mono font-bold text-xs mb-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span> cr6 (Защита цены)
+                            </div>
+                            <div class="text-3xl sm:text-4xl font-black text-red-600 font-mono mb-2">−1 250 000 ₽</div>
+                            <h3 class="font-display text-lg font-bold text-slate-900 mb-2">Спор вместо отработки цены</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
                                 На сомнение «дорого» менеджер спорит или сразу даёт скидку без аргументации, уничтожая маржинальность сделки и ценность продукта.
                             </p>
                         </div>
-                        <div class="mt-4 pt-3 border-t border-red-500/20 text-xs font-mono text-red-300">
+                        <div class="mt-5 pt-3 border-t border-slate-100 text-xs font-mono font-bold text-red-600">
                             • Убитая маржа компании
                         </div>
                     </div>
@@ -572,133 +580,146 @@
 
                 <!-- Transition to Calculator CTA -->
                 <div class="text-center">
-                    <a href="#cases" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-base shadow-xl shadow-emerald-500/25 transition">
-                        <span>Рассчитать потери вашего отдела продаж</span>
-                        <i class="fas fa-arrow-right text-sm"></i>
+                    <a href="#cases" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm sm:text-base shadow-lg transition transform hover:-translate-y-0.5">
+                        <span>Рассчитать персональные потери в калькуляторе ROI</span>
+                        <i class="fas fa-arrow-down text-emerald-400"></i>
                     </a>
                 </div>
             </div>
         </section>
 
         <!-- ======================================================== -->
-        <!-- SCREEN 3: LIVE AUDIO AUDIT PEAK (HIGH-TECH DARK THEME) -->
+        <!-- SCREEN 3: LIVE AUDIO AUDIT (MODERN LIGHT macOS/LINEAR THEME) -->
         <!-- ======================================================== -->
-        <section id="audio-demo" class="py-24 sm:py-28 lg:py-32 bg-slate-950 text-white relative border-t border-slate-800">
+        <section id="audio-demo" class="py-24 sm:py-28 lg:py-32 bg-white relative">
             <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-                    <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-bold uppercase tracking-wider mb-3">
-                        <i class="fas fa-headphones"></i> Живой тест ИИ-аналитики
+                    <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-mono font-bold uppercase tracking-wider mb-3 shadow-2xs">
+                        <i class="fas fa-headphones text-emerald-600"></i> Живой тест ИИ-аналитики
                     </span>
-                    <h2 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-white mb-3">
+                    <h2 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-slate-900 mb-3 tracking-tight">
                         Послушайте реальный звонок и вердикт ИИ за 24 секунды
                     </h2>
-                    <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+                    <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
                         Никаких выдуманных примеров. Реальные переговоры в B2B-сегментах с оцифровкой ошибок и рекомендациями РОПу.
                     </p>
                 </div>
 
-                <div class="rounded-3xl glass-panel-dark p-6 sm:p-10 shadow-2xl border border-slate-800">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-800">
+                <!-- Modern Light Audio Console -->
+                <div class="rounded-3xl bg-slate-50/80 p-6 sm:p-10 shadow-xl border border-slate-200">
+                    
+                    <!-- Track Tabs -->
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200">
                         <div>
-                            <span class="text-xs font-mono text-emerald-400 uppercase tracking-wider block mb-1">
+                            <span class="text-xs font-mono text-emerald-700 font-bold uppercase tracking-wider block mb-1">
                                 Выберите тестовый звонок:
                             </span>
-                            <div class="text-white font-bold text-base sm:text-lg">Записи реальных сделок клиентов</div>
+                            <div class="text-slate-900 font-bold text-base sm:text-lg">Записи реальных сделок клиентов</div>
                         </div>
                         
                         <!-- Track Selector -->
                         <div class="flex flex-wrap items-center gap-2" id="trackTabs">
-                            <button onclick="switchTrack('variant_bitrix24')" data-track="variant_bitrix24" class="track-btn active px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-emerald-500 text-slate-950 transition">
+                            <button onclick="switchTrack('variant_bitrix24')" data-track="variant_bitrix24" class="track-btn active px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-emerald-600 text-white shadow-sm transition">
                                 🔥 Битрикс24 (240k ₽)
                             </button>
-                            <button onclick="switchTrack('variant_cable')" data-track="variant_cable" class="track-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-900 text-slate-300 hover:text-white border border-slate-800 transition">
+                            <button onclick="switchTrack('variant_cable')" data-track="variant_cable" class="track-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition shadow-2xs">
                                 ⚡ Кабель (650k ₽)
                             </button>
-                            <button onclick="switchTrack('variant_equip')" data-track="variant_equip" class="track-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-900 text-slate-300 hover:text-white border border-slate-800 transition">
+                            <button onclick="switchTrack('variant_equip')" data-track="variant_equip" class="track-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition shadow-2xs">
                                 🏭 УЗИП (480k ₽)
                             </button>
-                            <button onclick="switchTrack('variant_parts')" data-track="variant_parts" class="track-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-900 text-slate-300 hover:text-white border border-slate-800 transition">
+                            <button onclick="switchTrack('variant_parts')" data-track="variant_parts" class="track-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition shadow-2xs">
                                 🔬 Медтехника (520k ₽)
                             </button>
                         </div>
                     </div>
 
-                    <!-- Player Controller -->
-                    <div class="py-6 flex flex-col sm:flex-row items-center gap-6">
+                    <!-- Player Controller (Crisp White Card) -->
+                    <div class="py-6 my-2 px-5 sm:px-7 rounded-2xl bg-white border border-slate-200 shadow-sm flex flex-col sm:flex-row items-center gap-6">
                         <audio id="demoAudio" src="audio/cold-call-bitrix24.mp3" preload="metadata"></audio>
                         
-                        <button id="playBtn" onclick="togglePlay()" class="w-16 h-16 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 flex items-center justify-center shrink-0 shadow-lg shadow-emerald-500/30 hover:scale-105 active:scale-95 transition cursor-pointer">
+                        <button id="playBtn" onclick="togglePlay()" class="w-16 h-16 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-lg shadow-emerald-600/30 hover:scale-105 active:scale-95 transition cursor-pointer" title="Воспроизвести запись">
                             <i id="playIcon" class="fas fa-play text-xl ml-1"></i>
                         </button>
 
                         <div class="w-full">
-                            <div class="flex items-center justify-between text-xs sm:text-sm text-slate-400 font-mono mb-2">
+                            <div class="flex items-center justify-between text-xs sm:text-sm text-slate-500 font-mono mb-2">
                                 <span id="currentTime">00:00</span>
-                                <span class="text-slate-200 font-semibold truncate max-w-xs sm:max-w-md" id="trackTitle">Холодный звонок: Продажа CRM Битрикс24 • Сделка на 240 000 ₽</span>
+                                <span class="text-slate-900 font-bold truncate max-w-xs sm:max-w-md" id="trackTitle">Холодный звонок: Продажа CRM Битрикс24 • Сделка на 240 000 ₽</span>
                                 <span id="totalDuration">00:00</span>
                             </div>
 
                             <!-- Progress Track -->
-                            <div id="progressContainer" onclick="seekAudio(event)" class="w-full h-3 bg-slate-800 rounded-full overflow-hidden cursor-pointer relative">
+                            <div id="progressContainer" onclick="seekAudio(event)" class="w-full h-3 bg-slate-200 rounded-full overflow-hidden cursor-pointer relative">
                                 <div id="progressBar" class="h-full bg-emerald-500 rounded-full w-0 transition-all duration-100"></div>
                             </div>
 
                             <!-- Animated Waveform -->
                             <div class="flex items-center gap-1.5 mt-3 h-7">
-                                <div class="wave-bar w-1.5 bg-emerald-500/40 rounded-full h-2"></div>
-                                <div class="wave-bar w-1.5 bg-emerald-500/50 rounded-full h-3"></div>
-                                <div class="wave-bar w-1.5 bg-emerald-500/60 rounded-full h-4"></div>
-                                <div class="wave-bar w-1.5 bg-emerald-500/80 rounded-full h-6"></div>
-                                <div class="wave-bar w-1.5 bg-cyan-400/90 rounded-full h-5"></div>
-                                <div class="wave-bar w-1.5 bg-emerald-500/70 rounded-full h-3"></div>
-                                <div class="wave-bar w-1.5 bg-emerald-500/50 rounded-full h-4"></div>
-                                <div class="wave-bar w-1.5 bg-emerald-500/40 rounded-full h-2"></div>
-                                <span class="text-xs text-slate-400 ml-2 font-mono">Нажмите Play для воспроизведения реального звонка</span>
+                                <div class="wave-bar w-1.5 bg-slate-300 rounded-full h-2"></div>
+                                <div class="wave-bar w-1.5 bg-slate-300 rounded-full h-3"></div>
+                                <div class="wave-bar w-1.5 bg-slate-300 rounded-full h-4"></div>
+                                <div class="wave-bar w-1.5 bg-emerald-500 rounded-full h-6"></div>
+                                <div class="wave-bar w-1.5 bg-emerald-500 rounded-full h-5"></div>
+                                <div class="wave-bar w-1.5 bg-slate-300 rounded-full h-3"></div>
+                                <div class="wave-bar w-1.5 bg-slate-300 rounded-full h-4"></div>
+                                <div class="wave-bar w-1.5 bg-slate-300 rounded-full h-2"></div>
+                                <span class="text-xs text-slate-500 ml-2 font-mono">Нажмите Play для запуска аудиозаписи</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Realtime AI Verdict Card -->
-                    <div class="p-6 rounded-2xl bg-slate-900 border border-red-500/40 glow-rose">
-                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                    <!-- Realtime AI Verdict Card (Light Semantic Architecture) -->
+                    <div class="p-6 sm:p-7 rounded-2xl bg-white border border-slate-200 shadow-sm mt-4 text-left">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 mb-5 border-b border-slate-100">
                             <div class="flex items-center gap-2.5">
-                                <span class="px-3 py-1 rounded-lg bg-red-500/20 text-red-400 font-mono font-bold text-xs border border-red-500/30">
+                                <span class="px-3 py-1 rounded-lg bg-red-50 text-red-700 font-mono font-bold text-xs border border-red-200">
                                     🔴 КРИТИЧЕСКИЙ СЛИВ СДЕЛКИ
                                 </span>
-                                <span class="text-sm text-slate-300">Оценка ИИ: <strong id="verdictScore" class="text-red-400">38/100 (Провалено)</strong></span>
+                                <span class="text-sm text-slate-700">Оценка ИИ: <strong id="verdictScore" class="text-red-600 font-black">38/100 (Провалено)</strong></span>
                             </div>
-                            <div class="text-sm text-red-300 font-mono font-bold">
-                                Потерянная выручка: <span id="verdictLoss" class="text-xl text-red-400 font-black">240 000 ₽</span>
+                            <div class="text-sm text-slate-700 font-mono">
+                                Потерянная выручка: <span id="verdictLoss" class="text-xl text-red-600 font-black">240 000 ₽</span>
                             </div>
                         </div>
 
-                        <!-- Live Transcript Lines -->
-                        <div class="space-y-2.5 text-sm font-sans mb-4">
-                            <p class="text-slate-300 p-3 rounded-xl bg-slate-950/80 border border-slate-800">
-                                <span class="text-cyan-400 font-semibold font-mono">Клиент (секретарь):</span> 
-                                <span id="clientText">«Слушайте, отправьте ваше коммерческое предложение на общую почту info@... Руководство посмотрит, если будет интересно — свяжемся».</span>
-                            </p>
-                            <p class="text-slate-300 p-3 rounded-xl bg-slate-950/80 border border-slate-800">
-                                <span class="text-red-400 font-semibold font-mono">Менеджер:</span> 
-                                <span id="managerText">«Ну понимаете, Битрикс24 система комплексная, там и CRM, и задачи... Ну ладно, давайте я вам на почту скину базовый тариф, а вы почитайте».</span>
-                            </p>
+                        <!-- Live Transcript Speech Bubbles -->
+                        <div class="space-y-3 text-sm font-sans mb-5">
+                            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-left">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="w-2 h-2 rounded-full bg-sky-500"></span>
+                                    <span class="text-xs font-mono font-bold text-sky-700 uppercase">Клиент (секретарь):</span>
+                                </div>
+                                <p id="clientText" class="text-slate-700 italic leading-relaxed">
+                                    «Слушайте, отправьте ваше коммерческое предложение на общую почту info@... Руководство посмотрит, если будет интересно — свяжемся».
+                                </p>
+                            </div>
+                            <div class="p-4 rounded-xl bg-red-50/50 border border-red-200/80 text-left">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="w-2 h-2 rounded-full bg-red-500"></span>
+                                    <span class="text-xs font-mono font-bold text-red-600 uppercase">Менеджер отдела продаж:</span>
+                                </div>
+                                <p id="managerText" class="text-slate-800 italic leading-relaxed">
+                                    «Ну понимаете, Битрикс24 система комплексная, там и CRM, и задачи... Ну ладно, давайте я вам на почту скину базовый тариф, а вы почитайте».
+                                </p>
+                            </div>
                         </div>
 
                         <!-- Mistakes & Recommendation -->
-                        <div class="pt-4 border-t border-slate-800 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-sm">
-                            <div class="space-y-1.5">
-                                <div class="text-slate-400">
-                                    <strong class="text-slate-200">Нарушены критерии B2B (cr1..cr13):</strong> 
-                                    <span id="brokenCriteria" class="text-red-400 font-mono font-semibold">cr3 (ЛПР не выявлен) • cr6 (Цена без ценности) • cr10 (Слив на КП) • cr11 (Нет фиксации шага)</span>
+                        <div class="pt-4 border-t border-slate-100 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 text-sm">
+                            <div class="space-y-2 max-w-2xl">
+                                <div class="text-slate-600">
+                                    <strong class="text-slate-900">Нарушены критерии B2B (cr1..cr13):</strong> 
+                                    <span id="brokenCriteria" class="text-red-600 font-mono font-bold">cr3 (ЛПР не выявлен) • cr6 (Цена без ценности) • cr10 (Слив на КП) • cr11 (Нет фиксации шага)</span>
                                 </div>
-                                <div class="text-slate-400">
-                                    <strong class="text-emerald-400">Рекомендация РОПу:</strong> 
-                                    <span id="aiAdvice" class="text-slate-200">«Срочно перезвонить в течение 15 минут, обойти секретаря вопросом об интеграции с 1С и зафиксировать 20-минутный онлайн-показ 3 отраслевых воронок на конкретную дату».</span>
+                                <div class="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-slate-800 text-xs sm:text-sm">
+                                    <strong class="text-emerald-800 block mb-0.5">Рекомендация РОПу:</strong> 
+                                    <span id="aiAdvice" class="text-slate-700">«Срочно перезвонить в течение 15 минут, обойти секретаря вопросом об интеграции с 1С и зафиксировать 20-минутный онлайн-показ 3 отраслевых воронок на конкретную дату».</span>
                                 </div>
                             </div>
-                            <a href="#cta" class="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition whitespace-nowrap">
-                                Разобрать свои 50 звонков
+                            <a href="#cta" class="px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-md transition whitespace-nowrap shrink-0">
+                                Разобрать свои 50 звонков (0 ₽)
                             </a>
                         </div>
                     </div>
@@ -808,7 +829,7 @@
 
                     <!-- View Switcher -->
                     <div class="inline-flex p-1.5 rounded-2xl bg-white border border-slate-200 shadow-sm mt-8">
-                        <button onclick="toggleAlertView('telegram')" id="btnViewTg" class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-emerald-500 text-slate-950 shadow-md transition cursor-pointer">
+                        <button onclick="toggleAlertView('telegram')" id="btnViewTg" class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-emerald-600 text-white shadow-sm transition cursor-pointer">
                             <i class="fab fa-telegram-plane mr-1.5"></i> Telegram & MAX Алерт РОПа (30 сек)
                         </button>
                         <button onclick="toggleAlertView('sheets')" id="btnViewSheets" class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-slate-600 hover:text-slate-900 transition cursor-pointer">
@@ -981,19 +1002,19 @@
 
                     <!-- Niche Tabs -->
                     <div class="flex flex-wrap items-center justify-center gap-2 mt-8" id="nicheTabBtns">
-                        <button onclick="selectNiche('opt')" data-niche="opt" class="niche-btn active px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-emerald-500 text-slate-950 transition cursor-pointer">
+                        <button onclick="selectNiche('opt')" data-niche="opt" class="niche-btn active px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-emerald-600 text-white shadow-sm transition cursor-pointer">
                             Оптовая торговля и дистрибуция
                         </button>
-                        <button onclick="selectNiche('auto')" data-niche="auto" class="niche-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 text-slate-700 hover:text-slate-950 border border-slate-200 transition cursor-pointer">
+                        <button onclick="selectNiche('auto')" data-niche="auto" class="niche-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 text-slate-700 hover:text-slate-900 border border-slate-200 transition cursor-pointer">
                             Автозапчасти и спецтехника
                         </button>
-                        <button onclick="selectNiche('prod')" data-niche="prod" class="niche-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 text-slate-700 hover:text-slate-950 border border-slate-200 transition cursor-pointer">
+                        <button onclick="selectNiche('prod')" data-niche="prod" class="niche-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 text-slate-700 hover:text-slate-900 border border-slate-200 transition cursor-pointer">
                             Производство и оборудование
                         </button>
-                        <button onclick="selectNiche('realty')" data-niche="realty" class="niche-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 text-slate-700 hover:text-slate-950 border border-slate-200 transition cursor-pointer">
+                        <button onclick="selectNiche('realty')" data-niche="realty" class="niche-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 text-slate-700 hover:text-slate-900 border border-slate-200 transition cursor-pointer">
                             Недвижимость и стройка
                         </button>
-                        <button onclick="selectNiche('services')" data-niche="services" class="niche-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 text-slate-700 hover:text-slate-950 border border-slate-200 transition cursor-pointer">
+                        <button onclick="selectNiche('services')" data-niche="services" class="niche-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 text-slate-700 hover:text-slate-900 border border-slate-200 transition cursor-pointer">
                             B2B-услуги и IT
                         </button>
                     </div>
@@ -1427,33 +1448,33 @@
                 </div>
 
                 <!-- ZERO-FRICTION PILOT CALLOUT: AUDIT WITHOUT CRM INTEGRATION -->
-                <div class="mb-12 rounded-3xl p-8 sm:p-10 bg-slate-900 text-white border border-slate-800 shadow-2xl relative overflow-hidden">
+                <div class="mb-12 rounded-3xl p-8 sm:p-10 bg-white text-slate-900 border border-slate-200 shadow-xl relative overflow-hidden">
                     <div class="absolute -right-12 -bottom-12 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
                     <div class="flex flex-col lg:flex-row items-center justify-between gap-8 relative z-10">
                         <div class="space-y-4 max-w-2xl text-left">
-                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-mono font-bold border border-emerald-500/30">
-                                <i class="fas fa-bolt"></i> НУЛЕВОЙ БАРЬЕР ВХОДА // СТАРТ БЕЗ IT
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-mono font-bold border border-emerald-200">
+                                <i class="fas fa-bolt text-emerald-600"></i> НУЛЕВОЙ БАРЬЕР ВХОДА // СТАРТ БЕЗ IT
                             </div>
-                            <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-white tracking-tight">
+                            <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-slate-900 tracking-tight">
                                 «Пришлите 50 записей звонков — мы покажем разбор без подключения телефонии»
                             </h3>
-                            <p class="text-sm text-slate-300 leading-relaxed">
+                            <p class="text-sm text-slate-600 leading-relaxed">
                                 Не хотите прямо сейчас подключать вебхуки или согласовывать доступ с IT и службой безопасности? 
                                 Просто выгрузите 50 записей звонков (MP3 / WAV или ссылка на облачный диск) — через 24 часа мы предоставим интерактивный отчет в Google Таблицах V18.0 с полной картой сливов выручки по 13 критериям.
                             </p>
-                            <div class="flex flex-wrap items-center gap-5 text-sm font-medium text-slate-300 pt-2">
-                                <span class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> Без API-ключей</span>
-                                <span class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> Без доступа к телефонии</span>
-                                <span class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> Снимает 90% возражений команды</span>
+                            <div class="flex flex-wrap items-center gap-5 text-sm font-medium text-slate-700 pt-2">
+                                <span class="flex items-center gap-2"><i class="fas fa-check text-emerald-600"></i> Без API-ключей</span>
+                                <span class="flex items-center gap-2"><i class="fas fa-check text-emerald-600"></i> Без доступа к телефонии</span>
+                                <span class="flex items-center gap-2"><i class="fas fa-check text-emerald-600"></i> Снимает 90% возражений команды</span>
                             </div>
                         </div>
                         <div class="flex flex-col sm:flex-row lg:flex-col gap-3.5 w-full lg:w-auto shrink-0">
-                            <a href="#cta" class="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-sm uppercase tracking-wider shadow-lg hover:shadow-emerald-500/30 transition text-center">
+                            <a href="#cta" class="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-sm uppercase tracking-wider shadow-lg shadow-emerald-600/20 hover:shadow-emerald-600/40 transition text-center">
                                 <span>Передать 50 звонков на разбор</span>
                                 <i class="fas fa-arrow-right"></i>
                             </a>
-                            <a href="https://t.me/RevOps_Super_Audit_Bot" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-sky-400 border border-slate-700 text-sm font-semibold transition text-center">
-                                <i class="fab fa-telegram"></i> Загрузить файлы в Telegram-бот
+                            <a href="https://t.me/RevOps_Super_Audit_Bot" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-700 border border-sky-200 text-sm font-semibold transition text-center shadow-2xs">
+                                <i class="fab fa-telegram text-sky-500"></i> Загрузить файлы в Telegram-бот
                             </a>
                         </div>
                     </div>
@@ -2006,56 +2027,56 @@
         </section>
 
         <!-- ======================================================== -->
-        <!-- SCREEN 11: FINAL HIGH-CONVERTING CTA SPLIT BANNER -->
+        <!-- SCREEN 11: FINAL HIGH-CONVERTING CTA SPLIT BANNER (LIGHT SAAS) -->
         <!-- ======================================================== -->
-        <section id="cta" class="py-24 sm:py-32 relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-900 to-emerald-950 text-white border-t border-slate-800">
+        <section id="cta" class="py-24 sm:py-32 relative overflow-hidden bg-gradient-to-b from-white via-slate-50 to-emerald-50/40 border-t border-slate-200">
             <!-- Glow Accent Blob -->
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-emerald-500/10 blur-[140px] rounded-full pointer-events-none"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-emerald-500/10 blur-[130px] rounded-full pointer-events-none"></div>
 
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="rounded-3xl glass-panel-dark p-8 sm:p-12 lg:p-16 border border-emerald-500/30 shadow-2xl">
+                <div class="rounded-3xl bg-white p-8 sm:p-12 lg:p-16 border border-slate-200 shadow-2xl">
                     
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
                         
                         <!-- Left Column: Value Offer & Instant Messengers -->
                         <div class="lg:col-span-7 space-y-6 text-left">
-                            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-mono font-bold border border-emerald-500/30">
-                                <i class="fas fa-bolt"></i> БЕСПЛАТНЫЙ ЭКСПРЕСС-СТАРТ // 0 ₽
+                            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 text-emerald-800 text-xs font-mono font-bold border border-emerald-200 shadow-2xs">
+                                <i class="fas fa-bolt text-emerald-600"></i> БЕСПЛАТНЫЙ ЭКСПРЕСС-СТАРТ // 0 ₽
                             </div>
 
-                            <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight leading-[1.15]">
+                            <h2 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-slate-900 tracking-tight leading-[1.15]">
                                 Запустите разбор звонков вашего отдела продаж
                             </h2>
 
-                            <p class="text-base sm:text-lg text-slate-300 leading-relaxed max-w-xl">
+                            <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl">
                                 Оставьте контакты — мы свяжемся с вами и бесплатно проведём аудит 50 звонков без подключения телефонии.
                             </p>
 
                             <!-- 3 Value Bullets -->
-                            <div class="space-y-3.5 pt-2 text-sm sm:text-base text-slate-200">
+                            <div class="space-y-3.5 pt-2 text-sm sm:text-base text-slate-700">
                                 <div class="flex items-center gap-3">
-                                    <i class="fas fa-check-circle text-emerald-400 text-lg"></i>
+                                    <i class="fas fa-check-circle text-emerald-600 text-lg"></i>
                                     <span>Без установки ПО и нагрузки на ваших IT-специалистов</span>
                                 </div>
                                 <div class="flex items-center gap-3">
-                                    <i class="fas fa-check-circle text-emerald-400 text-lg"></i>
+                                    <i class="fas fa-check-circle text-emerald-600 text-lg"></i>
                                     <span>Персональная Google Таблица V18.0 со срезом сливов выручки</span>
                                 </div>
                                 <div class="flex items-center gap-3">
-                                    <i class="fas fa-check-circle text-emerald-400 text-lg"></i>
+                                    <i class="fas fa-check-circle text-emerald-600 text-lg"></i>
                                     <span>100% защита данных по 152-ФЗ РФ и серверы в России</span>
                                 </div>
                             </div>
 
                             <!-- Fast Messenger Entry -->
-                            <div class="pt-4 border-t border-slate-800">
-                                <div class="text-xs text-slate-400 mb-3 font-mono font-semibold">Или отправьте звонки напрямую в мессенджер:</div>
+                            <div class="pt-4 border-t border-slate-100">
+                                <div class="text-xs text-slate-500 mb-3 font-mono font-bold">Или отправьте звонки напрямую в мессенджер:</div>
                                 <div class="flex flex-wrap items-center gap-3">
-                                    <a href="https://t.me/RevOps_Super_Audit_Bot" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-xl bg-sky-500/20 hover:bg-sky-500/30 text-sky-300 border border-sky-500/30 text-sm font-bold transition flex items-center gap-2">
-                                        <i class="fab fa-telegram text-base"></i> Telegram Бот
+                                    <a href="https://t.me/RevOps_Super_Audit_Bot" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-700 border border-sky-200 text-sm font-bold transition flex items-center gap-2 shadow-2xs">
+                                        <i class="fab fa-telegram text-base text-sky-500"></i> Telegram Бот
                                     </a>
-                                    <a href="https://max.ru/se14526668_bot" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-xl bg-purple-500/20 hover:bg-purple-500/30 text-purple-300 border border-purple-500/30 text-sm font-bold transition flex items-center gap-2">
-                                        <i class="fas fa-robot text-base"></i> MAX Бот
+                                    <a href="https://max.ru/se14526668_bot" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-xl bg-purple-50 hover:bg-purple-100 text-purple-700 border border-purple-200 text-sm font-bold transition flex items-center gap-2 shadow-2xs">
+                                        <i class="fas fa-robot text-base text-purple-500"></i> MAX Бот
                                     </a>
                                 </div>
                             </div>
@@ -2063,11 +2084,11 @@
 
                         <!-- Right Column: Interactive Lead Form Card with Tariff Selector -->
                         <div class="lg:col-span-5">
-                            <div class="p-8 sm:p-9 rounded-3xl bg-slate-900/95 border border-slate-700 shadow-2xl">
-                                <h3 class="font-display font-extrabold text-2xl text-white mb-2">
+                            <div class="p-8 sm:p-9 rounded-2xl bg-slate-50/80 border border-slate-200 shadow-sm text-left">
+                                <h3 class="font-display font-extrabold text-2xl text-slate-900 mb-1.5">
                                     Заявка на аудит
                                 </h3>
-                                <p class="text-sm text-slate-400 mb-6">
+                                <p class="text-sm text-slate-500 mb-6">
                                     Свяжемся в течение 10 минут в рабочее время
                                 </p>
 
@@ -2075,15 +2096,15 @@
                                     
                                     <!-- Interactive Tariff Selector -->
                                     <div>
-                                        <label class="block text-sm font-semibold text-slate-200 mb-2">Выберите формат аудита:</label>
+                                        <label class="block text-sm font-semibold text-slate-700 mb-2">Выберите формат аудита:</label>
                                         <div class="grid grid-cols-3 gap-2">
-                                            <button type="button" onclick="selectLeadTariff('audit_free')" id="tariffBtn_audit_free" class="px-2.5 py-2.5 sm:py-3 rounded-xl text-center text-xs sm:text-sm font-bold border border-emerald-500 bg-emerald-500/25 text-emerald-300 transition cursor-pointer shadow-sm">
+                                            <button type="button" onclick="selectLeadTariff('audit_free')" id="tariffBtn_audit_free" class="px-2.5 py-2.5 sm:py-3 rounded-xl text-center text-xs sm:text-sm font-bold border border-emerald-500 bg-emerald-50 text-emerald-800 transition cursor-pointer shadow-sm">
                                                 50 звонков (0 ₽)
                                             </button>
-                                            <button type="button" onclick="selectLeadTariff('pilot_7days')" id="tariffBtn_pilot_7days" class="px-2.5 py-2.5 sm:py-3 rounded-xl text-center text-xs sm:text-sm font-bold border border-slate-700 bg-slate-800 text-slate-300 hover:text-white transition cursor-pointer">
+                                            <button type="button" onclick="selectLeadTariff('pilot_7days')" id="tariffBtn_pilot_7days" class="px-2.5 py-2.5 sm:py-3 rounded-xl text-center text-xs sm:text-sm font-bold border border-slate-200 bg-white text-slate-700 hover:text-slate-900 transition cursor-pointer shadow-2xs">
                                                 Пилот 7 дней
                                             </button>
-                                            <button type="button" onclick="selectLeadTariff('pro_monthly')" id="tariffBtn_pro_monthly" class="px-2.5 py-2.5 sm:py-3 rounded-xl text-center text-xs sm:text-sm font-bold border border-slate-700 bg-slate-800 text-slate-300 hover:text-white transition cursor-pointer">
+                                            <button type="button" onclick="selectLeadTariff('pro_monthly')" id="tariffBtn_pro_monthly" class="px-2.5 py-2.5 sm:py-3 rounded-xl text-center text-xs sm:text-sm font-bold border border-slate-200 bg-white text-slate-700 hover:text-slate-900 transition cursor-pointer shadow-2xs">
                                                 RevOps Pro
                                             </button>
                                         </div>
@@ -2091,35 +2112,35 @@
                                     </div>
 
                                     <div>
-                                        <label class="block text-sm font-medium text-slate-300 mb-1.5">Ваше имя</label>
-                                        <input type="text" id="leadName" required placeholder="Дмитрий (РОП или Собственник)" class="w-full px-4 py-3.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm placeholder:text-slate-500 focus:outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 transition">
+                                        <label class="block text-sm font-medium text-slate-700 mb-1.5">Ваше имя</label>
+                                        <input type="text" id="leadName" required placeholder="Дмитрий (РОП или Собственник)" class="w-full px-4 py-3.5 rounded-xl bg-white border border-slate-300 text-slate-900 text-sm placeholder:text-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition">
                                     </div>
 
                                     <div>
-                                        <label class="block text-sm font-medium text-slate-300 mb-1.5">Телефон (WhatsApp или Telegram)</label>
-                                        <input type="tel" id="leadPhone" required placeholder="+7 (999) 000-00-00" class="w-full px-4 py-3.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm placeholder:text-slate-500 focus:outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 transition">
+                                        <label class="block text-sm font-medium text-slate-700 mb-1.5">Телефон (WhatsApp или Telegram)</label>
+                                        <input type="tel" id="leadPhone" required placeholder="+7 (999) 000-00-00" class="w-full px-4 py-3.5 rounded-xl bg-white border border-slate-300 text-slate-900 text-sm placeholder:text-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition">
                                     </div>
 
                                     <div>
-                                        <label class="block text-sm font-medium text-slate-300 mb-1.5">Ниша бизнеса / CRM</label>
-                                        <input type="text" id="leadCompany" placeholder="Оптовые поставки / amoCRM" class="w-full px-4 py-3.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm placeholder:text-slate-500 focus:outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 transition">
+                                        <label class="block text-sm font-medium text-slate-700 mb-1.5">Ниша бизнеса / CRM</label>
+                                        <input type="text" id="leadCompany" placeholder="Оптовые поставки / amoCRM" class="w-full px-4 py-3.5 rounded-xl bg-white border border-slate-300 text-slate-900 text-sm placeholder:text-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition">
                                     </div>
 
                                     <!-- 152-FZ Consent Checkbox -->
                                     <div class="pt-1">
-                                        <label class="flex items-start gap-2.5 text-xs text-slate-300 cursor-pointer">
-                                            <input type="checkbox" id="leadConsent" required class="mt-0.5 rounded bg-slate-950 border-slate-700 text-emerald-500 focus:ring-0">
-                                            <span>Согласен(на) на обработку персональных данных (<a href="privacy.html" target="_blank" class="text-emerald-400 underline hover:text-emerald-300">152-ФЗ РФ</a>)</span>
+                                        <label class="flex items-start gap-2.5 text-xs text-slate-600 cursor-pointer">
+                                            <input type="checkbox" id="leadConsent" required class="mt-0.5 rounded bg-white border-slate-300 text-emerald-600 focus:ring-0">
+                                            <span>Согласен(на) на обработку персональных данных (<a href="privacy.html" target="_blank" class="text-emerald-700 underline hover:text-emerald-800">152-ФЗ РФ</a>)</span>
                                         </label>
                                     </div>
 
-                                    <button type="submit" id="submitBtn" class="w-full py-4 px-6 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-base uppercase tracking-wider shadow-xl shadow-emerald-500/25 transition transform active:scale-95 cursor-pointer">
+                                    <button type="submit" id="submitBtn" class="w-full py-4 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-base uppercase tracking-wider shadow-lg shadow-emerald-600/30 transition transform active:scale-95 cursor-pointer">
                                         Получить разбор 50 звонков (0 ₽)
                                     </button>
                                 </form>
 
                                 <!-- Submission Success Modal Alert -->
-                                <div id="formSuccessAlert" class="hidden mt-4 p-4 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-sm font-semibold text-center">
+                                <div id="formSuccessAlert" class="hidden mt-4 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-semibold text-center">
                                     ✅ Заявка принята! Мы свяжемся с вами в течение 10 минут для проведения аудита.
                                 </div>
                             </div>
@@ -2175,19 +2196,19 @@
     </footer>
 
     <!-- STICKY MOBILE BOTTOM BAR (<768px) -->
-    <div class="fixed bottom-0 left-0 right-0 z-40 bg-slate-950/95 backdrop-blur-xl border-t border-slate-800 p-3 sm:hidden shadow-2xl flex items-center justify-between gap-3">
+    <div class="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 p-3 sm:hidden shadow-lg flex items-center justify-between gap-3">
         <div>
-            <div class="text-white font-bold text-sm">Аудит 50 звонков</div>
-            <div class="text-xs text-emerald-400 font-mono">Бесплатно • Без IT-доступа</div>
+            <div class="text-slate-900 font-bold text-sm">Аудит 50 звонков</div>
+            <div class="text-xs text-emerald-600 font-mono font-semibold">Бесплатно • Без IT-доступа</div>
         </div>
         <div class="flex items-center gap-2">
-            <a href="https://t.me/RevOps_Super_Audit_Bot" target="_blank" class="w-11 h-11 rounded-xl bg-sky-500/20 border border-sky-500/40 text-sky-300 flex items-center justify-center shrink-0">
+            <a href="https://t.me/RevOps_Super_Audit_Bot" target="_blank" class="w-11 h-11 rounded-xl bg-sky-50 border border-sky-200 text-sky-600 flex items-center justify-center shrink-0">
                 <i class="fab fa-telegram text-base"></i>
             </a>
-            <a href="https://max.ru/se14526668_bot" target="_blank" class="w-11 h-11 rounded-xl bg-purple-500/20 border border-purple-500/40 text-purple-300 flex items-center justify-center shrink-0">
+            <a href="https://max.ru/se14526668_bot" target="_blank" class="w-11 h-11 rounded-xl bg-purple-50 border border-purple-200 text-purple-600 flex items-center justify-center shrink-0">
                 <i class="fas fa-comment-dots text-base"></i>
             </a>
-            <a href="#cta" class="px-5 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black rounded-xl text-xs uppercase whitespace-nowrap shadow-md min-h-[44px] flex items-center">
+            <a href="#cta" class="px-5 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold rounded-xl text-xs uppercase whitespace-nowrap shadow-md min-h-[44px] flex items-center">
                 Начать 0 ₽
             </a>
         </div>
@@ -2273,9 +2294,9 @@
             // Tab styles
             document.querySelectorAll('#trackTabs .track-btn').forEach(btn => {
                 if (btn.getAttribute('data-track') === key) {
-                    btn.className = 'track-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-500 text-slate-950 transition';
+                    btn.className = 'track-btn active px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-emerald-600 text-white shadow-sm transition';
                 } else {
-                    btn.className = 'track-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:text-white transition';
+                    btn.className = 'track-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition shadow-2xs';
                 }
             });
 
@@ -2358,13 +2379,13 @@
             if (view === 'telegram') {
                 viewTg.classList.remove('hidden');
                 viewSheets.classList.add('hidden');
-                btnTg.className = 'px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-emerald-500 text-slate-950 shadow-md transition';
-                btnSheets.className = 'px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-slate-400 hover:text-white transition';
+                btnTg.className = 'px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-emerald-600 text-white shadow-sm transition cursor-pointer';
+                btnSheets.className = 'px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-slate-600 hover:text-slate-900 transition cursor-pointer';
             } else {
                 viewTg.classList.add('hidden');
                 viewSheets.classList.remove('hidden');
-                btnSheets.className = 'px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-emerald-500 text-slate-950 shadow-md transition';
-                btnTg.className = 'px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-slate-400 hover:text-white transition';
+                btnSheets.className = 'px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-emerald-600 text-white shadow-sm transition cursor-pointer';
+                btnTg.className = 'px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-slate-600 hover:text-slate-900 transition cursor-pointer';
             }
 
             if (typeof window.reachMetrikaGoal === 'function') {
@@ -2431,9 +2452,9 @@
 
             document.querySelectorAll('#nicheTabBtns .niche-btn').forEach(btn => {
                 if (btn.getAttribute('data-niche') === nicheKey) {
-                    btn.className = 'niche-btn active px-4 py-2 rounded-xl text-xs font-bold bg-emerald-500 text-slate-950 transition';
+                    btn.className = 'niche-btn active px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-emerald-600 text-white shadow-sm transition cursor-pointer';
                 } else {
-                    btn.className = 'niche-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-900 text-slate-300 hover:text-white border border-slate-800 transition';
+                    btn.className = 'niche-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 text-slate-700 hover:text-slate-900 border border-slate-200 transition cursor-pointer';
                 }
             });
 
@@ -2515,9 +2536,9 @@
                 const btn = document.getElementById('tariffBtn_' + key);
                 if (!btn) return;
                 if (key === tariffKey) {
-                    btn.className = 'px-2.5 py-2.5 sm:py-3 rounded-xl text-center text-xs sm:text-sm font-bold border border-emerald-500 bg-emerald-500/25 text-emerald-300 transition cursor-pointer shadow-sm';
+                    btn.className = 'px-2.5 py-2.5 sm:py-3 rounded-xl text-center text-xs sm:text-sm font-bold border-2 border-emerald-500 bg-emerald-50 text-emerald-800 transition cursor-pointer shadow-sm';
                 } else {
-                    btn.className = 'px-2.5 py-2.5 sm:py-3 rounded-xl text-center text-xs sm:text-sm font-bold border border-slate-700 bg-slate-800 text-slate-300 hover:text-white transition cursor-pointer';
+                    btn.className = 'px-2.5 py-2.5 sm:py-3 rounded-xl text-center text-xs sm:text-sm font-bold border border-slate-200 bg-white text-slate-700 hover:text-slate-900 hover:bg-slate-50 transition cursor-pointer shadow-2xs';
                 }
             });
 
