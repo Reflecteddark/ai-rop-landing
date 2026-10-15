@@ -1848,50 +1848,50 @@
                     </p>
                 </div>
 
-                <!-- 3 Pricing Cards -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 items-stretch">
+                <!-- 4 Pricing Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 items-stretch">
                     
                     <!-- Tier 1: Express Audit -->
-                    <div class="rounded-3xl bg-slate-50 border border-slate-200 p-8 sm:p-9 flex flex-col justify-between hover:shadow-md transition">
+                    <div class="rounded-3xl bg-slate-50 border border-slate-200 p-6 sm:p-7 flex flex-col justify-between hover:shadow-md transition">
                         <div>
                             <span class="text-xs font-mono font-bold text-slate-500 uppercase tracking-wider">Тест-Драйв</span>
-                            <h3 class="font-display font-bold text-slate-900 text-2xl mt-1 mb-2">Экспресс-Аудит</h3>
-                            <div class="text-4xl font-black text-slate-900 font-mono mb-4">
-                                0 ₽ <span class="text-sm font-normal text-slate-500">/ 50 звонков</span>
+                            <h3 class="font-display font-bold text-slate-900 text-xl sm:text-2xl mt-1 mb-2">Экспресс-Аудит</h3>
+                            <div class="text-3xl sm:text-4xl font-black text-slate-900 font-mono mb-4">
+                                0 ₽ <span class="text-xs sm:text-sm font-normal text-slate-500">/ 50 звонков</span>
                             </div>
-                            <p class="text-sm text-slate-600 mb-6 leading-relaxed">
+                            <p class="text-xs sm:text-sm text-slate-600 mb-6 leading-relaxed">
                                 Быстрая проверка вашего отдела продаж на реальных звонках за 20 минут. Без подключения к телефонии.
                             </p>
 
-                            <ul class="space-y-3.5 text-sm text-slate-700 mb-8">
+                            <ul class="space-y-3 text-xs sm:text-sm text-slate-700 mb-8">
                                 <li class="flex items-center gap-2.5"><i class="fas fa-check text-violet-600"></i> <span>Разбор 50 реальных звонков</span></li>
                                 <li class="flex items-center gap-2.5"><i class="fas fa-check text-violet-600"></i> <span>Оценка по 13 B2B-критериям</span></li>
                                 <li class="flex items-center gap-2.5"><i class="fas fa-check text-violet-600"></i> <span>Экспресс-отчет со сливами</span></li>
                                 <li class="flex items-center gap-2.5"><i class="fas fa-check text-violet-600"></i> <span>Разбор с экспертом (Zoom 20 мин)</span></li>
                                 <li class="flex items-center gap-2 font-mono text-xs font-bold text-violet-700 bg-violet-50 px-2.5 py-1.5 rounded-lg border border-violet-200">
-                                    <i class="fas fa-bolt text-violet-600"></i> Можно скинуть файлами в ТГ или MAX
+                                    <i class="fas fa-bolt text-violet-600"></i> Можно файлами в ТГ или MAX
                                 </li>
                             </ul>
                         </div>
 
-                        <button type="button" onclick="selectLeadTariff('audit_free'); scrollToSection('cta', true);" class="w-full py-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm uppercase tracking-wider shadow-sm transition text-center cursor-pointer">
+                        <button type="button" onclick="selectLeadTariff('audit_free'); scrollToSection('cta', true);" class="w-full py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider shadow-sm transition text-center cursor-pointer">
                             Получить аудит 50 звонков 0 ₽
                         </button>
                     </div>
 
                     <!-- Tier 2: Pilot 7 Days -->
-                    <div class="rounded-3xl bg-slate-50 border border-slate-200 p-8 sm:p-9 flex flex-col justify-between hover:shadow-md transition">
+                    <div class="rounded-3xl bg-slate-50 border border-slate-200 p-6 sm:p-7 flex flex-col justify-between hover:shadow-md transition">
                         <div>
                             <span class="text-xs font-mono font-bold text-slate-500 uppercase tracking-wider">Под ключ</span>
-                            <h3 class="font-display font-bold text-slate-900 text-2xl mt-1 mb-2">Пилот 7 дней</h3>
-                            <div class="text-4xl font-black text-slate-900 font-mono mb-4">
-                                29 900 ₽ <span class="text-sm font-normal text-slate-500">/ 7 дней под ключ</span>
+                            <h3 class="font-display font-bold text-slate-900 text-xl sm:text-2xl mt-1 mb-2">Пилот 7 дней</h3>
+                            <div class="text-3xl sm:text-4xl font-black text-slate-900 font-mono mb-4">
+                                14 900 ₽ <span class="text-xs sm:text-sm font-normal text-slate-500">/ 7 дней</span>
                             </div>
-                            <p class="text-sm text-slate-600 mb-6 leading-relaxed">
+                            <p class="text-xs sm:text-sm text-slate-600 mb-6 leading-relaxed">
                                 Полный контроль 100% звонков команды за неделю. Доступен как через CRM, так и по выгрузке 50 записей.
                             </p>
 
-                            <ul class="space-y-3.5 text-sm text-slate-700 mb-8">
+                            <ul class="space-y-3 text-xs sm:text-sm text-slate-700 mb-8">
                                 <li class="flex items-center gap-2.5"><i class="fas fa-check text-violet-600"></i> <span>100% звонков всей команды за 7 дней</span></li>
                                 <li class="flex items-center gap-2.5"><i class="fas fa-check text-violet-600"></i> <span>Персональная Google Таблица V18.0</span></li>
                                 <li class="flex items-center gap-2.5"><i class="fas fa-check text-violet-600"></i> <span>Подключение Telegram / MAX алертов РОПа</span></li>
@@ -1902,37 +1902,67 @@
                             </ul>
                         </div>
 
-                        <button type="button" onclick="selectLeadTariff('pilot_7days'); scrollToSection('cta', true);" class="w-full py-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm uppercase tracking-wider shadow-sm transition text-center cursor-pointer">
-                            Запустить пилот на 7 дней
-                        </button>
+                        <div>
+                            <div class="text-[11px] text-violet-700 font-mono text-center mb-2 font-semibold">Сумма засчитывается в 1-й месяц</div>
+                            <button type="button" onclick="selectLeadTariff('pilot_7days'); scrollToSection('cta', true);" class="w-full py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider shadow-sm transition text-center cursor-pointer">
+                                Запустить пилот на 7 дней
+                            </button>
+                        </div>
                     </div>
 
                     <!-- Tier 3: RevOps Pro (FEATURED HIT!) -->
-                    <div class="rounded-3xl bg-violet-100/25 border-2 border-violet-500 ring-4 ring-violet-500/10 shadow-2xl md:-translate-y-3 relative p-8 sm:p-9 flex flex-col justify-between transition">
-                        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-violet-500 text-slate-950 font-black text-xs uppercase tracking-wider shadow-md whitespace-nowrap">
+                    <div class="rounded-3xl bg-violet-50/70 border-2 border-violet-500 ring-4 ring-violet-500/10 shadow-xl lg:-translate-y-2 relative p-6 sm:p-7 flex flex-col justify-between transition">
+                        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-violet-500 text-slate-950 font-black text-[11px] uppercase tracking-wider shadow-md whitespace-nowrap">
                             ХИТ ПРОДАЖ // ВЫБОР РОПОВ
                         </div>
 
                         <div>
                             <span class="text-xs font-mono font-bold text-violet-700 uppercase tracking-wider">Регулярный супервайзинг</span>
-                            <h3 class="font-display font-black text-slate-900 text-2xl mt-1 mb-2">RevOps Pro</h3>
-                            <div class="text-4xl font-black text-violet-600 font-mono mb-4">
-                                49 900 ₽ <span class="text-sm font-normal text-slate-600">/ месяц</span>
+                            <h3 class="font-display font-black text-slate-900 text-xl sm:text-2xl mt-1 mb-2">RevOps Pro</h3>
+                            <div class="text-3xl sm:text-4xl font-black text-violet-600 font-mono mb-4">
+                                29 900 ₽ <span class="text-xs sm:text-sm font-normal text-slate-600">/ месяц</span>
                             </div>
-                            <p class="text-sm text-slate-700 mb-6 leading-relaxed font-medium">
+                            <p class="text-xs sm:text-sm text-slate-700 mb-6 leading-relaxed font-medium">
                                 Непрерывный контроль отделов продаж от 3 до 30 менеджеров. Фиксированная плата без поминутной дани.
                             </p>
 
-                            <ul class="space-y-3.5 text-sm text-slate-800 mb-8 font-medium">
+                            <ul class="space-y-3 text-xs sm:text-sm text-slate-800 mb-8 font-medium">
                                 <li class="flex items-center gap-2.5"><i class="fas fa-check-circle text-violet-600 text-base"></i> <span>Постоянный контроль 100% звонков</span></li>
                                 <li class="flex items-center gap-2.5"><i class="fas fa-check-circle text-violet-600 text-base"></i> <span>Еженедельные срезы и рейтинг команды</span></li>
                                 <li class="flex items-center gap-2.5"><i class="fas fa-check-circle text-violet-600 text-base"></i> <span>Сквозная синхронизация со сделками в CRM</span></li>
-                                <li class="flex items-center gap-2.5"><i class="fas fa-check-circle text-violet-600 text-base"></i> <span>Приоритетная поддержка и доработка скриптов</span></li>
+                                <li class="flex items-center gap-2.5"><i class="fas fa-check-circle text-violet-600 text-base"></i> <span>Приоритетная поддержка и скрипты</span></li>
+                                <li class="flex items-center gap-2.5"><i class="fas fa-check-circle text-violet-600 text-base"></i> <span>Без скрытых платежей и дани</span></li>
                             </ul>
                         </div>
 
-                        <button type="button" onclick="selectLeadTariff('pro_monthly'); scrollToSection('cta', true);" class="w-full py-4 rounded-xl bg-violet-500 hover:bg-violet-400 text-slate-950 font-black text-sm uppercase tracking-wider shadow-lg shadow-violet-500/30 transition text-center cursor-pointer">
+                        <button type="button" onclick="selectLeadTariff('pro_monthly'); scrollToSection('cta', true);" class="w-full py-3.5 rounded-xl bg-violet-500 hover:bg-violet-400 text-slate-950 font-black text-xs uppercase tracking-wider shadow-lg shadow-violet-500/30 transition text-center cursor-pointer">
                             Подключить RevOps Pro
+                        </button>
+                    </div>
+
+                    <!-- Tier 4: Enterprise -->
+                    <div class="rounded-3xl bg-slate-50 border border-slate-200 p-6 sm:p-7 flex flex-col justify-between hover:shadow-md transition">
+                        <div>
+                            <span class="text-xs font-mono font-bold text-slate-500 uppercase tracking-wider">Масштаб // Корпоративный</span>
+                            <h3 class="font-display font-bold text-slate-900 text-xl sm:text-2xl mt-1 mb-2">Enterprise</h3>
+                            <div class="text-3xl sm:text-4xl font-black text-slate-900 font-mono mb-4">
+                                79 000 ₽ <span class="text-xs sm:text-sm font-normal text-slate-500">/ месяц</span>
+                            </div>
+                            <p class="text-xs sm:text-sm text-slate-600 mb-6 leading-relaxed">
+                                Индивидуальное решение для масштабных отделов продаж, холдингов и филиальных сетей от 30+ менеджеров.
+                            </p>
+
+                            <ul class="space-y-3 text-xs sm:text-sm text-slate-700 mb-8">
+                                <li class="flex items-center gap-2.5"><i class="fas fa-check text-violet-600"></i> <span>Все возможности RevOps Pro</span></li>
+                                <li class="flex items-center gap-2.5"><i class="fas fa-check text-violet-600"></i> <span>До 50+ менеджеров (CRM и филиалы)</span></li>
+                                <li class="flex items-center gap-2.5"><i class="fas fa-check text-violet-600"></i> <span>Кастомные чек-листы под нишу</span></li>
+                                <li class="flex items-center gap-2.5"><i class="fas fa-check text-violet-600"></i> <span>Выделенный RevOps-инженер 24/7</span></li>
+                                <li class="flex items-center gap-2.5"><i class="fas fa-check text-violet-600"></i> <span>Выделенный сервер 152-ФЗ и SLA 99.9%</span></li>
+                            </ul>
+                        </div>
+
+                        <button type="button" onclick="selectLeadTariff('enterprise'); scrollToSection('cta', true);" class="w-full py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider shadow-sm transition text-center cursor-pointer">
+                            Выбрать Enterprise
                         </button>
                     </div>
 
@@ -2113,15 +2143,18 @@
                                     <!-- Interactive Tariff Selector -->
                                     <div>
                                         <label class="block text-sm font-semibold text-slate-700 mb-2">Выберите формат аудита:</label>
-                                        <div class="grid grid-cols-3 gap-2">
-                                            <button type="button" onclick="selectLeadTariff('audit_free')" id="tariffBtn_audit_free" class="px-2.5 py-2.5 sm:py-3 rounded-xl text-center text-xs sm:text-sm font-bold border border-violet-500 bg-violet-50 text-violet-800 transition cursor-pointer shadow-sm">
+                                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                                            <button type="button" onclick="selectLeadTariff('audit_free')" id="tariffBtn_audit_free" class="px-2 py-2.5 rounded-xl text-center text-xs font-bold border-2 border-violet-500 bg-violet-50 text-violet-800 transition cursor-pointer shadow-sm">
                                                 50 звонков (0 ₽)
                                             </button>
-                                            <button type="button" onclick="selectLeadTariff('pilot_7days')" id="tariffBtn_pilot_7days" class="px-2.5 py-2.5 sm:py-3 rounded-xl text-center text-xs sm:text-sm font-bold border border-slate-200 bg-white text-slate-700 hover:text-slate-900 transition cursor-pointer shadow-2xs">
-                                                Пилот 7 дней
+                                            <button type="button" onclick="selectLeadTariff('pilot_7days')" id="tariffBtn_pilot_7days" class="px-2 py-2.5 rounded-xl text-center text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:text-slate-900 hover:bg-slate-50 transition cursor-pointer shadow-2xs">
+                                                Пилот (14 900 ₽)
                                             </button>
-                                            <button type="button" onclick="selectLeadTariff('pro_monthly')" id="tariffBtn_pro_monthly" class="px-2.5 py-2.5 sm:py-3 rounded-xl text-center text-xs sm:text-sm font-bold border border-slate-200 bg-white text-slate-700 hover:text-slate-900 transition cursor-pointer shadow-2xs">
-                                                RevOps Pro
+                                            <button type="button" onclick="selectLeadTariff('pro_monthly')" id="tariffBtn_pro_monthly" class="px-2 py-2.5 rounded-xl text-center text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:text-slate-900 hover:bg-slate-50 transition cursor-pointer shadow-2xs">
+                                                Pro (29 900 ₽)
+                                            </button>
+                                            <button type="button" onclick="selectLeadTariff('enterprise')" id="tariffBtn_enterprise" class="px-2 py-2.5 rounded-xl text-center text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:text-slate-900 hover:bg-slate-50 transition cursor-pointer shadow-2xs">
+                                                Enterprise (79 000 ₽)
                                             </button>
                                         </div>
                                         <input type="hidden" id="leadSelectedTariff" value="audit_free">
@@ -2652,14 +2685,19 @@
                 subject: '🔥 Экспресс-Аудит 50 звонков (0 ₽)'
             },
             pilot_7days: {
-                label: 'Пилот 7 дней (29 900 ₽)',
-                btnText: 'Запустить пилот на 7 дней (29 900 ₽)',
-                subject: '🚀 Заявка на Пилот 7 дней (29 900 ₽)'
+                label: 'Пилот 7 дней (14 900 ₽)',
+                btnText: 'Запустить пилот на 7 дней (14 900 ₽)',
+                subject: '🚀 Заявка на Пилот 7 дней (14 900 ₽)'
             },
             pro_monthly: {
-                label: 'RevOps Pro (49 900 ₽/мес)',
-                btnText: 'Подключить RevOps Pro (49 900 ₽)',
-                subject: '💎 Заявка на тариф RevOps Pro (49 900 ₽)'
+                label: 'RevOps Pro (29 900 ₽/мес)',
+                btnText: 'Подключить RevOps Pro (29 900 ₽)',
+                subject: '💎 Заявка на тариф RevOps Pro (29 900 ₽)'
+            },
+            enterprise: {
+                label: 'Enterprise (79 000 ₽/мес)',
+                btnText: 'Выбрать тариф Enterprise (79 000 ₽)',
+                subject: '🏢 Заявка на тариф Enterprise (79 000 ₽)'
             }
         };
 
@@ -2668,13 +2706,13 @@
             const hiddenInput = document.getElementById('leadSelectedTariff');
             if (hiddenInput) hiddenInput.value = tariffKey;
 
-            ['audit_free', 'pilot_7days', 'pro_monthly'].forEach(key => {
+            ['audit_free', 'pilot_7days', 'pro_monthly', 'enterprise'].forEach(key => {
                 const btn = document.getElementById('tariffBtn_' + key);
                 if (!btn) return;
                 if (key === tariffKey) {
-                    btn.className = 'px-2.5 py-2.5 sm:py-3 rounded-xl text-center text-xs sm:text-sm font-bold border-2 border-violet-500 bg-violet-50 text-violet-800 transition cursor-pointer shadow-sm';
+                    btn.className = 'px-2 py-2.5 rounded-xl text-center text-xs font-bold border-2 border-violet-500 bg-violet-50 text-violet-800 transition cursor-pointer shadow-sm';
                 } else {
-                    btn.className = 'px-2.5 py-2.5 sm:py-3 rounded-xl text-center text-xs sm:text-sm font-bold border border-slate-200 bg-white text-slate-700 hover:text-slate-900 hover:bg-slate-50 transition cursor-pointer shadow-2xs';
+                    btn.className = 'px-2 py-2.5 rounded-xl text-center text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:text-slate-900 hover:bg-slate-50 transition cursor-pointer shadow-2xs';
                 }
             });
 
