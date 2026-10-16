@@ -1170,3 +1170,17 @@
 .from-violet-500\/10 { --tw-gradient-from: rgba(139, 92, 246, 0.1) var(--tw-gradient-from-position); --tw-gradient-to: rgba(139, 92, 246, 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
 .to-violet-100\/40 { --tw-gradient-to: rgba(237, 233, 254, 0.4) var(--tw-gradient-to-position); }
 .to-violet-500\/10 { --tw-gradient-to: rgba(139, 92, 246, 0.1) var(--tw-gradient-to-position); }
+
+/* Layout & Text Bounds Safety */
+.truncate {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+}
+.overflow-hidden {
+    overflow: hidden !important;
+}
+.break-words {
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
+}
