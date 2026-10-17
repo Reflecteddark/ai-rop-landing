@@ -33,25 +33,35 @@
     <link rel="stylesheet" href="css/tailwind.min.css?v=20261015-violet">
     <link rel="stylesheet" href="css/violet-palette.css?v=20261015-violet">
     <link rel="stylesheet" href="css/dark-theme.css?v=20261017-full-theme">
-    <!-- Tabler UI (https://github.com/tabler/tabler) — тема "Глубокий чёрный + Фиолетовый глубокий" -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0/dist/css/tabler.min.css">
-    <link rel="stylesheet" href="css/tabler-theme.css?v=20261017-full-theme">
-    <link rel="stylesheet" href="css/tabler-colors.css?v=20261017-full-theme">
 
-    <!-- Тема по умолчанию: тёмная (глубокий чёрный). Инлайн-скрипт до отрисовки — без мигания. -->
+    <!-- Подключение Inter Tight для 100% единства типографики с ЛК -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Единая синхронизация темы с Личным Кабинетом (Default: Obsidian Dark Tier-1 SaaS) -->
     <script>
         (function () {
             var t = 'dark';
-            try { t = localStorage.getItem('revops-theme') || 'dark'; } catch (e) {}
-            if (t !== 'light' && t !== 'dark') t = 'dark';
+            try {
+                var savedMode = localStorage.getItem('revops_theme_mode') || localStorage.getItem('revops-theme');
+                if (!localStorage.getItem('revops_saas_dark_init_v20')) {
+                    localStorage.setItem('revops_saas_dark_init_v20', '1');
+                    localStorage.setItem('revops_theme_mode', 'dark');
+                    localStorage.setItem('revops-theme', 'dark');
+                    t = 'dark';
+                } else if (savedMode === 'light' || savedMode === 'dark') {
+                    t = savedMode;
+                }
+            } catch (e) {
+                t = 'dark';
+            }
             document.documentElement.setAttribute('data-theme', t);
             document.documentElement.setAttribute('data-bs-theme', t);
         })();
-    </script>
-    <!-- Синхронизация темы между страницами -->
-    <script>
+
         window.addEventListener('storage', function (e) {
-            if (e.key === 'revops-theme' && (e.newValue === 'light' || e.newValue === 'dark')) {
+            if ((e.key === 'revops_theme_mode' || e.key === 'revops-theme') && (e.newValue === 'light' || e.newValue === 'dark')) {
                 document.documentElement.setAttribute('data-theme', e.newValue);
                 document.documentElement.setAttribute('data-bs-theme', e.newValue);
             }
@@ -233,6 +243,34 @@
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
+        /* Theme Toggle Icon Visibility */
+        html[data-theme="light"] .icon-sun,
+        html:not([data-theme="dark"]) .icon-sun {
+            display: none !important;
+        }
+        html[data-theme="light"] .icon-moon,
+        html:not([data-theme="dark"]) .icon-moon {
+            display: inline-block !important;
+        }
+        html[data-theme="dark"] .icon-moon {
+            display: none !important;
+        }
+        html[data-theme="dark"] .icon-sun {
+            display: inline-block !important;
+        }
+
+        /* Arbitrary Tailwind JIT utilities polyfill */
+        .w-\[700px\] { width: 700px; }
+        .h-\[350px\] { height: 350px; }
+        .blur-\[130px\] { filter: blur(130px); -webkit-filter: blur(130px); }
+        .leading-\[1\.1\] { line-height: 1.1; }
+        .leading-\[1\.15\] { line-height: 1.15; }
+        .text-\[10px\] { font-size: 10px; line-height: 14px; }
+        .text-\[11px\] { font-size: 11px; line-height: 16px; }
+        .rounded-\[10px\] { border-radius: 10px; }
+        .rounded-\[40px\] { border-radius: 40px; }
+        .min-h-\[44px\] { min-height: 44px; }
+
         /* Responsive Grid Spans and Accordion Overrides */
         @media (min-width: 1024px) {
             .lg\:col-span-4 { grid-column: span 4 / span 4 !important; }
@@ -240,9 +278,232 @@
             .lg\:col-span-7 { grid-column: span 7 / span 7 !important; }
             .lg\:col-span-8 { grid-column: span 8 / span 8 !important; }
         }
+
+        /* ==========================================================================
+           TIER-1 SAAS UNIFIED LANDING THEME (SYNCHRONIZED WITH REVOPS OS V20.0 LK)
+           ========================================================================== */
+        :root {
+            --font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .font-display, h1, h2, h3, h4 {
+            font-family: var(--font-display) !important;
+            letter-spacing: -0.015em !important;
+        }
+
+        /* ИСПРАВЛЕНИЕ КОНТРАСТА ФИОЛЕТОВЫХ КНОПОК В ОБЕИХ ТЕМАХ */
+        .bg-violet-500.text-slate-950,
+        .bg-violet-600.text-white,
+        a.bg-violet-500,
+        button.bg-violet-500,
+        button.bg-violet-600 {
+            background: linear-gradient(180deg, #8b5cf6 0%, #6d28d9 100%) !important;
+            color: #ffffff !important;
+            border: 1px solid rgba(255, 255, 255, 0.18) !important;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 8px 24px -4px rgba(124, 58, 237, 0.45) !important;
+        }
+        a.bg-violet-500:hover,
+        button.bg-violet-500:hover,
+        button.bg-violet-600:hover {
+            background: linear-gradient(180deg, #9333ea 0%, #7c3aed 100%) !important;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 12px 30px -4px rgba(124, 58, 237, 0.65) !important;
+        }
+
+        /* ==========================================================================
+           ОБСИДИАНОВАЯ ТЁМНАЯ ТЕМА (ИСПРАВЛЕННАЯ)
+           ========================================================================== */
+        html[data-theme="dark"] body {
+            background-color: #0B1120 !important; /* Более мягкий тёмно-синий вместо глухого чёрного */
+            color: #F8FAFC !important;
+        }
+
+        /* Шапка в стиле Linear / Vercel */
+        html[data-theme="dark"] header {
+            background: rgba(11, 17, 32, 0.85) !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+        }
+
+        /* Фоны секций: добавляем лёгкий паттерн и градиент, чтобы не было "чёрных дыр" */
+        html[data-theme="dark"] section.bg-white,
+        html[data-theme="dark"] section.bg-slate-50,
+        html[data-theme="dark"] section.bg-slate-50\/80,
+        html[data-theme="dark"] section.bg-slate-100,
+        html[data-theme="dark"] section#cta {
+            background-color: #0B1120 !important;
+            background-image:
+                radial-gradient(ellipse 65% 40% at 50% 0%, rgba(139, 92, 246, 0.12), transparent 70%),
+                radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px) !important;
+            background-size: 100% 100%, 32px 32px !important;
+            border-color: #1E293B !important;
+        }
+
+        /* Унификация карточек: делаем их заметно светлее фона */
+        html[data-theme="dark"] .bento-card,
+        html[data-theme="dark"] .glass-card,
+        html[data-theme="dark"] .rounded-3xl.bg-white,
+        html[data-theme="dark"] .rounded-3xl.bg-slate-50,
+        html[data-theme="dark"] .rounded-3xl.bg-slate-50\/80,
+        html[data-theme="dark"] .rounded-2xl.bg-white,
+        html[data-theme="dark"] .rounded-2xl.bg-slate-50,
+        html[data-theme="dark"] .rounded-2xl.bg-slate-50\/80,
+        html[data-theme="dark"] details.bg-white,
+        html[data-theme="dark"] .bg-white:not(section),
+        html[data-theme="dark"] .bg-slate-50:not(section) {
+            background: #1E293B !important; /* Сланцево-серый, контрастный */
+            border: 1px solid #334155 !important;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+            color: #F8FAFC !important;
+        }
+
+        html[data-theme="dark"] .bento-card:hover,
+        html[data-theme="dark"] .glass-card:hover,
+        html[data-theme="dark"] details.bg-white:hover {
+            border-color: rgba(139, 92, 246, 0.5) !important;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.15), 0 15px 30px -10px rgba(0, 0, 0, 0.6) !important;
+        }
+
+        /* Выделенная карточка тарифа RevOps Pro и колонка сравнения */
+        html[data-theme="dark"] .border-violet-500 {
+            background: linear-gradient(180deg, rgba(124, 58, 237, 0.15) 0%, #1E293B 100%) !important;
+            border-color: #8B5CF6 !important;
+            box-shadow: 0 20px 40px -10px rgba(124, 58, 237, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+        }
+
+        /* Вложенные плашки и микро-контейнеры */
+        html[data-theme="dark"] .bg-slate-50,
+        html[data-theme="dark"] .bg-slate-100 {
+            background-color: #0F172A !important;
+            border-color: #334155 !important;
+            color: #CBD5E1 !important;
+        }
+
+        /* Типографика в тёмной теме */
+        html[data-theme="dark"] .text-slate-900,
+        html[data-theme="dark"] .text-slate-800 {
+            color: #F8FAFC !important;
+        }
+        html[data-theme="dark"] .text-slate-700,
+        html[data-theme="dark"] .text-slate-600 {
+            color: #CBD5E1 !important;
+        }
+        html[data-theme="dark"] .text-slate-500,
+        html[data-theme="dark"] .text-slate-400 {
+            color: #94A3B8 !important;
+        }
+        html[data-theme="dark"] .text-violet-600,
+        html[data-theme="dark"] .text-violet-700,
+        html[data-theme="dark"] .text-violet-800 {
+            color: #A78BFA !important;
+        }
+
+        /* Градиент на главном заголовке H1 в стиле Linear */
+        html[data-theme="dark"] h1.font-display {
+            color: #FFFFFF !important;
+            text-shadow: 0 0 40px rgba(139, 92, 246, 0.2);
+        }
+
+        /* Семантические плашки рисков/успеха в тёмной теме */
+        html[data-theme="dark"] .bg-red-50,
+        html[data-theme="dark"] .bg-red-50\/50,
+        html[data-theme="dark"] .bg-red-50\/20 {
+            background-color: rgba(244, 63, 94, 0.1) !important;
+            border-color: rgba(244, 63, 94, 0.3) !important;
+            color: #FDA4AF !important;
+        }
+        html[data-theme="dark"] .text-red-600,
+        html[data-theme="dark"] .text-red-700 {
+            color: #FB7185 !important;
+        }
+        html[data-theme="dark"] .bg-amber-50,
+        html[data-theme="dark"] .bg-amber-50\/70,
+        html[data-theme="dark"] .bg-amber-50\/15 {
+            background-color: rgba(245, 158, 11, 0.1) !important;
+            border-color: rgba(245, 158, 11, 0.3) !important;
+        }
+        html[data-theme="dark"] .text-amber-700,
+        html[data-theme="dark"] .text-amber-800 {
+            color: #FBBF24 !important;
+        }
+        html[data-theme="dark"] .bg-violet-50,
+        html[data-theme="dark"] .bg-violet-100\/70,
+        html[data-theme="dark"] .bg-violet-50\/70 {
+            background-color: rgba(139, 92, 246, 0.15) !important;
+            border-color: rgba(139, 92, 246, 0.35) !important;
+            color: #DDD6FE !important;
+        }
+
+        /* Поля ввода формы в тёмной теме */
+        html[data-theme="dark"] input[type="text"],
+        html[data-theme="dark"] input[type="tel"],
+        html[data-theme="dark"] input[type="email"],
+        html[data-theme="dark"] select,
+        html[data-theme="dark"] textarea {
+            background-color: #0F172A !important;
+            border: 1px solid #334155 !important;
+            color: #FFFFFF !important;
+        }
+        html[data-theme="dark"] input:focus,
+        html[data-theme="dark"] textarea:focus {
+            border-color: #8B5CF6 !important;
+            background-color: #1E293B !important;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.25) !important;
+        }
+        html[data-theme="dark"] input::placeholder,
+        html[data-theme="dark"] textarea::placeholder {
+            color: #64748B !important;
+        }
+
+        /* Ползунки калькулятора ROI */
+        html[data-theme="dark"] input[type=range],
+        html[data-theme="dark"] input[type=range]::-webkit-slider-runnable-track {
+            background: #1E293B !important;
+            height: 6px !important;
+        }
+        html[data-theme="dark"] input[type=range]::-webkit-slider-thumb {
+            width: 18px !important;
+            height: 18px !important;
+            margin-top: -6px !important;
+            background: #8B5CF6 !important;
+            border: 2px solid #FFFFFF !important;
+        }
+
+        /* ==========================================================================
+           TYPOGRAPHY & LETTER-SPACING POLISH (ELIMINATES STRETCHED TEXT GLOBALLY)
+           ========================================================================== */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Headings: proportional Cyrillic typography without synthetic faux-bold */
+        .font-display, h1, h2, h3, h4 {
+            font-family: var(--font-display) !important;
+            letter-spacing: -0.015em !important;
+        }
+        .font-black {
+            font-weight: 800 !important;
+        }
+
+        /* Prevent monospace from stretching Russian text into typewriter spacing */
+        .font-mono {
+            letter-spacing: -0.01em;
+        }
+
+        /* Tame wide tracking on Cyrillic uppercase badges */
+        .tracking-wider,
+        .tracking-widest {
+            letter-spacing: 0.02em !important;
+        }
+
+        /* Responsive balanced heading scales */
+        h1.font-display { font-size: clamp(2.25rem, 5vw, 3.75rem) !important; line-height: 1.15 !important; }
+        h2.font-display { font-size: clamp(1.75rem, 3.8vw, 2.75rem) !important; line-height: 1.2 !important; }
+
     </style>
 </head>
-<body style="background-color:#06070a;color:#f8fafc">
+<body class="bg-white text-slate-800 antialiased font-sans">
 
     <!-- ======================================================== -->
     <!-- HEADER & NAVIGATION -->
@@ -270,18 +531,18 @@
                 <div>
                     <div class="flex items-center gap-2">
                         <span class="font-display font-black text-slate-900 text-base sm:text-lg tracking-tight whitespace-nowrap">RevOps OS</span>
-                        <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-violet-50 text-violet-700 border border-violet-200">V18.0</span>
+                        <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-violet-50 text-violet-700 border border-violet-200">V20.0</span>
                     </div>
-                    <p class="text-xs text-slate-500 font-mono tracking-tight hidden sm:block whitespace-nowrap">ИИ-Супервайзер звонков amoCRM & Битрикс24</p>
+                    <p class="text-xs text-slate-500 font-sans tracking-normal hidden sm:block whitespace-nowrap">ИИ-Супервайзер звонков amoCRM & Битрикс24</p>
                 </div>
             </a>
 
             <!-- Desktop Nav Menu (Refined 6 high-value links, no wrapping) -->
-            <nav class="hidden lg:flex items-center gap-5 xl:gap-6 text-sm font-semibold text-slate-600 shrink-0">
+            <nav class="hidden xl:flex items-center gap-3 2xl:gap-5 text-sm font-semibold text-slate-600 shrink-0">
                 <a href="#demo" class="hover:text-violet-600 transition whitespace-nowrap">Как работает</a>
-                <a href="#pain-points" class="hover:text-violet-600 transition whitespace-nowrap">Сливы выручки</a>
+                <a href="#pain-points" class="hover:text-violet-600 transition whitespace-nowrap">Сливы</a>
                 <a href="#criteria" class="hover:text-violet-600 transition whitespace-nowrap">13 критериев</a>
-                <a href="#cases" class="hover:text-violet-600 transition whitespace-nowrap">Калькулятор ROI</a>
+                <a href="#cases" class="hover:text-violet-600 transition whitespace-nowrap">ROI</a>
                 <a href="#pricing" class="hover:text-violet-600 transition whitespace-nowrap">Тарифы</a>
                 <a href="#faq" class="hover:text-violet-600 transition whitespace-nowrap">FAQ</a>
             </nav>
@@ -289,12 +550,12 @@
             <!-- Actions (Synchronized TG-Bot & MAX Bot + Direct CTA) -->
             <div class="flex items-center gap-2 sm:gap-2.5 shrink-0">
                 <!-- Telegram Bot Badge -->
-                <a href="https://t.me/RevOps_Super_Audit_Bot" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-violet-50 hover:bg-violet-100 text-violet-700 border border-violet-200 text-xs font-bold transition whitespace-nowrap" title="Telegram Бот аудита">
+                <a href="https://t.me/RevOps_Super_Audit_Bot" target="_blank" rel="noopener noreferrer" class="hidden 2xl:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-violet-50 hover:bg-violet-100 text-violet-700 border border-violet-200 text-xs font-bold transition whitespace-nowrap" title="Telegram Бот аудита">
                     <i class="fab fa-telegram text-violet-500 text-sm"></i>
                     <span>ТГ-Бот</span>
                 </a>
                 <!-- MAX Bot Badge -->
-                <a href="https://max.ru/se14526668_bot" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-purple-50 hover:bg-purple-100 text-purple-700 border border-purple-200 text-xs font-bold transition whitespace-nowrap" title="MAX Бот аудита">
+                <a href="https://max.ru/se14526668_bot" target="_blank" rel="noopener noreferrer" class="hidden 2xl:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-purple-50 hover:bg-purple-100 text-purple-700 border border-purple-200 text-xs font-bold transition whitespace-nowrap" title="MAX Бот аудита">
                     <i class="fas fa-robot text-purple-500 text-xs"></i>
                     <span>MAX-бот</span>
                 </a>
@@ -304,12 +565,12 @@
                     <i class="fas fa-sun icon-sun text-sm"></i>
                 </button>
                 <!-- Личный Кабинет / Войти -->
-                <a href="/app/" class="inline-flex items-center gap-1.5 px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-xl bg-slate-900/90 hover:bg-violet-950/70 text-slate-200 hover:text-white border border-slate-700/80 hover:border-violet-500/60 text-xs sm:text-sm font-bold transition shadow-sm whitespace-nowrap" title="Войти в личный кабинет RevOps OS">
+                <a href="app/" class="inline-flex items-center gap-1.5 px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-xl bg-slate-900/90 hover:bg-violet-950/70 text-slate-200 hover:text-white border border-slate-700/80 hover:border-violet-500/60 text-xs sm:text-sm font-bold transition shadow-sm whitespace-nowrap" title="Войти в личный кабинет RevOps OS">
                     <i class="fas fa-arrow-right-to-bracket text-violet-400 text-xs"></i>
                     <span>Войти</span>
                 </a>
                 <!-- Primary Action Button -->
-                <a href="#cta" class="inline-flex items-center gap-2 px-4 py-2.5 sm:px-5 sm:py-2.5 rounded-xl bg-violet-500 hover:bg-violet-400 text-slate-950 font-bold text-xs sm:text-sm shadow-md shadow-violet-500/20 hover:shadow-violet-500/40 transition transform active:scale-95 whitespace-nowrap">
+                <a href="#cta" class="inline-flex items-center gap-2 px-4 py-2.5 sm:px-5 sm:py-2.5 rounded-xl bg-violet-500 hover:bg-violet-400 text-white font-bold text-xs sm:text-sm shadow-md shadow-violet-500/20 hover:shadow-violet-500/40 transition transform active:scale-95 whitespace-nowrap">
                     <span>Аудит 50 звонков 0 ₽</span>
                     <i class="fas fa-arrow-right text-xs"></i>
                 </a>
@@ -338,7 +599,7 @@
 
                     <h1 class="font-display font-black text-4xl sm:text-6xl lg:text-7xl text-slate-900 tracking-tight leading-[1.1] mb-6">
                         Управляйте <span class="text-violet-600">продажами</span> на основе фактов,<br class="hidden sm:inline">
-                        <span class="line-through text-slate-400 decoration-rose-500/50 decoration-4">а не догадок и ощущений</span>
+                        <span class="text-slate-400">а не догадок и ощущений</span>
                     </h1>
 
                     <p class="text-base sm:text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto mb-8 font-normal">
@@ -383,7 +644,7 @@
 
                     <!-- Hero CTA Buttons -->
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <a href="#cta" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-violet-500 hover:bg-violet-400 text-slate-950 font-bold text-base shadow-lg shadow-violet-500/30 hover:shadow-violet-500/50 transition transform hover:-translate-y-0.5 text-center">
+                        <a href="#cta" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-violet-500 hover:bg-violet-400 text-white font-bold text-base shadow-lg shadow-violet-500/30 hover:shadow-violet-500/50 transition transform hover:-translate-y-0.5 text-center">
                             Получить экспресс-аудит 50 звонков (0 ₽)
                         </a>
                         <a href="#audio-demo" class="w-full sm:w-auto px-6 py-4 rounded-xl bg-white hover:bg-slate-50 text-slate-800 border border-slate-300 text-base font-semibold transition text-center inline-flex items-center justify-center gap-2 shadow-xs">
@@ -394,7 +655,7 @@
                 </div>
 
                 <!-- Enlarged macOS Browser Mockup (+40% size, high-contrast dashboard) -->
-                <div class="max-w-5xl mx-auto mt-14 sm:mt-18 rounded-2xl border border-slate-200 shadow-2xl overflow-hidden bg-white">
+                <div class="max-w-5xl mx-auto mt-14 sm:mt-20 rounded-2xl border border-slate-200 shadow-2xl overflow-hidden bg-white">
                     <!-- Browser Window Chrome Top Bar -->
                     <div class="px-4 py-3 bg-slate-100 border-b border-slate-200 flex items-center justify-between gap-4">
                         <div class="flex items-center gap-2 shrink-0">
@@ -455,8 +716,8 @@
                                         </p>
                                     </div>
                                     <div class="shrink-0 flex items-center gap-2">
-                                        <span class="px-2.5 py-1 rounded-lg bg-red-100 text-red-700 font-mono font-bold text-xs">Балл: 38/100</span>
-                                        <span class="px-3 py-1 rounded-lg bg-violet-500 text-slate-950 font-bold text-xs">Алерт в TG отправлен</span>
+                                        <span class="px-2.5 py-1 rounded-lg bg-red-100 text-red-700 font-mono font-bold text-xs">Балл: 4/13 (Слив)</span>
+                                        <span class="px-3 py-1 rounded-lg bg-violet-500 text-white font-bold text-xs">Алерт в TG отправлен</span>
                                     </div>
                                 </div>
 
@@ -475,7 +736,7 @@
                                         </p>
                                     </div>
                                     <div class="shrink-0 flex items-center gap-2">
-                                        <span class="px-2.5 py-1 rounded-lg bg-violet-100 text-violet-800 font-mono font-bold text-xs">Балл: 92/100</span>
+                                        <span class="px-2.5 py-1 rounded-lg bg-violet-100 text-violet-800 font-mono font-bold text-xs">Балл: 12/13 (Эталон)</span>
                                         <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-700 font-semibold text-xs border border-slate-200">CRM обновлена</span>
                                     </div>
                                 </div>
@@ -495,7 +756,7 @@
                                         </p>
                                     </div>
                                     <div class="shrink-0 flex items-center gap-2">
-                                        <span class="px-2.5 py-1 rounded-lg bg-amber-100 text-amber-800 font-mono font-bold text-xs">Балл: 62/100</span>
+                                        <span class="px-2.5 py-1 rounded-lg bg-amber-100 text-amber-800 font-mono font-bold text-xs">Балл: 8/13 (Риск)</span>
                                         <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-700 font-semibold text-xs border border-slate-200">Задача РОПу</span>
                                     </div>
                                 </div>
@@ -515,7 +776,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
                     <div class="shrink-0">
-                        <div class="text-xs font-mono font-bold text-slate-500 uppercase tracking-wider">Штатная интеграция за 15 минут</div>
+                        <div class="text-xs font-sans font-bold text-slate-500 uppercase tracking-wider">Штатная интеграция за 15 минут</div>
                         <div class="text-sm font-bold text-slate-900 mt-0.5">Работает с вашей CRM и любой телефонией:</div>
                     </div>
                     <div class="flex flex-wrap items-center justify-center md:justify-end gap-6 sm:gap-8 lg:gap-10 text-slate-700 font-bold text-sm sm:text-base">
@@ -533,11 +794,13 @@
         <!-- ======================================================== -->
         <!-- SCREEN 2: EXECUTIVE RISK AUDIT (REVENUE LEAKS ON LIGHT CANVAS) -->
         <!-- ======================================================== -->
+        <!-- SCREEN 2: EXECUTIVE RISK AUDIT (REVENUE LEAKS) - ИСПРАВЛЕНО -->
+        <!-- ======================================================== -->
         <section id="pain-points" class="py-24 sm:py-28 lg:py-32 bg-slate-50/80 border-y border-slate-200 relative">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-16">
                     <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 text-red-700 font-mono text-xs font-bold border border-red-200 mb-4 shadow-2xs">
-<i class="fas fa-triangle-exclamation"></i> АУДИТ УТЕЧЕК ВЫРУЧКИ B2B
+                        <i class="fas fa-triangle-exclamation"></i> АУДИТ УТЕЧЕК ВЫРУЧКИ B2B
                     </span>
                     <h2 class="font-display font-black text-3xl sm:text-5xl lg:text-6xl text-slate-900 mb-4 tracking-tight">
                         Сколько денег ваш отдел теряет прямо сейчас
@@ -547,71 +810,71 @@
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-12">
                     <!-- Leak Card 1 -->
-                    <div class="bento-card p-6 sm:p-8 flex flex-col justify-between text-left">
+                    <div class="bento-card p-6 sm:p-7 flex flex-col justify-between text-left h-full">
                         <div>
-                            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-red-50 text-red-700 border border-red-200 font-mono font-bold text-xs mb-3">
+                            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-red-50 text-red-700 border border-red-200 font-mono font-bold text-xs mb-4 whitespace-nowrap">
                                 <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span> cr11 (Next Step)
                             </div>
-                            <div class="text-3xl sm:text-4xl font-black text-red-600 font-mono mb-2">−240 000 ₽</div>
-                            <h3 class="font-display text-lg font-bold text-slate-900 mb-2">Не назван следующий шаг</h3>
+                            <div class="text-2xl lg:text-3xl font-black text-red-600 font-mono mb-2 whitespace-nowrap tracking-tight">−240&nbsp;000&nbsp;₽</div>
+                            <h3 class="font-display text-base sm:text-lg font-bold text-slate-900 mb-2 leading-snug">Не назван следующий шаг</h3>
                             <p class="text-slate-600 text-sm leading-relaxed">
                                 Менеджер заканчивает разговор фразой «подумайте, если что — звоните». Клиент остывает, уходит к конкурентам, а сделка сгорает.
                             </p>
                         </div>
-                        <div class="mt-5 pt-3 border-t border-slate-100 text-xs font-mono font-bold text-red-600">
+                        <div class="mt-5 pt-3 border-t border-slate-100 text-xs font-sans font-bold text-red-600">
                             • Потеря теплого клиента
                         </div>
                     </div>
 
                     <!-- Leak Card 2 -->
-                    <div class="bento-card p-6 sm:p-8 flex flex-col justify-between text-left">
+                    <div class="bento-card p-6 sm:p-7 flex flex-col justify-between text-left h-full">
                         <div>
-                            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-red-50 text-red-700 border border-red-200 font-mono font-bold text-xs mb-3">
+                            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-red-50 text-red-700 border border-red-200 font-mono font-bold text-xs mb-4 whitespace-nowrap">
                                 <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span> cr3 (ЛПР)
                             </div>
-                            <div class="text-3xl sm:text-4xl font-black text-red-600 font-mono mb-2">−450 000 ₽</div>
-                            <h3 class="font-display text-lg font-bold text-slate-900 mb-2">Нет квалификации ЛПР</h3>
+                            <div class="text-2xl lg:text-3xl font-black text-red-600 font-mono mb-2 whitespace-nowrap tracking-tight">−450&nbsp;000&nbsp;₽</div>
+                            <h3 class="font-display text-base sm:text-lg font-bold text-slate-900 mb-2 leading-snug">Нет квалификации ЛПР</h3>
                             <p class="text-slate-600 text-sm leading-relaxed">
                                 Продавец часами презентует продукт секретарям и линейным сотрудникам без бюджета и полномочий, не выясняя лицо, принимающее решение.
                             </p>
                         </div>
-                        <div class="mt-5 pt-3 border-t border-slate-100 text-xs font-mono font-bold text-red-600">
+                        <div class="mt-5 pt-3 border-t border-slate-100 text-xs font-sans font-bold text-red-600">
                             • Впустую сожженное время
                         </div>
                     </div>
 
                     <!-- Leak Card 3 -->
-                    <div class="bento-card p-6 sm:p-8 flex flex-col justify-between text-left">
+                    <div class="bento-card p-6 sm:p-7 flex flex-col justify-between text-left h-full">
                         <div>
-                            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-red-50 text-red-700 border border-red-200 font-mono font-bold text-xs mb-3">
+                            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-red-50 text-red-700 border border-red-200 font-mono font-bold text-xs mb-4 whitespace-nowrap">
                                 <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span> cr10 (Слив на КП)
                             </div>
-                            <div class="text-3xl sm:text-4xl font-black text-red-600 font-mono mb-2">−780 000 ₽</div>
-                            <h3 class="font-display text-lg font-bold text-slate-900 mb-2">Отправка КП «в пустоту»</h3>
+                            <div class="text-2xl lg:text-3xl font-black text-red-600 font-mono mb-2 whitespace-nowrap tracking-tight">−780&nbsp;000&nbsp;₽</div>
+                            <h3 class="font-display text-base sm:text-lg font-bold text-slate-900 mb-2 leading-snug">Отправка КП «в пустоту»</h3>
                             <p class="text-slate-600 text-sm leading-relaxed">
                                 Прайс высылается без фиксации даты и времени созвона для разбора спецификации. Клиент берёт прайс для торга со старыми поставщиками.
                             </p>
                         </div>
-                        <div class="mt-5 pt-3 border-t border-slate-100 text-xs font-mono font-bold text-red-600">
+                        <div class="mt-5 pt-3 border-t border-slate-100 text-xs font-sans font-bold text-red-600">
                             • Слитый рекламный лид
                         </div>
                     </div>
 
                     <!-- Leak Card 4 -->
-                    <div class="bento-card p-6 sm:p-8 flex flex-col justify-between text-left">
+                    <div class="bento-card p-6 sm:p-7 flex flex-col justify-between text-left h-full">
                         <div>
-                            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-red-50 text-red-700 border border-red-200 font-mono font-bold text-xs mb-3">
+                            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-red-50 text-red-700 border border-red-200 font-mono font-bold text-xs mb-4 whitespace-nowrap">
                                 <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span> cr6 (Защита цены)
                             </div>
-                            <div class="text-3xl sm:text-4xl font-black text-red-600 font-mono mb-2">−1 250 000 ₽</div>
-                            <h3 class="font-display text-lg font-bold text-slate-900 mb-2">Спор вместо отработки цены</h3>
+                            <div class="text-2xl lg:text-3xl font-black text-red-600 font-mono mb-2 whitespace-nowrap tracking-tight">−1&nbsp;250&nbsp;000&nbsp;₽</div>
+                            <h3 class="font-display text-base sm:text-lg font-bold text-slate-900 mb-2 leading-snug">Спор вместо отработки цены</h3>
                             <p class="text-slate-600 text-sm leading-relaxed">
                                 На сомнение «дорого» менеджер спорит или сразу даёт скидку без аргументации, уничтожая маржинальность сделки и ценность продукта.
                             </p>
                         </div>
-                        <div class="mt-5 pt-3 border-t border-slate-100 text-xs font-mono font-bold text-red-600">
+                        <div class="mt-5 pt-3 border-t border-slate-100 text-xs font-sans font-bold text-red-600">
                             • Убитая маржа компании
                         </div>
                     </div>
@@ -651,7 +914,7 @@
                     <!-- Track Tabs -->
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200">
                         <div>
-                            <span class="text-xs font-mono text-violet-700 font-bold uppercase tracking-wider block mb-1">
+                            <span class="text-xs font-sans text-violet-700 font-bold uppercase tracking-wide block mb-1">
                                 Выберите тестовый звонок:
                             </span>
                             <div class="text-slate-900 font-bold text-base sm:text-lg">Записи реальных сделок клиентов</div>
@@ -690,7 +953,7 @@
                             </div>
 
                             <!-- Progress Track -->
-                            <div id="progressContainer" onclick="seekAudio(event)" class="w-full h-3 bg-slate-200 rounded-full overflow-hidden cursor-pointer relative">
+                            <div id="progressContainer" class="w-full h-3 bg-slate-200 rounded-full overflow-hidden cursor-pointer relative">
                                 <div id="progressBar" class="h-full bg-violet-500 rounded-full w-0 transition-all duration-100"></div>
                             </div>
 
@@ -716,7 +979,7 @@
                                 <span class="px-3 py-1 rounded-lg bg-red-50 text-red-700 font-mono font-bold text-xs border border-red-200">
                                     🔴 КРИТИЧЕСКИЙ СЛИВ СДЕЛКИ
                                 </span>
-                                <span class="text-sm text-slate-700">Оценка ИИ: <strong id="verdictScore" class="text-red-600 font-black">38/100 (Провалено)</strong></span>
+                                <span class="text-sm text-slate-700">Оценка ИИ: <strong id="verdictScore" class="text-red-600 font-black">4/13 (Слив)</strong></span>
                             </div>
                             <div class="text-sm text-slate-700 font-mono">
                                 Потерянная выручка: <span id="verdictLoss" class="text-xl text-red-600 font-black">240 000 ₽</span>
@@ -728,7 +991,7 @@
                             <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-left">
                                 <div class="flex items-center gap-2 mb-1">
                                     <span class="w-2 h-2 rounded-full bg-violet-500"></span>
-                                    <span class="text-xs font-mono font-bold text-violet-700 uppercase">Клиент (секретарь):</span>
+                                    <span class="text-xs font-sans font-bold text-violet-700 uppercase">Клиент (секретарь):</span>
                                 </div>
                                 <p id="clientText" class="text-slate-700 italic leading-relaxed">
                                     «Слушайте, отправьте ваше коммерческое предложение на общую почту info@... Руководство посмотрит, если будет интересно — свяжемся».
@@ -773,21 +1036,21 @@
         <!-- ======================================================== -->
         <section id="solution-framework" class="py-24 sm:py-28 lg:py-32 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="text-center max-w-4xl mx-auto mb-16">
                     <span class="inline-block px-3.5 py-1.5 rounded-full bg-slate-100 text-slate-700 font-mono text-xs font-semibold mb-3 border border-slate-200">// MANAGEMENT_FRAMEWORK</span>
-                    <h2 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-slate-900 mb-4 tracking-tight">
+                    <h2 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-slate-900 mb-4 tracking-tight leading-tight">
                         Как RevOps OS помогает управлять продажами на фактах
                     </h2>
-                    <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
+                    <p class="text-slate-600 text-base sm:text-lg leading-relaxed max-w-3xl mx-auto">
                         Объединяет звонки, воронку CRM и управленческие таблицы в едином контуре, чтобы руководитель и менеджеры видели не догадки, а твердые факты.
                     </p>
                 </div>
 
-                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
                     <!-- Pillar 1 -->
                     <div class="glass-card rounded-2xl p-6 sm:p-7 border border-slate-200 flex flex-col justify-between">
                         <div>
-                            <div class="w-12 h-12 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-700 text-xl mb-5">
+                            <div class="w-12 h-12 rounded-xl bg-violet-50 border border-violet-200 flex items-center justify-center text-violet-600 text-xl mb-5">
                                 <i class="fas fa-headphones"></i>
                             </div>
                             <h3 class="font-display text-lg font-bold text-slate-900 mb-2">1. 100% Аудит диалогов</h3>
@@ -795,7 +1058,7 @@
                                 Gemini AI слушает 100% звонков и видеовстреч по 13 критериям B2B: квалификация, бюджет, ЛПР, отработка возражений и фиксация Next Step.
                             </p>
                         </div>
-                        <div class="mt-5 pt-3 border-t border-slate-100 text-xs font-mono text-slate-500 font-semibold">
+                        <div class="mt-5 pt-3 border-t border-slate-100 text-xs font-sans text-slate-500 font-semibold">
                             • Никаких «глухих» звонков
                         </div>
                     </div>
@@ -811,7 +1074,7 @@
                                 Выявляет сделки под угрозой срыва и рассчитывает сумму риска в рублях. РОП получает алерт в Telegram за 30 секунд с планом спасения.
                             </p>
                         </div>
-                        <div class="mt-5 pt-3 border-t border-slate-100 text-xs font-mono text-red-600 font-semibold">
+                        <div class="mt-5 pt-3 border-t border-slate-100 text-xs font-sans text-red-600 font-semibold">
                             • Спасение сделок до отказа
                         </div>
                     </div>
@@ -819,7 +1082,7 @@
                     <!-- Pillar 3 -->
                     <div class="glass-card rounded-2xl p-6 sm:p-7 border border-slate-200 flex flex-col justify-between">
                         <div>
-                            <div class="w-12 h-12 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-700 text-xl mb-5">
+                            <div class="w-12 h-12 rounded-xl bg-sky-50 border border-sky-200 flex items-center justify-center text-sky-600 text-xl mb-5">
                                 <i class="fas fa-table-cells"></i>
                             </div>
                             <h3 class="font-display text-lg font-bold text-slate-900 mb-2">3. Прозрачность в CRM</h3>
@@ -827,7 +1090,7 @@
                                 Автозаполнение полей сделки в amoCRM и Битрикс24 + реактивные таблицы Google Sheets. Данные открыты и принадлежат вам без скрытых систем.
                             </p>
                         </div>
-                        <div class="mt-5 pt-3 border-t border-slate-100 text-xs font-mono text-slate-500 font-semibold">
+                        <div class="mt-5 pt-3 border-t border-slate-100 text-xs font-sans text-slate-500 font-semibold">
                             • Без закрытых черных ящиков
                         </div>
                     </div>
@@ -835,7 +1098,7 @@
                     <!-- Pillar 4 -->
                     <div class="glass-card rounded-2xl p-6 sm:p-7 border border-slate-200 flex flex-col justify-between">
                         <div>
-                            <div class="w-12 h-12 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-700 text-xl mb-5">
+                            <div class="w-12 h-12 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-600 text-xl mb-5">
                                 <i class="fas fa-graduation-cap"></i>
                             </div>
                             <h3 class="font-display text-lg font-bold text-slate-900 mb-2">4. Онбординг команды</h3>
@@ -843,7 +1106,7 @@
                                 Формирует карту ошибок каждого менеджера и ускоряет вывод новичков на плановую конверсию в 3 раза на реальных диалогах лучших продавцов.
                             </p>
                         </div>
-                        <div class="mt-5 pt-3 border-t border-slate-100 text-xs font-mono text-slate-500 font-semibold">
+                        <div class="mt-5 pt-3 border-t border-slate-100 text-xs font-sans text-slate-500 font-semibold">
                             • Стандарт продаж без сбоев
                         </div>
                     </div>
@@ -872,7 +1135,7 @@
                             <i class="fab fa-telegram-plane mr-1.5"></i> Telegram & MAX Алерт РОПа (30 сек)
                         </button>
                         <button onclick="toggleAlertView('sheets')" id="btnViewSheets" class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-slate-600 hover:text-slate-900 transition cursor-pointer">
-                            <i class="fas fa-table mr-1.5"></i> Google Таблица V18.0 (Радар)
+                            <i class="fas fa-table mr-1.5"></i> Google Sheets & ЛК V20.0 (Радар)
                         </button>
                     </div>
                 </div>
@@ -931,7 +1194,7 @@
                                 <a href="https://t.me/RevOps_Super_Audit_Bot" target="_blank" class="py-2.5 rounded-lg bg-violet-500/20 text-violet-300 border border-violet-500/40 hover:bg-violet-500/30 transition">
                                     <i class="fab fa-telegram mr-1"></i> Открыть в CRM
                                 </a>
-                                <a href="#cta" class="py-2.5 rounded-lg bg-violet-500 text-slate-950 font-bold hover:bg-violet-400 transition">
+                                <a href="#cta" class="py-2.5 rounded-lg bg-violet-500 text-white font-bold hover:bg-violet-400 transition">
                                     <i class="fas fa-play mr-1"></i> Слушать звонок
                                 </a>
                             </div>
@@ -947,7 +1210,7 @@
                 <div id="viewSheets" class="hidden max-w-5xl mx-auto rounded-3xl bg-white p-6 sm:p-8 shadow-xl border border-slate-200">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200 mb-6">
                         <div>
-                            <span class="text-xs font-mono font-semibold text-violet-600">RevOps Platform V18.0 // Live Master</span>
+                            <span class="text-xs font-mono font-semibold text-violet-600">RevOps Platform V20.0 // Live Master</span>
                             <h3 class="font-display font-bold text-slate-900 text-lg sm:text-xl">Лист «🎙️ ИИ_Аудит»: 100% звонков оцифрованы в данные</h3>
                         </div>
                         <a href="samples/Образец_ИИ_Аудита_50_Звонков_RevOps_OS.pdf" download class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold border border-slate-300 transition">
@@ -1013,7 +1276,7 @@
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6 text-center text-xs">
                         <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
                             <div class="text-slate-500">Авторасчет конверсии</div>
-                            <div class="font-bold text-slate-900 text-base mt-1">Реактивные формулы V18.0</div>
+                            <div class="font-bold text-slate-900 text-base mt-1">Реактивные формулы V20.0</div>
                         </div>
                         <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
                             <div class="text-slate-500">Разграничение прав (RBAC)</div>
@@ -1107,7 +1370,7 @@
                         <div class="text-sm text-slate-600 font-mono">
                             Ожидаемый возврат выручки: <strong class="text-violet-600 font-black" id="nicheRoi">+1.2M – 2.4M ₽ / мес</strong>
                         </div>
-                        <a href="#cta" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-violet-500 hover:bg-violet-400 text-slate-950 font-bold text-sm text-center shadow-md transition">
+                        <a href="#cta" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-violet-500 hover:bg-violet-400 text-white font-bold text-sm text-center shadow-md transition">
                             Откалибровать под мою нишу (0 ₽)
                         </a>
                     </div>
@@ -1138,7 +1401,7 @@
                     <!-- Phase 1 -->
                     <div class="rounded-3xl bg-white border border-slate-200 p-6 sm:p-7 border-t-4 border-t-violet-600 shadow-sm">
                         <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-mono font-bold text-slate-500 uppercase">Этап 1 // Вход и боли</span>
+                            <span class="text-xs font-sans font-bold text-slate-500 uppercase">Этап 1 // Вход и боли</span>
                             <span class="text-xs px-2.5 py-1 rounded bg-slate-100 text-slate-700 font-mono font-bold">cr1 – cr4</span>
                         </div>
                         <h4 class="font-display font-bold text-slate-900 text-base sm:text-lg mb-4">Квалификация и контекст</h4>
@@ -1166,7 +1429,7 @@
                     <!-- Phase 2 -->
                     <div class="rounded-3xl bg-white border border-slate-200 p-6 sm:p-7 border-t-4 border-t-violet-500 shadow-sm">
                         <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-mono font-bold text-slate-500 uppercase">Этап 2 // Презентация</span>
+                            <span class="text-xs font-sans font-bold text-slate-500 uppercase">Этап 2 // Презентация</span>
                             <span class="text-xs px-2.5 py-1 rounded bg-slate-100 text-slate-700 font-mono font-bold">cr5 – cr8</span>
                         </div>
                         <h4 class="font-display font-bold text-slate-900 text-base sm:text-lg mb-4">Экспертность и защита ценности</h4>
@@ -1194,7 +1457,7 @@
                     <!-- Phase 3 -->
                     <div class="rounded-3xl bg-white border border-slate-200 p-6 sm:p-7 border-t-4 border-t-purple-500 shadow-sm">
                         <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-mono font-bold text-slate-500 uppercase">Этап 3 // Закрытие</span>
+                            <span class="text-xs font-sans font-bold text-slate-500 uppercase">Этап 3 // Закрытие</span>
                             <span class="text-xs px-2.5 py-1 rounded bg-slate-100 text-slate-700 font-mono font-bold">cr9 – cr13</span>
                         </div>
                         <h4 class="font-display font-bold text-slate-900 text-base sm:text-lg mb-4">Дожим и фиксация в CRM</h4>
@@ -1337,7 +1600,7 @@
                 <!-- Interactive Loss Calculator (ROI) -->
                 <div class="max-w-4xl mx-auto rounded-3xl bg-slate-50 p-6 sm:p-10 shadow-xl border border-slate-200">
                     <div class="text-center max-w-xl mx-auto mb-8">
-                        <span class="text-xs font-mono font-bold text-slate-500 uppercase tracking-wider">Калькулятор утечки выручки</span>
+                        <span class="text-xs font-sans font-bold text-slate-500 uppercase tracking-wider">Калькулятор утечки выручки</span>
                         <h3 class="font-display font-black text-2xl sm:text-3xl text-slate-900 mt-1">
                             Сколько денег ваш отдел продаж теряет прямо сейчас?
                         </h3>
@@ -1437,7 +1700,7 @@
                                 Срок окупаемости: <strong class="text-slate-900">с 1-й спасённой сделки</strong>
                             </div>
 
-                            <a href="#cta" class="w-full inline-block py-4 px-6 rounded-xl bg-violet-500 hover:bg-violet-400 text-slate-950 font-bold text-sm tracking-wide shadow-md hover:shadow-violet-500/30 transition text-center">
+                            <a href="#cta" class="w-full inline-block py-4 px-6 rounded-xl bg-violet-500 hover:bg-violet-400 text-white font-bold text-sm tracking-wide shadow-md hover:shadow-violet-500/30 transition text-center">
                                 Остановить потери выручки 0 ₽
                             </a>
                         </div>
@@ -1454,7 +1717,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div class="text-center max-w-3xl mx-auto mb-16">
-                    <span class="text-xs font-mono font-bold text-violet-600 uppercase tracking-wider">Экран 6 // Быстрый запуск</span>
+                    <span class="inline-block px-3.5 py-1.5 rounded-full bg-slate-100 text-slate-700 font-mono text-xs font-semibold mb-3 border border-slate-200">// RAPID_ONBOARDING</span>
                     <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-slate-900 mt-2 mb-4">
                         Подключение за 15 минут: без программистов и нагрузки на IT-отдел
                     </h2>
@@ -1480,9 +1743,9 @@
                         <div class="w-12 h-12 rounded-2xl bg-violet-50 text-violet-600 font-black font-mono text-lg flex items-center justify-center mb-5 border border-violet-100">
                             02
                         </div>
-                        <h4 class="font-display font-bold text-slate-900 text-lg mb-2">Мастер-контур V18.0 (10 мин)</h4>
+                        <h4 class="font-display font-bold text-slate-900 text-lg mb-2">Мастер-контур V20.0 (10 мин)</h4>
                         <p class="text-sm text-slate-600 leading-relaxed">
-                            Система автоматически разворачивает вашу персональную Google Таблицу V18.0 и калибрует словарь под вашу нишу.
+                            Система автоматически разворачивает ваш Личный кабинет RevOps OS V20.0 + выгрузку в Google Sheets и калибрует словарь под вашу нишу.
                         </p>
                     </div>
 
@@ -1511,7 +1774,7 @@
                             </h3>
                             <p class="text-sm text-slate-600 leading-relaxed">
                                 Не хотите прямо сейчас подключать вебхуки или согласовывать доступ с IT и службой безопасности? 
-                                Просто выгрузите 50 записей звонков (MP3 / WAV или ссылка на облачный диск) — через 24 часа мы предоставим интерактивный отчет в Google Таблицах V18.0 с полной картой сливов выручки по 13 критериям.
+                                Просто выгрузите 50 записей звонков (MP3 / WAV или ссылка на облачный диск) — через 24 часа мы предоставим интерактивный отчет в Личном кабинете RevOps OS V20.0 + выгрузку в Google Sheets с полной картой сливов выручки по 13 критериям.
                             </p>
                             <div class="flex flex-wrap items-center gap-5 text-sm font-medium text-slate-700 pt-2">
                                 <span class="flex items-center gap-2"><i class="fas fa-check text-violet-600"></i> Без API-ключей</span>
@@ -1537,7 +1800,7 @@
                         <div class="shrink-0 text-center md:text-left">
                             <div class="relative inline-block">
                                 <img src="images/founder-dmitry.jpg" alt="Дмитрий Федотов" class="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl object-cover shadow-md border-2 border-violet-500/30">
-                                <div class="absolute -bottom-2 -right-2 px-2.5 py-1 rounded-full bg-violet-500 text-slate-950 font-black font-mono text-[11px] shadow-sm">
+                                <div class="absolute -bottom-2 -right-2 px-2.5 py-1 rounded-full bg-violet-500 text-white font-black font-mono text-[11px] shadow-sm">
                                     FOUNDER
                                 </div>
                             </div>
@@ -1606,7 +1869,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div class="text-center max-w-3xl mx-auto mb-16">
-                    <span class="text-xs font-mono font-bold text-violet-600 uppercase tracking-wider">Экран 7 // Честная отстройка от рынка</span>
+                    <span class="inline-block px-3.5 py-1.5 rounded-full bg-slate-200/80 text-slate-700 font-mono text-xs font-semibold mb-3 border border-slate-300">// MARKET_DIFFERENTIATION</span>
                     <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-slate-900 mt-2 mb-4">
                         Почему не модуль в телефонии, не тяжелый Enterprise и не обычные транскрибаторы?
                     </h2>
@@ -1738,7 +2001,7 @@
 
                     <!-- Column 4: RevOps Enterprise OS (Featured Winner) -->
                     <div class="rounded-3xl bg-violet-100/50 border-2 border-violet-500 p-6 sm:p-7 flex flex-col justify-between relative shadow-xl ring-4 ring-violet-500/10 lg:-translate-y-2">
-                        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-violet-500 text-slate-950 font-extrabold text-xs uppercase tracking-wider shadow-sm whitespace-nowrap">
+                        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-violet-500 text-white font-extrabold text-xs uppercase tracking-wider shadow-sm whitespace-nowrap">
                             ВЫБОР РОПОВ И СОБСТВЕННИКОВ
                         </div>
 
@@ -1807,7 +2070,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div class="text-center max-w-3xl mx-auto mb-16">
-                    <span class="text-xs font-mono font-bold text-violet-600 uppercase tracking-wider">Экран 8 // Безопасность и Закон</span>
+                    <span class="inline-block px-3.5 py-1.5 rounded-full bg-slate-100 text-slate-700 font-mono text-xs font-semibold mb-3 border border-slate-200">// SECURITY_AND_COMPLIANCE</span>
                     <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-slate-900 mt-2 mb-4">
                         100% юридическая чистота и защита данных по 152-ФЗ РФ
                     </h2>
@@ -1816,10 +2079,10 @@
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
                     
                     <!-- Feature 1 -->
-                    <div class="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition">
+                    <div class="p-6 sm:p-7 rounded-3xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition">
                         <div class="w-12 h-12 rounded-2xl bg-violet-50 text-violet-600 flex items-center justify-center text-xl mb-5 border border-violet-100">
                             <i class="fas fa-fingerprint"></i>
                         </div>
@@ -1830,7 +2093,7 @@
                     </div>
 
                     <!-- Feature 2 -->
-                    <div class="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition">
+                    <div class="p-6 sm:p-7 rounded-3xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition">
                         <div class="w-12 h-12 rounded-2xl bg-violet-50 text-violet-600 flex items-center justify-center text-xl mb-5 border border-violet-100">
                             <i class="fas fa-server"></i>
                         </div>
@@ -1841,7 +2104,7 @@
                     </div>
 
                     <!-- Feature 3 -->
-                    <div class="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition">
+                    <div class="p-6 sm:p-7 rounded-3xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition">
                         <div class="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-xl mb-5 border border-indigo-100">
                             <i class="fas fa-file-contract"></i>
                         </div>
@@ -1852,7 +2115,7 @@
                     </div>
 
                     <!-- Feature 4 -->
-                    <div class="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition">
+                    <div class="p-6 sm:p-7 rounded-3xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition">
                         <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl mb-5 border border-amber-100">
                             <i class="fas fa-receipt"></i>
                         </div>
@@ -1874,7 +2137,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div class="text-center max-w-3xl mx-auto mb-16">
-                    <span class="text-xs font-mono font-bold text-violet-600 uppercase tracking-wider">Экран 9 // Прозрачные условия</span>
+                    <span class="inline-block px-3.5 py-1.5 rounded-full bg-slate-200/80 text-slate-700 font-mono text-xs font-semibold mb-3 border border-slate-300">// TRANSPARENT_PRICING</span>
                     <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-slate-900 mt-2 mb-4">
                         Инвестиции, которые окупаются с 1-й спасённой сделки
                     </h2>
@@ -1884,14 +2147,14 @@
                 </div>
 
                 <!-- 4 Pricing Cards -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 items-stretch">
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-16 items-stretch">
                     
                     <!-- Tier 1: Express Audit -->
                     <div class="rounded-3xl bg-slate-50 border border-slate-200 p-6 sm:p-7 flex flex-col justify-between hover:shadow-md transition">
                         <div>
-                            <span class="text-xs font-mono font-bold text-slate-500 uppercase tracking-wider">Тест-Драйв</span>
+                            <span class="text-xs font-sans font-bold text-slate-500 uppercase tracking-wider">Тест-Драйв</span>
                             <h3 class="font-display font-bold text-slate-900 text-xl sm:text-2xl mt-1 mb-2">Экспресс-Аудит</h3>
-                            <div class="text-3xl sm:text-4xl font-black text-slate-900 font-mono mb-4">
+                            <div class="text-3xl sm:text-4xl font-black text-slate-900 font-mono mb-4 whitespace-nowrap">
                                 0 ₽ <span class="text-xs sm:text-sm font-normal text-slate-500">/ 50 звонков</span>
                             </div>
                             <p class="text-xs sm:text-sm text-slate-600 mb-6 leading-relaxed">
@@ -1917,9 +2180,9 @@
                     <!-- Tier 2: Pilot 7 Days -->
                     <div class="rounded-3xl bg-slate-50 border border-slate-200 p-6 sm:p-7 flex flex-col justify-between hover:shadow-md transition">
                         <div>
-                            <span class="text-xs font-mono font-bold text-slate-500 uppercase tracking-wider">Под ключ</span>
+                            <span class="text-xs font-sans font-bold text-slate-500 uppercase tracking-wider">Под ключ</span>
                             <h3 class="font-display font-bold text-slate-900 text-xl sm:text-2xl mt-1 mb-2">Пилот 7 дней</h3>
-                            <div class="text-3xl sm:text-4xl font-black text-slate-900 font-mono mb-4">
+                            <div class="text-3xl sm:text-4xl font-black text-slate-900 font-mono mb-4 whitespace-nowrap">
                                 14 900 ₽ <span class="text-xs sm:text-sm font-normal text-slate-500">/ 7 дней</span>
                             </div>
                             <p class="text-xs sm:text-sm text-slate-600 mb-6 leading-relaxed">
@@ -1928,7 +2191,7 @@
 
                             <ul class="space-y-3 text-xs sm:text-sm text-slate-700 mb-8">
                                 <li class="flex items-center gap-2.5"><i class="fas fa-check text-violet-600"></i> <span>100% звонков всей команды за 7 дней</span></li>
-                                <li class="flex items-center gap-2.5"><i class="fas fa-check text-violet-600"></i> <span>Персональная Google Таблица V18.0</span></li>
+                                <li class="flex items-center gap-2.5"><i class="fas fa-check text-violet-600"></i> <span>Личный кабинет RevOps OS V20.0 + выгрузка в Google Sheets</span></li>
                                 <li class="flex items-center gap-2.5"><i class="fas fa-check text-violet-600"></i> <span>Подключение Telegram / MAX алертов РОПа</span></li>
                                 <li class="flex items-center gap-2.5"><i class="fas fa-check text-violet-600"></i> <span>Опция: пилот по 50 файлам без IT-доступа</span></li>
                                 <li class="flex items-center gap-2 font-bold text-violet-800 bg-violet-50 px-2.5 py-1.5 rounded-lg border border-violet-200 text-xs">
@@ -1947,14 +2210,14 @@
 
                     <!-- Tier 3: RevOps Pro (FEATURED HIT!) -->
                     <div class="rounded-3xl bg-violet-50/70 border-2 border-violet-500 ring-4 ring-violet-500/10 shadow-xl lg:-translate-y-2 relative p-6 sm:p-7 flex flex-col justify-between transition">
-                        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-violet-500 text-slate-950 font-black text-[11px] uppercase tracking-wider shadow-md whitespace-nowrap">
+                        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-violet-500 text-white font-black text-[11px] uppercase tracking-wider shadow-md whitespace-nowrap">
                             ХИТ ПРОДАЖ // ВЫБОР РОПОВ
                         </div>
 
                         <div>
-                            <span class="text-xs font-mono font-bold text-violet-700 uppercase tracking-wider">Регулярный супервайзинг</span>
+                            <span class="text-xs font-sans font-bold text-violet-700 uppercase tracking-wider">Регулярный супервайзинг</span>
                             <h3 class="font-display font-black text-slate-900 text-xl sm:text-2xl mt-1 mb-2">RevOps Pro</h3>
-                            <div class="text-3xl sm:text-4xl font-black text-violet-600 font-mono mb-4">
+                            <div class="text-3xl sm:text-4xl font-black text-violet-600 font-mono mb-4 whitespace-nowrap">
                                 29 900 ₽ <span class="text-xs sm:text-sm font-normal text-slate-600">/ месяц</span>
                             </div>
                             <p class="text-xs sm:text-sm text-slate-700 mb-6 leading-relaxed font-medium">
@@ -1970,7 +2233,7 @@
                             </ul>
                         </div>
 
-                        <button type="button" onclick="selectLeadTariff('pro_monthly'); scrollToSection('cta', true);" class="w-full py-3.5 rounded-xl bg-violet-500 hover:bg-violet-400 text-slate-950 font-black text-xs uppercase tracking-wider shadow-lg shadow-violet-500/30 transition text-center cursor-pointer">
+                        <button type="button" onclick="selectLeadTariff('pro_monthly'); scrollToSection('cta', true);" class="w-full py-3.5 rounded-xl bg-violet-500 hover:bg-violet-400 text-white font-black text-xs uppercase tracking-wider shadow-lg shadow-violet-500/30 transition text-center cursor-pointer">
                             Подключить RevOps Pro
                         </button>
                     </div>
@@ -1978,9 +2241,9 @@
                     <!-- Tier 4: Enterprise -->
                     <div class="rounded-3xl bg-slate-50 border border-slate-200 p-6 sm:p-7 flex flex-col justify-between hover:shadow-md transition">
                         <div>
-                            <span class="text-xs font-mono font-bold text-slate-500 uppercase tracking-wider">Масштаб // Корпоративный</span>
+                            <span class="text-xs font-sans font-bold text-slate-500 uppercase tracking-wider">Масштаб // Корпоративный</span>
                             <h3 class="font-display font-bold text-slate-900 text-xl sm:text-2xl mt-1 mb-2">Enterprise</h3>
-                            <div class="text-3xl sm:text-4xl font-black text-slate-900 font-mono mb-4">
+                            <div class="text-3xl sm:text-4xl font-black text-slate-900 font-mono mb-4 whitespace-nowrap">
                                 79 000 ₽ <span class="text-xs sm:text-sm font-normal text-slate-500">/ месяц</span>
                             </div>
                             <p class="text-xs sm:text-sm text-slate-600 mb-6 leading-relaxed">
@@ -2021,7 +2284,7 @@
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div class="text-center mb-12 sm:mb-16">
-                    <span class="text-xs font-mono font-bold text-violet-600 uppercase tracking-wider">FAQ // Поддержка & Ответы</span>
+                    <span class="text-xs font-sans font-bold text-violet-600 uppercase tracking-wider">FAQ // Поддержка & Ответы</span>
                     <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-slate-900 mt-2 mb-4">
                         Часто задаваемые вопросы
                     </h2>
@@ -2141,7 +2404,7 @@
                                 </div>
                                 <div class="flex items-center gap-3">
                                     <i class="fas fa-check-circle text-violet-600 text-lg"></i>
-                                    <span>Персональная Google Таблица V18.0 со срезом сливов выручки</span>
+                                    <span>Личный кабинет RevOps OS V20.0 + выгрузка в Google Sheets со срезом сливов выручки</span>
                                 </div>
                                 <div class="flex items-center gap-3">
                                     <i class="fas fa-check-circle text-violet-600 text-lg"></i>
@@ -2439,7 +2702,7 @@
                     Мы используем cookie и сервисы аналитики для защиты данных по <a href="privacy.html" class="text-violet-400 underline hover:text-violet-100 font-medium">152-ФЗ РФ</a>.
                 </p>
                 <div class="mt-3 flex items-center gap-2">
-                    <button type="button" id="acceptCookieBtn" class="px-4 py-2 bg-violet-500 hover:bg-violet-400 text-slate-950 font-bold rounded-xl text-xs transition shadow-md shadow-violet-500/20">
+                    <button type="button" id="acceptCookieBtn" class="px-4 py-2 bg-violet-500 hover:bg-violet-400 text-white font-bold rounded-xl text-xs transition shadow-md shadow-violet-500/20">
                         Принять все
                     </button>
                     <a href="privacy.html" class="px-3 py-2 text-slate-400 hover:text-white text-xs transition underline">
@@ -2489,7 +2752,7 @@
             variant_bitrix24: {
                 src: 'audio/cold-call-bitrix24.mp3',
                 title: 'Холодный звонок: Продажа CRM Битрикс24 • Сделка на 240 000 ₽',
-                score: '38/100 (Провалено)',
+                score: '4/13 (Слив)',
                 loss: '240 000 ₽',
                 criteria: 'cr3 (ЛПР не выявлен) • cr6 (Цена без ценности) • cr10 (Слив на КП) • cr11 (Нет фиксации шага)',
                 clientText: '«Слушайте, отправьте ваше коммерческое предложение на общую почту info@... Руководство посмотрит, если будет интересно — свяжемся».',
@@ -2499,7 +2762,7 @@
             variant_cable: {
                 src: 'audio/cold-call-cable.mp3',
                 title: 'B2B Опт: Поставка силового кабеля • Сделка на 650 000 ₽',
-                score: '42/100 (Провалено)',
+                score: '4/13 (Слив)',
                 loss: '650 000 ₽',
                 criteria: 'cr4 (Объем не выяснен) • cr7 (Инициатива отдана) • cr10 (Слив на КП)',
                 clientText: '«Добрый день, нужен прайс на партию кабельной продукции, есть в наличии объем?»',
@@ -2509,7 +2772,7 @@
             variant_equip: {
                 src: 'audio/cold-call-uzip.mp3',
                 title: 'ПромОборудование: Защита электросетей УЗИП • Сделка на 480 000 ₽',
-                score: '35/100 (Провалено)',
+                score: '3/13 (Слив)',
                 loss: '480 000 ₽',
                 criteria: 'cr3 (ЛПР не выявлен) • cr6 (Технические термины без выгод) • cr10 (Слив на «Ничего не надо»)',
                 clientText: '«Здравствуйте, нам вообще ничего не надо, у нас свои поставщики оборудования, все закрыто».',
@@ -2519,7 +2782,7 @@
             variant_parts: {
                 src: 'audio/cold-call-medtech.mp3',
                 title: 'Спецтехника & Медоборудование • Сделка на 520 000 ₽',
-                score: '32/100 (Провалено)',
+                score: '3/13 (Слив)',
                 loss: '520 000 ₽',
                 criteria: 'cr2 (Холодный заход без крючка) • cr7 (Инициатива отдана) • cr10 (Слив на поиск ЛПР) • cr11 (Нет фиксации шага)',
                 clientText: '«Соединить с главврачом? Он на операциях, пишите на общую почту канцелярии, они передадут если сочтут нужным».',
@@ -3088,22 +3351,25 @@
         });
 
         // ----------------------------------------------------
-        // 10. ТЕМА: переключатель тёмная (глубокий чёрный) / светлая
+        // 10. ТЕМА: сквозная синхронизация Лендинга и ЛК V20.0
         // ----------------------------------------------------
         (function () {
-            const THEME_KEY = 'revops-theme';
             function applyTheme(t) {
                 document.documentElement.setAttribute('data-theme', t);
                 document.documentElement.setAttribute('data-bs-theme', t);
-                try { localStorage.setItem(THEME_KEY, t); } catch (e) {}
+                try {
+                    localStorage.setItem('revops_theme_mode', t);
+                    localStorage.setItem('revops-theme', t);
+                } catch (e) {}
             }
             document.addEventListener('click', function (ev) {
                 const btn = ev.target.closest('#theme-toggle');
                 if (!btn) return;
                 const cur = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
-                applyTheme(cur === 'light' ? 'dark' : 'light');
+                const next = cur === 'light' ? 'dark' : 'light';
+                applyTheme(next);
                 if (typeof window.reachMetrikaGoal === 'function') {
-                    window.reachMetrikaGoal('theme_toggle', { theme: cur === 'light' ? 'dark' : 'light' });
+                    window.reachMetrikaGoal('theme_toggle', { theme: next });
                 }
             });
         })();
