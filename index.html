@@ -32,7 +32,31 @@
     <link rel="stylesheet" href="css/fontawesome.min.css">
     <link rel="stylesheet" href="css/tailwind.min.css?v=20261015-violet">
     <link rel="stylesheet" href="css/violet-palette.css?v=20261015-violet">
-    <link rel="stylesheet" href="css/dark-theme.css?v=20261016-dark">
+    <link rel="stylesheet" href="css/dark-theme.css?v=20261017-full-theme">
+    <!-- Tabler UI (https://github.com/tabler/tabler) — тема "Глубокий чёрный + Фиолетовый глубокий" -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0/dist/css/tabler.min.css">
+    <link rel="stylesheet" href="css/tabler-theme.css?v=20261017-full-theme">
+    <link rel="stylesheet" href="css/tabler-colors.css?v=20261017-full-theme">
+
+    <!-- Тема по умолчанию: тёмная (глубокий чёрный). Инлайн-скрипт до отрисовки — без мигания. -->
+    <script>
+        (function () {
+            var t = 'dark';
+            try { t = localStorage.getItem('revops-theme') || 'dark'; } catch (e) {}
+            if (t !== 'light' && t !== 'dark') t = 'dark';
+            document.documentElement.setAttribute('data-theme', t);
+            document.documentElement.setAttribute('data-bs-theme', t);
+        })();
+    </script>
+    <!-- Синхронизация темы между страницами -->
+    <script>
+        window.addEventListener('storage', function (e) {
+            if (e.key === 'revops-theme' && (e.newValue === 'light' || e.newValue === 'dark')) {
+                document.documentElement.setAttribute('data-theme', e.newValue);
+                document.documentElement.setAttribute('data-bs-theme', e.newValue);
+            }
+        });
+    </script>
 
     <!-- Yandex.Metrika counter (152-ФЗ РФ Compliant: Localized & Anonymized) -->
     <script type="text/javascript">
@@ -114,7 +138,7 @@
             box-shadow: 0 0 35px -5px rgba(124, 58, 237, 0.3);
         }
         .glow-cyan {
-            box-shadow: 0 0 35px -5px rgba(6, 182, 212, 0.3);
+            box-shadow: 0 0 35px -5px rgba(74, 29, 150, 0.45);
         }
         .glow-rose {
             box-shadow: 0 0 35px -5px rgba(244, 63, 94, 0.3);
@@ -228,7 +252,7 @@
             
             <!-- Logo with High-Contrast Radar Emblem -->
             <a href="/" class="flex items-center gap-3 group shrink-0">
-                <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-tr from-violet-500 via-teal-400 to-cyan-500 p-0.5 shadow-lg shadow-violet-500/25 group-hover:shadow-violet-500/50 transition duration-300 shrink-0">
+                <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-tr from-violet-800 via-violet-600 to-violet-400 p-0.5 shadow-lg shadow-violet-500/25 group-hover:shadow-violet-500/50 transition duration-300 shrink-0">
                     <div class="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center relative overflow-hidden">
                         <!-- Background glow pulse -->
                         <div class="absolute inset-0 bg-violet-500/10 animate-pulse"></div>
@@ -265,8 +289,8 @@
             <!-- Actions (Synchronized TG-Bot & MAX Bot + Direct CTA) -->
             <div class="flex items-center gap-2 sm:gap-2.5 shrink-0">
                 <!-- Telegram Bot Badge -->
-                <a href="https://t.me/RevOps_Super_Audit_Bot" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-700 border border-sky-200 text-xs font-bold transition whitespace-nowrap" title="Telegram Бот аудита">
-                    <i class="fab fa-telegram text-sky-500 text-sm"></i>
+                <a href="https://t.me/RevOps_Super_Audit_Bot" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-violet-50 hover:bg-violet-100 text-violet-700 border border-violet-200 text-xs font-bold transition whitespace-nowrap" title="Telegram Бот аудита">
+                    <i class="fab fa-telegram text-violet-500 text-sm"></i>
                     <span>ТГ-Бот</span>
                 </a>
                 <!-- MAX Bot Badge -->
@@ -274,6 +298,11 @@
                     <i class="fas fa-robot text-purple-500 text-xs"></i>
                     <span>MAX-бот</span>
                 </a>
+                <!-- Переключатель темы: тёмная (по умолчанию) / светлая -->
+                <button type="button" id="theme-toggle" class="theme-toggle inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-slate-100 hover:bg-violet-50 text-slate-600 hover:text-violet-700 border border-slate-200 transition" aria-label="Переключить тему" title="Переключить тему">
+                    <i class="fas fa-moon icon-moon text-sm"></i>
+                    <i class="fas fa-sun icon-sun text-sm"></i>
+                </button>
                 <!-- Личный Кабинет / Войти -->
                 <a href="/app/" class="inline-flex items-center gap-1.5 px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-xl bg-slate-900/90 hover:bg-violet-950/70 text-slate-200 hover:text-white border border-slate-700/80 hover:border-violet-500/60 text-xs sm:text-sm font-bold transition shadow-sm whitespace-nowrap" title="Войти в личный кабинет RevOps OS">
                     <i class="fas fa-arrow-right-to-bracket text-violet-400 text-xs"></i>
@@ -296,7 +325,7 @@
         <!-- ======================================================== -->
         <section id="demo" class="relative pt-12 pb-20 sm:pt-20 sm:pb-28 bg-white bg-dot-pattern overflow-hidden">
             <!-- Background Glow Blobs -->
-            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-tr from-violet-500/10 to-teal-500/10 blur-[130px] pointer-events-none rounded-full"></div>
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-tr from-violet-500/15 to-violet-900/10 blur-[130px] pointer-events-none rounded-full"></div>
             
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
                 
@@ -698,8 +727,8 @@
                         <div class="space-y-3 text-sm font-sans mb-5">
                             <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-left">
                                 <div class="flex items-center gap-2 mb-1">
-                                    <span class="w-2 h-2 rounded-full bg-sky-500"></span>
-                                    <span class="text-xs font-mono font-bold text-sky-700 uppercase">Клиент (секретарь):</span>
+                                    <span class="w-2 h-2 rounded-full bg-violet-500"></span>
+                                    <span class="text-xs font-mono font-bold text-violet-700 uppercase">Клиент (секретарь):</span>
                                 </div>
                                 <p id="clientText" class="text-slate-700 italic leading-relaxed">
                                     «Слушайте, отправьте ваше коммерческое предложение на общую почту info@... Руководство посмотрит, если будет интересно — свяжемся».
@@ -856,13 +885,13 @@
                         <!-- Messenger Header -->
                         <div class="flex items-center justify-between pb-3 border-b border-slate-800 mb-4 px-2">
                             <div class="flex items-center gap-2.5">
-                                <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-violet-500 to-cyan-500 flex items-center justify-center text-slate-950 font-bold text-xs">
+                                <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-violet-700 to-violet-400 flex items-center justify-center text-slate-950 font-bold text-xs">
                                     AI
                                 </div>
                                 <div>
                                     <div class="text-xs font-bold text-white flex items-center gap-1">
                                         <span>RevOps Supervisor Bot</span>
-                                        <i class="fas fa-check-circle text-sky-400 text-[10px]"></i>
+                                        <i class="fas fa-check-circle text-violet-400 text-[10px]"></i>
                                     </div>
 
                                     <div class="text-[10px] text-violet-400 font-mono">● онлайн • аудит за 30 сек</div>
@@ -899,7 +928,7 @@
                             </div>
 
                             <div class="grid grid-cols-2 gap-2 pt-1 font-semibold text-center text-xs">
-                                <a href="https://t.me/RevOps_Super_Audit_Bot" target="_blank" class="py-2.5 rounded-lg bg-sky-500/20 text-sky-300 border border-sky-500/40 hover:bg-sky-500/30 transition">
+                                <a href="https://t.me/RevOps_Super_Audit_Bot" target="_blank" class="py-2.5 rounded-lg bg-violet-500/20 text-violet-300 border border-violet-500/40 hover:bg-violet-500/30 transition">
                                     <i class="fab fa-telegram mr-1"></i> Открыть в CRM
                                 </a>
                                 <a href="#cta" class="py-2.5 rounded-lg bg-violet-500 text-slate-950 font-bold hover:bg-violet-400 transition">
@@ -1107,7 +1136,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
                     
                     <!-- Phase 1 -->
-                    <div class="rounded-3xl bg-white border border-slate-200 p-6 sm:p-7 border-t-4 border-t-cyan-500 shadow-sm">
+                    <div class="rounded-3xl bg-white border border-slate-200 p-6 sm:p-7 border-t-4 border-t-violet-600 shadow-sm">
                         <div class="flex items-center justify-between mb-4">
                             <span class="text-xs font-mono font-bold text-slate-500 uppercase">Этап 1 // Вход и боли</span>
                             <span class="text-xs px-2.5 py-1 rounded bg-slate-100 text-slate-700 font-mono font-bold">cr1 – cr4</span>
@@ -1448,7 +1477,7 @@
                     </div>
 
                     <div class="rounded-3xl bg-white border border-slate-200 p-6 sm:p-8 shadow-sm relative hover:shadow-md transition">
-                        <div class="w-12 h-12 rounded-2xl bg-sky-50 text-sky-600 font-black font-mono text-lg flex items-center justify-center mb-5 border border-sky-100">
+                        <div class="w-12 h-12 rounded-2xl bg-violet-50 text-violet-600 font-black font-mono text-lg flex items-center justify-center mb-5 border border-violet-100">
                             02
                         </div>
                         <h4 class="font-display font-bold text-slate-900 text-lg mb-2">Мастер-контур V18.0 (10 мин)</h4>
@@ -1495,8 +1524,8 @@
                                 <span>Передать 50 звонков на разбор</span>
                                 <i class="fas fa-arrow-right"></i>
                             </a>
-                            <a href="https://t.me/RevOps_Super_Audit_Bot" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-700 border border-sky-200 text-sm font-semibold transition text-center shadow-2xs">
-                                <i class="fab fa-telegram text-sky-500"></i> Загрузить файлы в Telegram-бот
+                            <a href="https://t.me/RevOps_Super_Audit_Bot" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-violet-50 hover:bg-violet-100 text-violet-700 border border-violet-200 text-sm font-semibold transition text-center shadow-2xs">
+                                <i class="fab fa-telegram text-violet-500"></i> Загрузить файлы в Telegram-бот
                             </a>
                         </div>
                     </div>
@@ -1802,7 +1831,7 @@
 
                     <!-- Feature 2 -->
                     <div class="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition">
-                        <div class="w-12 h-12 rounded-2xl bg-sky-50 text-sky-600 flex items-center justify-center text-xl mb-5 border border-sky-100">
+                        <div class="w-12 h-12 rounded-2xl bg-violet-50 text-violet-600 flex items-center justify-center text-xl mb-5 border border-violet-100">
                             <i class="fas fa-server"></i>
                         </div>
                         <h4 class="font-display font-bold text-slate-900 text-lg mb-2">100% серверов в РФ</h4>
@@ -1978,7 +2007,7 @@
                 <div class="pt-8 border-t border-slate-200 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-sm font-mono text-slate-600">
                     <span class="flex items-center gap-2"><i class="fas fa-shield text-violet-600"></i> 100% защита по 152-ФЗ РФ</span>
                     <span class="flex items-center gap-2"><i class="fas fa-bolt text-amber-500"></i> Старт за 15 минут</span>
-                    <span class="flex items-center gap-2"><i class="fas fa-file-contract text-sky-600"></i> Договор поручения и чеки ФНС</span>
+                    <span class="flex items-center gap-2"><i class="fas fa-file-contract text-violet-600"></i> Договор поручения и чеки ФНС</span>
                     <span class="flex items-center gap-2"><i class="fas fa-check-circle text-violet-600"></i> Без привязки карты</span>
                 </div>
 
@@ -2070,7 +2099,7 @@
                 <div class="text-center mt-12">
                     <p class="text-sm text-slate-600">
                         Остались индивидуальные вопросы по вашей телефонии или CRM? Задайте их напрямую в 
-                        <a href="https://t.me/RevOps_Super_Audit_Bot" target="_blank" rel="noopener noreferrer" class="text-sky-600 font-bold hover:underline">Telegram-бот</a> или 
+                        <a href="https://t.me/RevOps_Super_Audit_Bot" target="_blank" rel="noopener noreferrer" class="text-violet-600 font-bold hover:underline">Telegram-бот</a> или 
                         <a href="https://max.ru/se14526668_bot" target="_blank" rel="noopener noreferrer" class="text-purple-600 font-bold hover:underline">MAX-бот</a>
                     </p>
                 </div>
@@ -2124,8 +2153,8 @@
                             <div class="pt-4 border-t border-slate-100">
                                 <div class="text-xs text-slate-500 mb-3 font-mono font-bold">Или отправьте звонки напрямую в мессенджер:</div>
                                 <div class="flex flex-wrap items-center gap-3">
-                                    <a href="https://t.me/RevOps_Super_Audit_Bot" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-700 border border-sky-200 text-sm font-bold transition flex items-center gap-2 shadow-2xs">
-                                        <i class="fab fa-telegram text-base text-sky-500"></i> Telegram Бот
+                                    <a href="https://t.me/RevOps_Super_Audit_Bot" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-xl bg-violet-50 hover:bg-violet-100 text-violet-700 border border-violet-200 text-sm font-bold transition flex items-center gap-2 shadow-2xs">
+                                        <i class="fab fa-telegram text-base text-violet-500"></i> Telegram Бот
                                     </a>
                                     <a href="https://max.ru/se14526668_bot" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-xl bg-purple-50 hover:bg-purple-100 text-purple-700 border border-purple-200 text-sm font-bold transition flex items-center gap-2 shadow-2xs">
                                         <i class="fas fa-robot text-base text-purple-500"></i> MAX Бот
@@ -2205,7 +2234,7 @@
                                     </div>
                                     <div class="pt-2 border-t border-violet-200/60">
                                         <div class="text-[11px] text-slate-500 font-mono mb-2">Хотите ускорить аудит? Пришлите файлы в мессенджер:</div>
-                                        <a href="https://t.me/RevOps_Super_Audit_Bot" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs shadow-sm transition">
+                                        <a href="https://t.me/RevOps_Super_Audit_Bot" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-violet-500 hover:bg-violet-600 text-white font-bold text-xs shadow-sm transition">
                                             <i class="fab fa-telegram"></i> Открыть Telegram-бот
                                         </a>
                                     </div>
@@ -2218,7 +2247,7 @@
                                         <span>Не удалось отправить заявку</span>
                                     </div>
                                     <p class="text-rose-600 mb-2" id="formErrorMessage">Проверьте соединение с интернетом или отправьте звонки напрямую в бот.</p>
-                                    <a href="https://t.me/RevOps_Super_Audit_Bot" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-sky-500 text-white font-bold text-xs hover:bg-sky-600 transition">
+                                    <a href="https://t.me/RevOps_Super_Audit_Bot" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-violet-500 text-white font-bold text-xs hover:bg-violet-600 transition">
                                         <i class="fab fa-telegram"></i> Написать в Telegram-бот
                                     </a>
                                 </div>
@@ -2369,8 +2398,8 @@
                         </a>
 
                         <div class="grid grid-cols-2 gap-2">
-                            <a href="https://t.me/dm1918" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-sky-950/30 hover:bg-sky-900/50 border border-sky-800/60 hover:border-sky-400 text-sky-300 hover:text-white transition flex items-center justify-center gap-2 text-xs font-bold text-center">
-                                <i class="fab fa-telegram text-sky-400 text-sm"></i>
+                            <a href="https://t.me/dm1918" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-violet-950/30 hover:bg-violet-900/50 border border-violet-800/60 hover:border-violet-400 text-violet-300 hover:text-white transition flex items-center justify-center gap-2 text-xs font-bold text-center">
+                                <i class="fab fa-telegram text-violet-400 text-sm"></i>
                                 <span class="whitespace-nowrap">@dm1918</span>
                             </a>
                             <a href="https://max.ru/se14526668_bot" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-purple-950/30 hover:bg-purple-900/50 border border-purple-800/60 hover:border-purple-400 text-purple-300 hover:text-white transition flex items-center justify-center gap-2 text-xs font-bold text-center">
@@ -2437,7 +2466,7 @@
             <div class="text-xs text-violet-600 font-mono font-semibold">Бесплатно • Без IT-доступа</div>
         </div>
         <div class="flex items-center gap-2">
-            <a href="https://t.me/RevOps_Super_Audit_Bot" target="_blank" class="w-11 h-11 rounded-xl bg-sky-50 border border-sky-200 text-sky-600 flex items-center justify-center shrink-0">
+            <a href="https://t.me/RevOps_Super_Audit_Bot" target="_blank" class="w-11 h-11 rounded-xl bg-violet-50 border border-violet-200 text-violet-600 flex items-center justify-center shrink-0">
                 <i class="fab fa-telegram text-base"></i>
             </a>
             <a href="https://max.ru/se14526668_bot" target="_blank" class="w-11 h-11 rounded-xl bg-purple-50 border border-purple-200 text-purple-600 flex items-center justify-center shrink-0">
@@ -3057,6 +3086,27 @@
                 });
             });
         });
+
+        // ----------------------------------------------------
+        // 10. ТЕМА: переключатель тёмная (глубокий чёрный) / светлая
+        // ----------------------------------------------------
+        (function () {
+            const THEME_KEY = 'revops-theme';
+            function applyTheme(t) {
+                document.documentElement.setAttribute('data-theme', t);
+                document.documentElement.setAttribute('data-bs-theme', t);
+                try { localStorage.setItem(THEME_KEY, t); } catch (e) {}
+            }
+            document.addEventListener('click', function (ev) {
+                const btn = ev.target.closest('#theme-toggle');
+                if (!btn) return;
+                const cur = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+                applyTheme(cur === 'light' ? 'dark' : 'light');
+                if (typeof window.reachMetrikaGoal === 'function') {
+                    window.reachMetrikaGoal('theme_toggle', { theme: cur === 'light' ? 'dark' : 'light' });
+                }
+            });
+        })();
     </script>
 
 </body>
