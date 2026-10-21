@@ -473,21 +473,21 @@ async function saveDailyTaskTime() {
 }
 
 
-async function testGeminiApi() {
-  const btn = document.getElementById('btnTestGemini');
-  const latEl = document.getElementById('adminGeminiLatency');
+async function testAiApi() {
+  const btn = document.getElementById('btnTestAi') || document.getElementById('btnTestGemini');
+  const latEl = document.getElementById('adminAiLatency') || document.getElementById('adminGeminiLatency');
   if (btn) btn.disabled = true;
-  appendAdminTerminalLog('Пинг Google Gemini 3.5 Flash через Cloudflare Proxy Worker...', 'info');
+  appendAdminTerminalLog('Пинг RevOps Neural Speech Core через Cloudflare Proxy Worker...', 'info');
 
   try {
     const res = await adminFetch('/api/v1/admin/ai/test-gemini', { method: 'POST' });
     const data = await res.json();
     if (latEl) latEl.textContent = `${data.latency_ms || '—'} ms`;
-    appendAdminTerminalLog(data.message || 'Тест Gemini API завершён', data.success ? 'success' : 'error');
-    showToast('Gemini API', data.success ? `Успешно (${data.latency_ms} ms)` : 'Ошибка связи');
+    appendAdminTerminalLog(data.message || 'Тест ИИ-шлюза завершён', data.success ? 'success' : 'error');
+    showToast('ИИ-шлюз', data.success ? `Успешно (${data.latency_ms} ms)` : 'Ошибка связи');
   } catch (err) {
-    appendAdminTerminalLog(`Сбой связи с Gemini: ${err.message}`, 'error');
-    showToast('Ошибка Gemini', err.message);
+    appendAdminTerminalLog(`Сбой связи с ИИ-шлюзом: ${err.message}`, 'error');
+    showToast('Ошибка ИИ-шлюза', err.message);
   } finally {
     if (btn) btn.disabled = false;
   }
@@ -879,7 +879,8 @@ window.runSheetsAction = runSheetsAction;
 window.runSheetsTarget = runSheetsTarget;
 window.runTaskAction = runTaskAction;
 window.saveDailyTaskTime = saveDailyTaskTime;
-window.testGeminiApi = testGeminiApi;
+window.testAiApi = testAiApi;
+window.testGeminiApi = testAiApi;
 window.fetchAdminLogs = fetchAdminLogs;
 window.clearAdminConsole = clearAdminConsole;
 window.copyAdminTunnelUrl = copyAdminTunnelUrl;

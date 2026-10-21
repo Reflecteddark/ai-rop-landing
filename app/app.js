@@ -116,7 +116,8 @@ window.runSheetsAction = typeof runSheetsAction !== 'undefined' ? runSheetsActio
 window.runSheetsTarget = typeof runSheetsTarget !== 'undefined' ? runSheetsTarget : null;
 window.runTaskAction = typeof runTaskAction !== 'undefined' ? runTaskAction : null;
 window.saveDailyTaskTime = typeof saveDailyTaskTime !== 'undefined' ? saveDailyTaskTime : null;
-window.testGeminiApi = typeof testGeminiApi !== 'undefined' ? testGeminiApi : null;
+window.testAiApi = typeof testAiApi !== 'undefined' ? testAiApi : null;
+window.testGeminiApi = typeof testGeminiApi !== 'undefined' ? testGeminiApi : (typeof testAiApi !== 'undefined' ? testAiApi : null);
 window.fetchAdminLogs = typeof fetchAdminLogs !== 'undefined' ? fetchAdminLogs : null;
 window.clearAdminConsole = typeof clearAdminConsole !== 'undefined' ? clearAdminConsole : null;
 window.copyAdminTunnelUrl = typeof copyAdminTunnelUrl !== 'undefined' ? copyAdminTunnelUrl : null;
